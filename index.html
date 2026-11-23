@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sohrus (صوهروس) — Native Living Notch for Windows</title>
+<meta name="description" content="Sohrus (صوهروس) is a 100% free, Pure Rust native living notch for Windows 10 & 11 created by Sohaib Ayman. Full Arabic (RTL) & English UI, under 30 MB RAM, 2.98 MB installer, 5-band WASAPI visualizer, synced lyrics, Pomodoro, stopwatch, hydration tank, offline prayer times & Adhkar, file shelf, clipboard QR, scratchpad, 11 widgets, Ask Sohrus AI + voice, Smart OCR, HEX color picker, screen ruler, hold-to-click-through key, and system HUD.">
+<meta name="keywords" content="Sohrus, صوهروس, Windows notch, Dynamic Island Windows, Rust desktop utility, Arabic RTL Windows app, synced lyrics Windows, Pomodoro notch, offline prayer times Windows, Smart OCR Windows, Sohaib Ayman">
+<meta name="author" content="Sohaib Ayman">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#05080f">
+<link rel="canonical" href="https://sohaib-ayman.github.io/sohrus/">
+
+<!-- Favicon & App Icons -->
+<link rel="icon" type="image/png" sizes="64x64" href="sohrus-icon.png">
+<link rel="apple-touch-icon" href="sohrus-icon.png">
+
+<!-- Open Graph / Social Preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sohrus · صوهروس">
+<meta property="og:url" content="https://sohaib-ayman.github.io/sohrus/">
+<meta property="og:title" content="Sohrus (صوهروس) — Native Living Notch for Windows">
+<meta property="og:description" content="Free Pure Rust native notch for Windows 10 & 11. Full Arabic (RTL) & English, < 30 MB RAM, 2.98 MB setup, music & lyrics, Pomodoro, prayer times, shelf, QR clipboard, Ask Sohrus AI, Smart OCR, and hold-to-click-through.">
+<meta property="og:image" content="https://sohaib-ayman.github.io/sohrus/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sohrus native living notch for Windows 10 and 11">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_EG">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sohrus (صوهروس) — Native Living Notch for Windows">
+<meta name="twitter:description" content="100% Free Pure Rust living notch for Windows 10 & 11. Full Arabic (RTL) & English, under 30 MB RAM, 2.98 MB installer.">
+<meta name="twitter:image" content="https://sohaib-ayman.github.io/sohrus/og-image.png">
+
+<!-- Structured Data (SoftwareApplication + FAQPage) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Sohrus",
+      "alternateName": "صوهروس",
+      "url": "https://sohaib-ayman.github.io/sohrus/",
+      "downloadUrl": "https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.4.exe",
+      "image": "https://sohaib-ayman.github.io/sohrus/og-image.png",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "softwareVersion": "1.6.4",
+      "fileSize": "2.98MB",
+      "inLanguage": ["en", "ar"],
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sohaib Ayman",
+        "url": "https://github.com/sohaib-ayman"
+      },
+      "description": "Free native Windows 10 & 11 living notch built in Pure Rust (Win32/Direct2D) with full English and Arabic RTL support, under 30 MB RAM, media & 5-band visualizer, synced lyrics, Pomodoro, stopwatch, hydration tracker, offline prayer times, file shelf, clipboard QR, scratchpad, 11 widgets, Ask Sohrus AI & voice, Smart OCR, color picker, screen ruler, modifier click-through key, and system HUD."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Sohrus completely free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every feature in Sohrus — including all 11 Widgets, Floating Pill, Glass transparency, Ask Sohrus AI, Voice, Smart OCR, Color Picker, Screen Ruler, Prayer Times, Modifier Click-Through, and JSON Backup/Restore — is 100% free with no Pro tier or subscriptions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Sohrus support full Arabic (RTL) and English?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Sohrus is fully bilingual across both English (LTR) and Arabic (full RTL mirroring) including all 7 notch pages, all 15 Settings tabs, System HUD popups, Ask Sohrus input & voice, Prayer times, Adhkar, and Arabic Smart OCR."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much RAM and CPU does Sohrus use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sohrus is written in Pure Rust using native Win32 and Direct2D with no embedded browser. It stays under 30 MB of RAM in everyday use, uses 0% CPU when idle, and automatically hides in full-screen games, videos, and presentations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I click a tab or button behind the notch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hold Alt (or configure Mouse 4, Mouse 5, Mouse Middle, or any single keyboard key in Settings -> Appearance -> Temporary hide key) and Sohrus immediately hides and becomes click-through until you release the key."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does Windows SmartScreen show a warning on first launch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sohrus is a free independent app developed by Sohaib Ayman without a paid code-signing certificate. Click More info in Windows SmartScreen and then Run anyway. It installs cleanly for your user account without admin rights."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #05080f;
+  --panel: #0b101b;
+  --panel-2: #101726;
+  --ink: #f1f5f9;
+  --mist: #8d99ae;
+  --dim: #5c677d;
+  --line: rgba(255, 255, 255, 0.085);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --blue: #338fff;
+  --blue-soft: rgba(51, 143, 255, 0.14);
+  --gold: #ffc742;
+  --green: #24d17a;
+  --green-soft: rgba(36, 209, 122, 0.13);
+  --font-en: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-ar: "Cairo", "Segoe UI", system-ui, sans-serif;
+  --ui: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --spring: cubic-bezier(0.34, 1.32, 0.5, 1);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --u: 1.12;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--bg); color: var(--ink); font-family: var(--font-en); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+html[lang="ar"] { font-family: var(--font-ar); }
+body { background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.62; overflow-x: clip; width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+img { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+.wrap { width: min(1100px, 100% - 44px); margin-inline: auto; }
+
+/* ===== Top Navigation ===== */
+.bar {
+  position: sticky; top: 0; z-index: 90;
+  background: rgba(5, 8, 15, 0.88);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.bar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 62px; gap: 14px;
+}
+.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; font-size: 16px; letter-spacing: -0.015em; flex-shrink: 0; }
+.brand img { width: 28px; height: 28px; border-radius: 7px; display: block; }
+.brand small { font-family: var(--mono); font-size: 11.5px; color: var(--dim); font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 20px; font-size: 14px; color: var(--mist); }
+.nav-links a { transition: color .15s; white-space: nowrap; }
+.nav-links a:hover { color: var(--ink); }
+.bar-r { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.lang {
+  position: relative; display: inline-grid; grid-template-columns: 1fr 1fr;
+  padding: 3px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+}
+.lang button {
+  position: relative; z-index: 1; padding: 5px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; color: var(--mist); transition: color .2s;
+}
+.lang button[aria-pressed="true"] { color: #05080f; }
+.lang-thumb {
+  position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px);
+  border-radius: 999px; background: #fff; transition: transform .35s var(--spring);
+}
+.lang[data-l="ar"] .lang-thumb { transform: translateX(100%); }
+html[dir="rtl"] .lang-thumb { left: auto; right: 3px; }
+html[dir="rtl"] .lang[data-l="ar"] .lang-thumb { transform: translateX(-100%); }
+html[dir="rtl"] .lang[data-l="en"] .lang-thumb { transform: translateX(0); }
+
+.btn-dl {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 36px; padding: 0 15px; border-radius: 999px;
+  background: #fff; color: #05080f; font-weight: 700; font-size: 13.5px; white-space: nowrap;
+  transition: transform .2s var(--spring), opacity .15s;
+}
+.btn-dl:hover { transform: translateY(-1px); opacity: .94; }
+.btn-sec {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 44px; padding: 0 20px; border-radius: 999px;
+  background: var(--panel); border: 1px solid var(--line-strong);
+  color: var(--ink); font-weight: 600; font-size: 14.5px; white-space: nowrap;
+  transition: border-color .18s, background .18s;
+}
+.btn-sec:hover { border-color: rgba(255,255,255,0.3); background: var(--panel-2); }
+.btn-hero { height: 44px; padding: 0 22px; font-size: 14.5px; }
+
+/* ===== Hero (Clean, Unified Color, Zero Slop Pills) ===== */
+.hero { text-align: center; padding: 62px 0 26px; }
+.hero h1 {
+  margin: 0 auto 16px; max-width: 17ch;
+  font-size: clamp(32px, 5.4vw, 60px); line-height: 1.09; font-weight: 800;
+  letter-spacing: -0.03em; color: var(--ink);
+}
+.hero .lede {
+  margin: 0 auto 26px; max-width: 58ch;
+  color: var(--mist); font-size: clamp(15px, 1.8vw, 17px); line-height: 1.65;
+}
+.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 16px; }
+.hero-facts {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 7px 14px; font-size: 13px; color: var(--dim); font-family: var(--mono), var(--font-ar);
+}
+.hero-facts .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--dim); opacity: .55; }
+
+/* ===== Laptop Preview Stage (100% Responsive + 1:1 Sohrus Geometry) ===== */
+.preview { padding: 16px 0 60px; }
+.stage-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px; margin-bottom: 12px; font-size: 13px; color: var(--mist);
+}
+.stage-bar-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.seg {
+  display: inline-flex; padding: 3px; border-radius: 9px;
+  background: var(--panel); border: 1px solid var(--line); gap: 2px;
+}
+.seg button {
+  padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--mist);
+  white-space: nowrap;
+}
+.seg button.on { background: rgba(255,255,255,0.12); color: #fff; }
+.ghost-demo-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border-radius: 8px;
+  background: rgba(51, 143, 255, 0.12); border: 1px solid rgba(51, 143, 255, 0.35);
+  color: #93c5fd; font-size: 12px; font-weight: 600; user-select: none; white-space: nowrap;
+  transition: background .15s, border-color .15s;
+}
+.ghost-demo-btn:hover { background: rgba(51, 143, 255, 0.22); }
+.ghost-demo-btn.holding { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+.laptop {
+  position: relative; width: 100%; margin-inline: auto; overflow: hidden;
+  height: calc(var(--u) * 282px + 28px);
+  -webkit-mask: linear-gradient(#000 76%, transparent);
+          mask: linear-gradient(#000 76%, transparent);
+}
+.lid {
+  position: absolute; left: 50%; top: 14px; transform: translateX(-50%);
+  width: min(calc(var(--u) * 1020px), calc(100% - 16px));
+  height: 700px;
+  border-radius: calc(var(--u) * 22px) calc(var(--u) * 22px) 0 0;
+  background: linear-gradient(#3b3f4a, #23262e 14px);
+  padding: 2px;
+}
+.bezel {
+  position: absolute; inset: 2px; border-radius: inherit; background: #050507;
+  padding: calc(var(--u) * 9px);
+}
+.cam {
+  position: absolute; top: calc(var(--u) * 3px); left: 50%; width: 5px; height: 5px;
+  margin-left: -2.5px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #2b3a55, #0b0f18);
+}
+.screen {
+  position: absolute; inset: calc(var(--u) * 9px); bottom: 0; overflow: hidden;
+  border-radius: calc(var(--u) * 14px) calc(var(--u) * 14px) 0 0;
+  background: #172554;
+}
+.wall {
+  position: absolute; inset: 0 0 auto 0; height: calc(var(--u) * 320px); overflow: hidden;
+  background:
+    radial-gradient(68% 58% at 50% -10%, #ffffff 0%, rgba(255,255,255,.74) 32%, transparent 64%),
+    linear-gradient(180deg, #dce8ff 0%, #b5ceff 34%, #6e92f5 68%, #28419c 100%);
+}
+.wall-arc {
+  position: absolute; left: 50%; top: calc(var(--u) * 130px);
+  width: calc(var(--u) * 720px); height: calc(var(--u) * 340px);
+  margin-left: calc(var(--u) * -360px); border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(51, 143, 255, 0.55), rgba(30, 58, 138, 0.35) 60%, transparent 75%);
+}
+.behind-tab {
+  position: absolute; top: calc(var(--u) * 7px); left: 50%;
+  transform: translateX(-50%);
+  padding: calc(var(--u) * 6px) calc(var(--u) * 14px);
+  border-radius: calc(var(--u) * 8px);
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(51, 143, 255, 0.45);
+  color: #f1f5f9; font-family: var(--ui);
+  font-size: calc(var(--u) * 11px); font-weight: 600;
+  z-index: 2; opacity: 0; transition: opacity .18s ease, background .15s;
+  pointer-events: none; white-space: nowrap;
+}
+.screen.ghost-active .behind-tab { opacity: 1; pointer-events: auto; cursor: pointer; }
+.behind-tab:hover { background: #1e293b; }
+
+/* ===== Actual Sohrus Notch (1 dp = 1 px, scaled by --u) ===== */
+.sn-holder {
+  position: absolute; top: 0; left: 50%; z-index: 6;
+  transform: translateX(-50%) scale(var(--u));
+  transform-origin: top center;
+  transition: top .3s var(--ease), opacity .18s ease, transform .22s ease;
+}
+.screen.is-floating .sn-holder { top: calc(var(--u) * 8px); }
+.screen.ghost-active .sn-holder { opacity: 0; pointer-events: none; transform: translateX(-50%) scale(calc(var(--u) * 0.96)); }
+
+.sn {
+  --w: 190px; --h: 38px; --r: 16px; --e: 12px;
+  --bg-notch: rgba(5, 5, 7, 0.985);
+  position: relative; width: var(--w); height: var(--h);
+  background: var(--bg-notch); color: #fff;
+  border-radius: 0 0 var(--r) var(--r);
+  font-family: var(--ui); font-size: 12px; line-height: 1;
+  transition: width .52s var(--spring), height .52s var(--spring), border-radius .4s ease, background .25s ease;
+  box-shadow: 0 14px 36px -14px rgba(0,0,0,.92);
+  direction: ltr;
+  text-align: left;
+  user-select: none;
+}
+.sn.is-ar-notch { font-family: var(--font-ar); }
+.sn.shrink {
+  transition: width .42s cubic-bezier(.3,0,.15,1), height .42s cubic-bezier(.3,0,.15,1), border-radius .35s ease;
+}
+.sn::before, .sn::after {
+  content: ""; position: absolute; top: 0; width: var(--e); height: var(--e);
+  transition: opacity .2s ease;
+}
+.sn::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent calc(var(--e) - 0.5px), var(--bg-notch) var(--e)); }
+.sn::after  { left: 100%;  background: radial-gradient(circle at 100% 100%, transparent calc(var(--e) - 0.5px), var(--bg-notch) var(--e)); }
+
+.screen.is-floating .sn { border-radius: var(--r); box-shadow: 0 14px 36px -10px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,0.12); }
+.screen.is-floating .sn::before, .screen.is-floating .sn::after { opacity: 0; }
+.screen.is-glass .sn { --bg-notch: rgba(8, 12, 22, 0.78); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 14px 36px -10px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,0.14); }
+.screen.is-glass .sn::before, .screen.is-glass .sn::after { opacity: 0; }
+
+/* Exact Sohrus Dimensions from main.rs */
+.sn[data-s="mascot"] { --w: 190px; --h: 38px; --r: 16px; }
+.sn[data-s="closed"] { --w: 232px; --h: 38px; --r: 16px; }
+.sn[data-s="lyrics_mini"] { --w: 360px; --h: 38px; --r: 16px; }
+.sn[data-s="hud"], .sn[data-s="adhkar"] { --w: 320px; --h: 38px; --r: 16px; }
+.sn[data-s="music"], .sn[data-s="pomo"], .sn[data-s="water"], .sn[data-s="shelf"], .sn[data-s="todo"], .sn[data-s="prayer"], .sn[data-s="widgets"] {
+  --w: 504px; --h: 206px; --r: 24px;
+}
+.sn[data-s="lyrics"] { --w: 564px; --h: 206px; --r: 24px; }
+.sn[data-s="ask"] { --w: 540px; --h: 215px; --r: 24px; }
+
+.sn-glow {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(51, 143, 255, 0.09) 55%, rgba(51, 143, 255, 0.30) 100%);
+  transition: background .35s ease, opacity .35s ease;
+}
+.sn[data-s="water"] .sn-glow { background: linear-gradient(180deg, transparent 0%, rgba(30, 143, 242, 0.10) 55%, rgba(30, 143, 242, 0.32) 100%); }
+.sn[data-s="todo"] .sn-glow { background: linear-gradient(180deg, transparent 0%, rgba(51, 204, 112, 0.09) 55%, rgba(51, 204, 112, 0.28) 100%); }
+.sn[data-s="prayer"] .sn-glow { background: linear-gradient(180deg, transparent 0%, rgba(224, 163, 56, 0.09) 55%, rgba(224, 163, 56, 0.30) 100%); }
+.sn[data-s="shelf"] .sn-glow { background: linear-gradient(180deg, transparent 0%, rgba(41, 158, 199, 0.09) 55%, rgba(41, 158, 199, 0.28) 100%); }
+.sn[data-s="closed"] .sn-glow, .sn[data-s="hud"] .sn-glow { opacity: 0; }
+
+.ly {
+  position: absolute; inset: 0; overflow: hidden; border-radius: inherit;
+  opacity: 0; pointer-events: none;
+  transform: scale(0.92, 0.94); transform-origin: 50% 0;
+  transition: opacity .16s ease, transform .2s ease;
+}
+.sn[data-s="mascot"] .l-mascot,
+.sn[data-s="closed"] .l-closed,
+.sn[data-s="lyrics_mini"] .l-lyrics-mini,
+.sn[data-s="music"] .l-music,
+.sn[data-s="lyrics"] .l-lyrics,
+.sn[data-s="pomo"] .l-pomo,
+.sn[data-s="water"] .l-water,
+.sn[data-s="shelf"] .l-shelf,
+.sn[data-s="todo"] .l-todo,
+.sn[data-s="prayer"] .l-prayer,
+.sn[data-s="widgets"] .l-widgets,
+.sn[data-s="ask"] .l-ask,
+.sn[data-s="hud"] .l-hud,
+.sn[data-s="adhkar"] .l-adhkar,
+.sn:is([data-s="music"],[data-s="lyrics"],[data-s="pomo"],[data-s="water"],[data-s="shelf"],[data-s="todo"],[data-s="prayer"],[data-s="widgets"]) :is(.l-hdr, .l-nav) {
+  opacity: 1; pointer-events: auto; transform: none;
+  transition: opacity .35s ease .08s, transform .38s var(--ease) .04s;
+}
+
+.a { position: absolute; }
+.vc { transform: translateY(-50%); }
+.hc { transform: translateX(-50%); }
+.c { transform: translate(-50%, -50%); }
+
+.s-ring {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: conic-gradient(#34d678 0 78%, rgba(255,255,255,0.18) 0);
+  -webkit-mask: radial-gradient(circle, transparent 4.6px, #000 5px);
+          mask: radial-gradient(circle, transparent 4.6px, #000 5px);
+}
+.s-bars { display: flex; align-items: center; gap: 2.6px; height: 18px; }
+.s-bars i {
+  display: block; width: 2.6px; border-radius: 2px; background: #f2f7ff;
+  height: 28%; animation: sEq .82s ease-in-out infinite alternate;
+}
+.s-bars i:nth-child(1) { animation-delay: 0s; }
+.s-bars i:nth-child(2) { animation-delay: -.28s; }
+.s-bars i:nth-child(3) { animation-delay: -.54s; }
+.s-bars i:nth-child(4) { animation-delay: -.18s; }
+.s-bars i:nth-child(5) { animation-delay: -.42s; }
+.s-bars.paused i { animation: none; height: 22%; opacity: .45; }
+@keyframes sEq { to { height: 95%; } }
+
+/* Sohrus Mascot Animations */
+.m-eye { transform-box: fill-box; transform-origin: center; animation: mBlink 3.8s infinite; }
+.m-face { animation: mLook 5s ease-in-out infinite; }
+@keyframes mBlink { 0%, 93%, 100% { transform: scaleY(1); } 96.5% { transform: scaleY(0.14); } }
+@keyframes mLook { 0%, 100% { transform: translateX(0); } 30% { transform: translateX(-2.2px); } 70% { transform: translateX(2.2px); } }
+.m-sleep { animation: mBreath 2.6s ease-in-out infinite; }
+@keyframes mBreath { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(1.2px); } }
+.m-z { fill: #b8dcff; font-weight: 700; animation: mZ 2s linear infinite; }
+.m-z.z2 { animation-delay: .66s; }
+.m-z.z3 { animation-delay: 1.32s; }
+@keyframes mZ { 0% { opacity: 0; transform: translate(0, 4px); } 40% { opacity: .9; } 100% { opacity: 0; transform: translate(8px, -12px); } }
+.m-wing { transform-box: fill-box; transform-origin: left center; animation: mWing .32s ease-in-out infinite alternate; }
+@keyframes mWing { from { transform: rotate(-16deg); } to { transform: rotate(22deg); } }
+
+/* Bottom Nav Dots + Hover Icon Pill */
+.l-nav { pointer-events: none; }
+.nav-zone {
+  position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%);
+  height: 34px; min-width: 260px; display: flex; align-items: center; justify-content: center;
+  pointer-events: auto;
+}
+.n-dots { display: flex; align-items: center; gap: 5.5px; transition: opacity .18s ease; }
+.n-dots i { width: 4.2px; height: 4.2px; border-radius: 3px; background: rgba(255,255,255,0.28); transition: width .28s var(--spring), background .2s; }
+.sn[data-s="music"] .n-dots i:nth-child(1),
+.sn[data-s="lyrics"] .n-dots i:nth-child(1),
+.sn[data-s="pomo"] .n-dots i:nth-child(2),
+.sn[data-s="water"] .n-dots i:nth-child(3),
+.sn[data-s="shelf"] .n-dots i:nth-child(4),
+.sn[data-s="todo"] .n-dots i:nth-child(5),
+.sn[data-s="prayer"] .n-dots i:nth-child(6),
+.sn[data-s="widgets"] .n-dots i:nth-child(7) { width: 14px; background: #8cc4ff; }
+
+.n-pill {
+  position: absolute; bottom: 2px; height: 30px; padding: 0 9px;
+  border-radius: 15px; background: rgba(28, 28, 33, 0.94);
+  display: flex; align-items: center; gap: 0;
+  opacity: 0; transform: translateY(6px); pointer-events: none;
+  transition: opacity .22s ease, transform .24s var(--ease);
+}
+.nav-zone:hover .n-dots { opacity: 0; }
+.nav-zone:hover .n-pill { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.n-pill button {
+  width: 34px; height: 24px; border-radius: 11px; display: grid; place-items: center;
+  color: rgba(166, 173, 189, 1); transition: background .15s, color .15s;
+}
+.n-pill button:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.n-pill button.on { color: #3d8ffa; }
+
+/* Music & Lyrics inside Notch */
+.s-art {
+  border-radius: 11px;
+  background: linear-gradient(145deg, #1b2d5e, #2b59c3 55%, #0e172a);
+  display: grid; place-items: center;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+.s-track { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.22); overflow: hidden; }
+.s-track i { display: block; height: 100%; width: 58%; background: rgba(255,255,255,0.96); border-radius: 2px; }
+.s-out-pill {
+  height: 24px; padding: 0 10px; border-radius: 12px;
+  background: rgba(255,255,255,0.09); color: #eaf2ff;
+  font-size: 9.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+}
+.s-out-pill:hover { background: rgba(51, 143, 255, 0.42); }
+.s-ctrl-btn {
+  width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  transition: background .15s;
+}
+.s-ctrl-btn:hover { background: rgba(255,255,255,0.12); }
+.s-lyr-line {
+  font-size: 12.6px; color: rgba(255,255,255,0.34); padding: 4px 6px; border-radius: 7px;
+  cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color .2s, font-size .2s, background .15s;
+}
+.s-lyr-line:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); }
+.s-lyr-line.on { font-size: 14px; font-weight: 700; color: #fff; }
+
+/* Pomodoro inside Notch */
+.p-halo {
+  width: 92px; height: 92px; border-radius: 50%;
+  background: conic-gradient(from 0deg, #338fff 0deg 235deg, rgba(255,255,255,0.12) 235deg 360deg);
+  display: grid; place-items: center;
+  box-shadow: 0 0 0 8px rgba(51, 143, 255, 0.10);
+}
+.p-halo-in {
+  width: 80px; height: 80px; border-radius: 50%; background: #050507;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.p-cap {
+  height: 30px; border-radius: 8px; background: rgba(255,255,255,0.06);
+  display: grid; place-items: center; font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.68);
+  cursor: pointer; transition: background .15s;
+}
+.p-cap:hover { background: rgba(255,255,255,0.14); }
+.p-cap.done { background: linear-gradient(135deg, rgba(46,133,255,0.22), rgba(122,97,255,0.22)); color: #fff; }
+.p-cap.on { background: linear-gradient(135deg, rgba(46,133,255,0.46), rgba(122,97,255,0.46)); border: 1.2px solid rgba(97,189,255,0.85); color: #fff; font-weight: 700; }
+.p-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+.p-dot.done { background: #29e09e; }
+.s-pill-sm {
+  height: 19px; padding: 0 8px; border-radius: 9.5px;
+  background: rgba(255,255,255,0.10); color: #edf4ff;
+  font-size: 9px; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; white-space: nowrap;
+}
+.s-pill-sm:hover { background: rgba(255,255,255,0.20); }
+.s-pill-sm.on { background: rgba(51, 143, 255, 0.48); }
+
+/* Water Tank */
+.w-tank {
+  width: 108px; height: 124px; border-radius: 18px;
+  background: rgba(20, 36, 66, 0.72); border: 1.3px solid rgba(87, 199, 255, 0.36);
+  position: relative; overflow: hidden;
+}
+.w-liquid {
+  position: absolute; left: 2px; right: 2px; bottom: 2px; height: 74%;
+  border-radius: 14px;
+  background: linear-gradient(0deg, rgba(26,112,240,0.88), rgba(71,214,255,0.92));
+  transition: height .3s var(--ease);
+}
+.w-liquid::before {
+  content: ""; position: absolute; left: 8px; right: 8px; top: 0; height: 1.5px;
+  background: rgba(184, 245, 255, 0.85);
+}
+
+/* State Switcher Pills Below Laptop */
+.try { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+.try button {
+  padding: 7px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 500;
+  color: var(--mist); background: var(--panel); border: 1px solid var(--line);
+  transition: all .18s ease;
+}
+.try button:hover { color: var(--ink); border-color: var(--line-strong); }
+.try button[aria-pressed="true"] { background: #fff; color: #05080f; border-color: #fff; font-weight: 700; }
+.cap { text-align: center; color: var(--mist); font-size: 14px; margin: 14px auto 0; max-width: 66ch; min-height: 1.6em; }
+
+/* ===== Sections ===== */
+.sec { padding: 74px 0; border-top: 1px solid var(--line); }
+.sec-h { max-width: 680px; margin-bottom: 36px; }
+.sec-h.c-align { text-align: center; margin-inline: auto; }
+.sec-h h2 { font-size: clamp(23px, 3.2vw, 35px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 10px; }
+.sec-h p { color: var(--mist); font-size: 15.5px; }
+
+/* ===== Bilingual + Modifier Feature Highlights ===== */
+.mod-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 26px; align-items: center; }
+.mod-card {
+  background: var(--panel); border: 1px solid var(--line-strong); border-radius: 16px; padding: 24px;
+}
+.kbd-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.kbd {
+  padding: 6px 12px; border-radius: 8px; background: var(--panel-2);
+  border: 1px solid var(--line-strong); border-bottom-width: 2.5px;
+  font-family: var(--mono), var(--font-ar); font-size: 12.5px; font-weight: 600; color: var(--ink);
+}
+.bi-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+.bi-mini {
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 14px;
+}
+.bi-mini b { display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 4px; }
+.bi-mini span { display: block; font-size: 12.5px; color: var(--mist); line-height: 1.5; }
+
+/* ===== Performance (Task Manager) ===== */
+.perf-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: stretch; }
+.tm {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.tm-top {
+  padding: 12px 18px; border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--dim); font-family: var(--mono);
+}
+.tm-scroll { width: 100%; overflow-x: auto; }
+.tm table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 310px; }
+.tm th { text-align: start; padding: 10px 16px; font-size: 12px; color: var(--dim); border-bottom: 1px solid var(--line); }
+.tm td { padding: 14px 16px; font-family: var(--mono); white-space: nowrap; }
+.tm tr.row-s { background: rgba(51, 143, 255, 0.08); }
+.tm tr.row-s td:first-child { font-family: var(--font-en); font-weight: 600; display: flex; align-items: center; gap: 9px; }
+.tm tr.row-s td:first-child img { width: 18px; height: 18px; border-radius: 4px; }
+.tm-foot { padding: 12px 18px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--dim); }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat-box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.stat-box b { display: block; font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--ink); }
+.stat-box b.grn { color: #4ade80; }
+.stat-box span { display: block; margin-top: 6px; font-size: 13px; color: var(--mist); line-height: 1.45; }
+
+/* ===== Features Directory ===== */
+.cat { margin-bottom: 38px; }
+.cat:last-child { margin-bottom: 0; }
+.cat-h {
+  font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+  color: #60a5fa; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.cat-h::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.f-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.f-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 13px; padding: 18px;
+  display: flex; flex-direction: column; gap: 7px; transition: border-color .18s;
+}
+.f-card:hover { border-color: var(--line-strong); }
+.f-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.f-tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; font-family: var(--mono), var(--font-ar); flex-shrink: 0; }
+.f-tag.off { background: var(--green-soft); color: #86efac; }
+.f-tag.hyb { background: var(--blue-soft); color: #93c5fd; }
+.f-card h3 { font-size: 15.5px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.f-card p { font-size: 13.5px; color: var(--mist); line-height: 1.6; }
+
+/* ===== Free Banner & Privacy & Download ===== */
+.free-box {
+  background: var(--panel); border: 1px solid var(--line-strong); border-radius: 16px;
+  padding: 28px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center;
+}
+.free-box h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
+.free-box p { color: var(--mist); font-size: 14.5px; }
+.free-ul { list-style: none; display: grid; gap: 8px; font-size: 14px; }
+.free-ul li { display: flex; align-items: center; gap: 8px; }
+.free-ul li::before { content: "✓"; color: #4ade80; font-weight: 800; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.card-p { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.card-p-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+.card-p-h h3 { font-size: 16.5px; font-weight: 700; }
+.plist { list-style: none; display: grid; gap: 10px; font-size: 14px; color: var(--mist); }
+.plist li { display: flex; align-items: flex-start; gap: 9px; }
+.pdot { width: 6px; height: 6px; border-radius: 50%; margin-top: 8px; flex: none; }
+.pdot.g { background: #4ade80; }
+.pdot.b { background: #60a5fa; }
+
+.steps-ol { list-style: none; display: grid; gap: 11px; margin: 14px 0 22px; }
+.steps-ol li { display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: var(--mist); }
+.snum {
+  width: 22px; height: 22px; border-radius: 6px; background: var(--panel-2); border: 1px solid var(--line-strong);
+  color: var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 700; display: grid; place-items: center; flex: none; margin-top: 1px;
+}
+.warn-b {
+  padding: 14px 16px; border-radius: 10px; margin-bottom: 12px;
+  background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.24);
+}
+.warn-b.info { background: rgba(51, 143, 255, 0.06); border-color: rgba(51, 143, 255, 0.24); }
+.warn-b:last-child { margin-bottom: 0; }
+.warn-b b { display: block; font-size: 14px; color: #fbbf24; margin-bottom: 4px; }
+.warn-b.info b { color: #93c5fd; }
+.warn-b p { font-size: 13.5px; color: var(--mist); line-height: 1.6; }
+
+/* ===== FAQ & Footer ===== */
+.faq-g { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+details.fq { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 15px 18px; height: fit-content; }
+details.fq[open] { border-color: var(--line-strong); }
+details.fq summary { font-weight: 600; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+details.fq summary::-webkit-details-marker { display: none; }
+details.fq summary::after { content: "+"; font-family: var(--mono); color: var(--dim); font-size: 18px; line-height: 1; flex-shrink: 0; }
+details.fq[open] summary::after { content: "−"; }
+details.fq p { margin-top: 10px; font-size: 13.5px; color: var(--mist); line-height: 1.65; }
+
+footer { border-top: 1px solid var(--line); padding: 34px 0 44px; font-size: 13.5px; color: var(--dim); }
+.ft-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; }
+.ft-links { display: flex; flex-wrap: wrap; gap: 18px; }
+.ft-links a:hover { color: var(--ink); }
+
+/* ===== Complete Responsive Breakpoints (Tablets, Phones, Small 320px Screens) ===== */
+@media (max-width: 960px) {
+  .f-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .perf-grid, .mod-grid, .free-box, .two-col, .faq-g { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 28px); }
+  .sec { padding: 54px 0; }
+  .hero { padding: 40px 0 20px; }
+  .hero-cta { flex-direction: column; align-items: stretch; max-width: 320px; margin-inline: auto; }
+  .stage-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .stage-bar-right { width: 100%; justify-content: space-between; }
+  .f-grid, .stat-grid, .bi-pair { grid-template-columns: 1fr; }
+  .card-p, .free-box, .mod-card { padding: 20px; }
+  .try button { font-size: 12.5px; padding: 6px 11px; }
+  .tm th, .tm td { padding: 11px 10px; font-size: 12.5px; }
+  .ft-in { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 420px) {
+  .brand small { display: none; }
+  .bar-inner { height: 58px; gap: 8px; }
+  .btn-dl { padding: 0 12px; font-size: 12.5px; height: 34px; }
+  .lang button { padding: 4px 8px; font-size: 11.5px; }
+  .seg button { padding: 5px 8px; font-size: 11.5px; }
+  .ghost-demo-btn { font-size: 11.5px; padding: 5px 9px; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a class="brand" href="#">
+      <img src="sohrus-icon.png" onerror="this.onerror=null;this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACdklEQVR42u1bsU7DMBB1og4VZGRhQQxIncrSBZQRoXwCKvwCnRCIT0CgTuUXoOITItQxwMJCp0oMFQsLY0HdYApKLTs5J2fXce+kDm0ul3vP73x2kjJGRrbS5lU5ee/2980WIC+n3q4RAmwCjUGGVwX4+CZs2wK6fZ6MyxDhqYK3CTSEjCISfNfA83kWlawHAV8X4HlqkCnBdxl8Nn+ZEvy6zvRYbduH1pILKgApwBXpQ0vBZytuRMAqyD+vDBqYF2j1kij7fTIIY5vjohHAJ8j/XjZhXXFR5wBZkqo+puKiEzAZhDFkJFSShfhCr2ukBHg5zqYJY4yxTp9FGLFfz1jMGGPBdog+MTYwpM+PRCbROOvb6iVR0aiJ4gYD9RyMKiAdcQEBysnl+fLX6fSXtBAqqtHZNPn/qJwrOpYXC2NC9LHqs4gM1UkQArro2tYthU21Nq0EYCQoiqErrlYFqEjQBl/aDRIBRAARQAQQAUTAgi08GoPeE8wuOMB9+PlALbP9Ecgtu+WGbLr4R2XGFNB5GkU6fKkElkFAVmqQuz6pD2RkUx+VuFVuiBhXQNCdu9EFoCpQGaWgO9cS14gCRMnKAKioQCWusTZYZg8uGqXZsCklpUpco20QkkAZieqKyxvKXeE0EdVneEF3zmbDprQkysY1TkCVxCDzASZgWggRAUQAESAlIO2NohePXTDRW6OgLrB59HhSV9CfD4d3pdtgnYHzGGRECF+WTpfEXx8/V67If2Nr7ZKXf+4k6BL4PDxCAsr+/8Z2E+GiNig78H69fu8SUBkeei4Acdq5+D52beSVCBC1yLpNdmgE2EqGq52LTLf9AUR7cLgBiYcOAAAAAElFTkSuQmCC';" alt="Sohrus">
+      <span id="tBrand">Sohrus</span>
+      <small>v1.6.4</small>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#preview" id="tNavPrev">Preview</a>
+      <a href="#bilingual" id="tNavBi">AR &amp; EN</a>
+      <a href="#modifier" id="tNavMod">Click-Through</a>
+      <a href="#light" id="tNavLight">Lightweight</a>
+      <a href="#features" id="tNavFeat">Features</a>
+      <a href="#privacy" id="tNavPriv">Privacy</a>
+      <a href="#download" id="tNavDl">Download</a>
+    </nav>
+    <div class="bar-r">
+      <div class="lang" id="langSwitch" data-l="en" role="group" aria-label="Language">
+        <i class="lang-thumb" aria-hidden="true"></i>
+        <button type="button" data-l="en" aria-pressed="true">EN</button>
+        <button type="button" data-l="ar" aria-pressed="false">AR</button>
+      </div>
+      <a class="btn-dl" href="https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.4.exe" id="tNavDlBtn">Download</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <h1 id="tHeroH1">A living native notch for Windows.</h1>
+    <p class="lede" id="tHeroSub">Sohrus turns the top edge of Windows 10 &amp; 11 into a fast Pure Rust notch with full Arabic (RTL) &amp; English UI, media, 5-band visualizer, synced lyrics, Pomodoro, hydration, offline prayer times, file shelf, clipboard QR, Ask Sohrus AI, Smart OCR, and a hold-to-click-through key — completely free and under 30 MB of RAM.</p>
+    <div class="hero-cta">
+      <a class="btn-dl btn-hero" href="https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.4.exe" id="tHeroDl">Download for Windows (v1.6.4)</a>
+      <a class="btn-sec" href="https://github.com/sohaib-ayman/sohrus/releases" target="_blank" rel="noopener noreferrer" id="tHeroRel">GitHub Releases</a>
+    </div>
+    <div class="hero-facts" id="heroFacts"></div>
+  </section>
+
+  <!-- ===== Interactive Sohrus Notch inside Laptop Frame ===== -->
+  <section id="preview" class="preview">
+    <div class="wrap">
+      <div class="stage-bar">
+        <span id="tStageHint">1:1 Sohrus Direct2D preview — switch EN/AR to see the notch in full Arabic RTL too</span>
+        <div class="stage-bar-right">
+          <button type="button" class="ghost-demo-btn" id="notchLangBtn">Notch: EN / عربي</button>
+          <button type="button" class="ghost-demo-btn" id="ghostBtn">Hold Alt · Click Behind</button>
+          <div class="seg" role="group" aria-label="Notch Style">
+            <button type="button" id="stClassic" class="on">Classic</button>
+            <button type="button" id="stFloat">Floating Pill</button>
+            <button type="button" id="stGlass">Glass</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="laptop" id="laptop">
+      <div class="lid"><div class="bezel"><span class="cam"></span>
+        <div class="screen" id="screen">
+          <div class="wall" aria-hidden="true"><div class="wall-arc"></div></div>
+          <div class="behind-tab" id="behindTab">Browser Tab Behind Notch — Clickable!</div>
+
+          <div class="sn-holder" id="snHolder">
+            <div class="sn" id="sn" data-s="music" role="region" aria-label="Sohrus Notch Preview">
+              <div class="sn-glow" aria-hidden="true"></div>
+
+              <!-- 1. Sohrus Mascot (190 x 38) -->
+              <div class="ly l-mascot" id="mascotLayer" style="display:flex;align-items:center;justify-content:center;cursor:pointer;" title="Click to cycle Awake / Sleeping / Waking"></div>
+
+              <!-- 2. Closed + 5-Band Visualizer (232 x 38) -->
+              <div class="ly l-closed">
+                <span class="a s-ring c" style="left:32px;top:19px;"></span>
+                <span class="a c js-clock" style="left:116px;top:19px;font-size:13.5px;font-weight:700;">9:18 PM</span>
+                <span class="a s-bars c" id="closedBars" style="left:192px;top:19px;cursor:pointer;"><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+
+              <!-- 3. Lyrics Mini-Mode (360 x 38) -->
+              <div class="ly l-lyrics-mini">
+                <svg class="a c" style="left:30px;top:19px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b8bdc9" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                <span class="a vc" id="miniLyricTxt" style="left:48px;right:24px;top:19px;text-align:center;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Pure Rust frames keep the memory light</span>
+              </div>
+
+              <!-- Shared Expanded Header + Side Chevrons + Bottom Nav Dots/Icon Pill -->
+              <div class="ly l-hdr" style="pointer-events:none;">
+                <span class="a hc" id="hdrDateTime" style="left:50%;top:11px;font-size:11.5px;font-weight:600;color:rgba(224,230,240,0.92);white-space:nowrap;">Tue 24 Nov 2026 &nbsp; 9:18 PM</span>
+                <span class="a s-bars c" id="hdrBars" style="right:28px;top:18px;"><i></i><i></i><i></i><i></i><i></i></span>
+                <button type="button" class="a c" id="stepPrev" style="left:22px;top:104px;width:18px;height:36px;display:grid;place-items:center;pointer-events:auto;opacity:.45;" aria-label="Previous page">
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#fff" stroke-width="1.6"><path d="M7 2L2 7l5 5"/></svg>
+                </button>
+                <button type="button" class="a c" id="stepNext" style="right:12px;top:104px;width:18px;height:36px;display:grid;place-items:center;pointer-events:auto;opacity:.45;" aria-label="Next page">
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#fff" stroke-width="1.6"><path d="M3 2l5 5-5 5"/></svg>
+                </button>
+              </div>
+              <div class="ly l-nav">
+                <div class="nav-zone">
+                  <div class="n-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="n-pill" id="navPill"></div>
+                </div>
+              </div>
+
+              <!-- 4. Music Page (504 x 206) -->
+              <div class="ly l-music">
+                <div class="a s-art" style="left:40px;top:36px;width:64px;height:64px;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="1.7"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </div>
+                <span class="a" id="mTitle" style="left:118px;top:46px;font-size:15.5px;font-weight:700;">Midnight Horizon</span>
+                <span class="a" id="mArtist" style="left:118px;top:69px;font-size:12px;color:rgba(173,179,194,1);">Sohrus Audio · Spotify</span>
+                <span class="a vc" style="left:40px;top:114px;font-size:10.5px;color:#c7ccd9;font-family:var(--mono);">02:14</span>
+                <span class="a s-track vc" style="left:88px;right:88px;top:114px;"><i></i></span>
+                <span class="a vc" style="right:40px;top:114px;font-size:10.5px;color:#c7ccd9;font-family:var(--mono);">-01:28</span>
+
+                <button type="button" class="a s-ctrl-btn c" id="btnOpenLyrics" style="left:60px;top:148px;" title="Synced Lyrics">
+                  <svg width="16" height="14" viewBox="0 0 16 14" fill="#fff"><rect x="1" y="1" width="9" height="1.8" rx=".9" opacity=".6"/><circle cx="1.6" cy="7" r="1.5"/><rect x="4.5" y="5.8" width="10" height="2.4" rx="1.2"/><rect x="1" y="11" width="10.5" height="1.8" rx=".9" opacity=".6"/></svg>
+                </button>
+                <button type="button" class="a s-ctrl-btn c" style="left:190px;top:148px;" aria-label="Previous track">
+                  <svg width="16" height="12" viewBox="0 0 18 12" fill="#fff"><polygon points="8,0 8,12 0,6"/><polygon points="17,0 17,12 9,6"/></svg>
+                </button>
+                <button type="button" class="a s-ctrl-btn c" id="btnPlayPause" style="left:252px;top:148px;" aria-label="Play or Pause"></button>
+                <button type="button" class="a s-ctrl-btn c" style="left:314px;top:148px;" aria-label="Next track">
+                  <svg width="16" height="12" viewBox="0 0 18 12" fill="#fff"><polygon points="1,0 1,12 9,6"/><polygon points="10,0 10,12 18,6"/></svg>
+                </button>
+                <button type="button" class="a s-out-pill vc" id="btnAudioOut" style="right:40px;top:148px;">🔊 Speakers</button>
+              </div>
+
+              <!-- 5. Lyrics Split Page (564 x 206) -->
+              <div class="ly l-lyrics">
+                <div class="a s-art" style="left:40px;top:38px;width:50px;height:50px;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="1.7"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </div>
+                <span class="a" id="lTitle" style="left:98px;top:45px;font-size:13px;font-weight:700;">Midnight Horizon</span>
+                <span class="a" id="lArtist" style="left:98px;top:65px;font-size:11px;color:#adb3c2;">Sohrus Audio</span>
+                <span class="a vc" style="left:40px;top:104px;font-size:10px;color:#bfc4d1;font-family:var(--mono);">02:14</span>
+                <span class="a s-track vc" style="left:78px;width:96px;top:104px;"><i></i></span>
+                <span class="a vc" style="left:180px;top:104px;font-size:10px;color:#bfc4d1;font-family:var(--mono);">-01:28</span>
+
+                <button type="button" class="a s-ctrl-btn c" id="btnCloseLyrics" style="left:56px;top:142px;background:rgba(15,36,76,0.94);box-shadow:inset 0 0 0 1.2px rgba(51,143,255,0.8);" title="Close Split">
+                  <svg width="14" height="12" viewBox="0 0 16 14" fill="#80ccff"><rect x="1" y="1" width="9" height="1.8" rx=".9"/><circle cx="1.6" cy="7" r="1.5"/><rect x="4.5" y="5.8" width="10" height="2.4" rx="1.2"/><rect x="1" y="11" width="10.5" height="1.8" rx=".9"/></svg>
+                </button>
+                <button type="button" class="a s-ctrl-btn c" style="left:98px;top:142px;" aria-label="Previous"><svg width="13" height="10" viewBox="0 0 18 12" fill="#fff"><polygon points="8,0 8,12 0,6"/><polygon points="17,0 17,12 9,6"/></svg></button>
+                <button type="button" class="a s-ctrl-btn c" id="btnPlayPause2" style="left:138px;top:142px;" aria-label="Play or Pause"></button>
+                <button type="button" class="a s-ctrl-btn c" style="left:178px;top:142px;" aria-label="Next"><svg width="13" height="10" viewBox="0 0 18 12" fill="#fff"><polygon points="1,0 1,12 9,6"/><polygon points="10,0 10,12 18,6"/></svg></button>
+
+                <span class="a" style="left:230px;top:38px;width:1px;height:120px;background:rgba(255,255,255,0.12);"></span>
+                <button type="button" class="a s-pill-sm" id="btnLyricSrc" style="right:36px;top:32px;">Online</button>
+                <div class="a" id="lyricList" style="left:244px;right:36px;top:56px;display:flex;flex-direction:column;gap:4px;"></div>
+              </div>
+
+              <!-- 6..13 Dynamic Interactive Layers -->
+              <div class="ly l-pomo" id="pomoLayer"></div>
+              <div class="ly l-water" id="waterLayer"></div>
+              <div class="ly l-shelf" id="shelfLayer"></div>
+              <div class="ly l-todo" id="todoLayer"></div>
+              <div class="ly l-prayer" id="prayerLayer"></div>
+              <div class="ly l-widgets" id="widgetsLayer"></div>
+              <div class="ly l-ask" id="askLayer"></div>
+              <div class="ly l-hud" id="hudLayer"></div>
+
+              <!-- 14. Periodic Adhkar Notification (320 x 38) -->
+              <div class="ly l-adhkar">
+                <span class="a c" style="left:30px;top:19px;width:9px;height:9px;border-radius:50%;background:#2ee092;"></span>
+                <span class="a vc" style="left:44px;top:19px;font-size:10.5px;font-weight:700;color:#2ee092;">أذكار</span>
+                <span class="a vc" style="right:24px;top:19px;font-size:12.4px;font-weight:600;font-family:var(--font-ar);">سبحان الله وبحمده، سبحان الله العظيم</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="wrap">
+      <div class="try" id="tryBtns" role="tablist" aria-label="Notch preview states"></div>
+      <p class="cap" id="cap" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ===== Full Bilingual Arabic (RTL) & English Support Highlight ===== -->
+  <section id="bilingual" class="sec">
+    <div class="wrap mod-grid">
+      <div>
+        <div class="sec-h" style="margin-bottom:14px;">
+          <h2 id="tBiH2">100% Arabic (RTL) &amp; 100% English — natively built in.</h2>
+          <p id="tBiP">Arabic is not an afterthought in Sohrus. Switch languages anytime from Settings → General and the entire app adapts natively — right-to-left alignment, mirrored Settings sidebar and toggles, Arabic prayer timeline &amp; Hijri dates, localized System HUD labels, Arabic voice commands, and Arabic Smart OCR.</p>
+        </div>
+        <div class="kbd-row" id="biTags">
+          <span class="kbd">Full RTL Layout</span>
+          <span class="kbd">15 Settings Tabs in AR &amp; EN</span>
+          <span class="kbd">Arabic &amp; English Voice AI</span>
+          <span class="kbd">Hijri Date &amp; Adhkar</span>
+        </div>
+      </div>
+      <div class="mod-card">
+        <h3 id="tBiCardH" style="font-size:16px;font-weight:700;margin-bottom:6px;">One app, two complete experiences</h3>
+        <p id="tBiCardP" style="font-size:13.5px;color:var(--mist);line-height:1.6;">DirectWrite automatically detects Arabic and English text direction inside Ask Sohrus, Scratchpad, To-Do tasks, and synced lyrics — even when you mix both languages.</p>
+        <div class="bi-pair">
+          <div class="bi-mini" dir="ltr" style="text-align:left;">
+            <b>English · LTR</b>
+            <span>All 7 notch pages, HUD popups, 15 Settings tabs, and Ask Sohrus commands (`>timer`, `>color`, `>ip`).</span>
+          </div>
+          <div class="bi-mini" dir="rtl" style="text-align:right;font-family:var(--font-ar);">
+            <b>العربية · RTL بالكامل</b>
+            <span>كل صفحات النوتش والـ 15 تبويب إعدادات وإشعارات النظام والأوامر بالعربي (`>مؤقت`، `>لون`، `>اي بي`).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Modifier / Temporary Hide Key Highlight ===== -->
+  <section id="modifier" class="sec">
+    <div class="wrap mod-grid">
+      <div>
+        <div class="sec-h" style="margin-bottom:14px;">
+          <h2 id="tModH2">Need to click behind the notch? Hold one key.</h2>
+          <p id="tModP">Ever had a browser tab or window button sitting right under a desktop notch? In Sohrus, hold your Temporary Hide Key and the notch instantly vanishes and becomes click-through — release it and Sohrus returns right where it was.</p>
+        </div>
+        <div class="kbd-row" id="modKbds">
+          <span class="kbd">Alt (Default)</span>
+          <span class="kbd">Mouse 4 / Back</span>
+          <span class="kbd">Mouse 5 / Forward</span>
+          <span class="kbd">Mouse Middle</span>
+          <span class="kbd">Any Single Key</span>
+        </div>
+      </div>
+      <div class="mod-card">
+        <h3 id="tModCardH" style="font-size:16px;font-weight:700;margin-bottom:8px;">Smart by design</h3>
+        <p id="tModCardP" style="font-size:14px;color:var(--mist);line-height:1.65;">Configure it in Settings → Appearance → Temporary hide key, or turn it off anytime. Sohrus automatically disables ghost-hiding while you are typing inside Ask Sohrus, To-Do forms, or Scratchpad so it never interrupts your input.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Lightweight & Pure Rust Performance ===== -->
+  <section id="light" class="sec">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="tPerfH2">Built in Pure Rust. Never crosses 30 MB of RAM.</h2>
+        <p id="tPerfP">No hidden Chromium browser, no Electron wrapper, and no WebView2 process running in the background. Sohrus renders natively with Win32, Direct2D, and DirectWrite — stopping frame draws completely when idle.</p>
+      </div>
+      <div class="perf-grid">
+        <div class="tm">
+          <div class="tm-top">
+            <span id="tTmTop">Windows Task Manager — Everyday Use</span>
+            <span>Pure Rust · Direct2D</span>
+          </div>
+          <div class="tm-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th id="thProc">Name</th>
+                  <th id="thCpu">CPU</th>
+                  <th id="thRam">Memory</th>
+                  <th id="thDisk">Disk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-s">
+                  <td><img src="sohrus-icon.png" onerror="this.onerror=null;this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACdklEQVR42u1bsU7DMBB1og4VZGRhQQxIncrSBZQRoXwCKvwCnRCIT0CgTuUXoOITItQxwMJCp0oMFQsLY0HdYApKLTs5J2fXce+kDm0ul3vP73x2kjJGRrbS5lU5ee/2980WIC+n3q4RAmwCjUGGVwX4+CZs2wK6fZ6MyxDhqYK3CTSEjCISfNfA83kWlawHAV8X4HlqkCnBdxl8Nn+ZEvy6zvRYbduH1pILKgApwBXpQ0vBZytuRMAqyD+vDBqYF2j1kij7fTIIY5vjohHAJ8j/XjZhXXFR5wBZkqo+puKiEzAZhDFkJFSShfhCr2ukBHg5zqYJY4yxTp9FGLFfz1jMGGPBdog+MTYwpM+PRCbROOvb6iVR0aiJ4gYD9RyMKiAdcQEBysnl+fLX6fSXtBAqqtHZNPn/qJwrOpYXC2NC9LHqs4gM1UkQArro2tYthU21Nq0EYCQoiqErrlYFqEjQBl/aDRIBRAARQAQQAUTAgi08GoPeE8wuOMB9+PlALbP9Ecgtu+WGbLr4R2XGFNB5GkU6fKkElkFAVmqQuz6pD2RkUx+VuFVuiBhXQNCdu9EFoCpQGaWgO9cS14gCRMnKAKioQCWusTZYZg8uGqXZsCklpUpco20QkkAZieqKyxvKXeE0EdVneEF3zmbDprQkysY1TkCVxCDzASZgWggRAUQAESAlIO2NohePXTDRW6OgLrB59HhSV9CfD4d3pdtgnYHzGGRECF+WTpfEXx8/V67If2Nr7ZKXf+4k6BL4PDxCAsr+/8Z2E+GiNig78H69fu8SUBkeei4Acdq5+D52beSVCBC1yLpNdmgE2EqGq52LTLf9AUR7cLgBiYcOAAAAAElFTkSuQmCC';" alt="">sohrus.exe</td>
+                  <td>0.0% – 0.3%</td>
+                  <td>&lt; 30 MB</td>
+                  <td>0 MB/s</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tm-foot" id="tTmFoot">Idle CPU drops to 0% when nothing moves. The File Shelf stores paths only — never copies your files into RAM.</div>
+        </div>
+        <div class="stat-grid" id="statGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Complete Features Directory ===== -->
+  <section id="features" class="sec">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="tFeatH2">Every feature inside Sohrus v1.6.4</h2>
+        <p id="tFeatP">Seven reorderable pages, floating screen tools, live system HUD, and 15 settings tabs — all in one 2.98 MB native Windows app.</p>
+      </div>
+      <div id="featCats"></div>
+    </div>
+  </section>
+
+  <!-- ===== 100% Free Banner ===== -->
+  <section class="sec" style="padding:48px 0;">
+    <div class="wrap">
+      <div class="free-box">
+        <div>
+          <h3 id="tFreeH">100% Free. Every single feature unlocked.</h3>
+          <p id="tFreeP">Widgets, Floating Pill, Glass transparency, Ask Sohrus AI, Voice, Smart OCR, Color Picker, Screen Ruler, Prayer Times, Modifier Click-Through, and JSON Backup are all included free — no Pro paywall, no subscription, and no account required.</p>
+        </div>
+        <ul class="free-ul" id="freeUl"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Offline vs Online Privacy ===== -->
+  <section id="privacy" class="sec">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="tPrivH2">Offline-first. Transparent about every network call.</h2>
+        <p id="tPrivP">All your settings, tasks, hydration logs, shelf paths, clipboard history, and scratchpad notes live locally in %LOCALAPPDATA%\Sohrus. No accounts, no analytics, and no tracking.</p>
+      </div>
+      <div class="two-col">
+        <div class="card-p">
+          <div class="card-p-h">
+            <h3 id="tOffH">Runs 100% Offline</h3>
+            <span class="f-tag off" id="tOffB">Zero Internet</span>
+          </div>
+          <ul class="plist" id="offUl"></ul>
+        </div>
+        <div class="card-p">
+          <div class="card-p-h">
+            <h3 id="tOnH">Optional Online Features</h3>
+            <span class="f-tag hyb" id="tOnB">Only When Used</span>
+          </div>
+          <ul class="plist" id="onUl"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Download & Honest Notices ===== -->
+  <section id="download" class="sec">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="tDlH2">Download &amp; Important Notes</h2>
+        <p id="tDlP">Standalone Windows 10 &amp; 11 (64-bit) installer hosted directly on GitHub Releases. Installs cleanly for your user account without admin rights.</p>
+      </div>
+      <div class="two-col">
+        <div class="card-p">
+          <h3 id="tInstH" style="font-size:17px;font-weight:700;margin-bottom:8px;">Install or Update</h3>
+          <p id="tInstP" style="font-size:14px;color:var(--mist);">Sohrus-Setup-v1.6.4.exe (2.98 MB). Running a newer installer updates Sohrus in place without erasing your saved data.</p>
+          <ol class="steps-ol" id="instOl"></ol>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <a class="btn-dl btn-hero" href="https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.4.exe" id="tInstBtn">Download Sohrus-Setup-v1.6.4.exe</a>
+            <a class="btn-sec" href="https://github.com/sohaib-ayman/sohrus" target="_blank" rel="noopener noreferrer" id="tRepoBtn">GitHub Repository</a>
+          </div>
+        </div>
+        <div class="card-p">
+          <h3 id="tNotH" style="font-size:17px;font-weight:700;margin-bottom:14px;">Before You Run It</h3>
+          <div id="warnBox"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Expanded FAQ ===== -->
+  <section id="faq" class="sec">
+    <div class="wrap">
+      <div class="sec-h c-align">
+        <h2 id="tFaqH2">Frequently Asked Questions</h2>
+        <p id="tFaqP">Everything you might want to know before downloading Sohrus.</p>
+      </div>
+      <div class="faq-g" id="faqG"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap ft-in">
+    <div id="tFoot">Sohrus · صوهروس — Created by Sohaib Ayman · Built with Pure Rust. Free for Windows 10 &amp; 11.</div>
+    <div class="ft-links">
+      <a href="#preview" id="tFtPrev">Preview</a>
+      <a href="#bilingual" id="tFtBi">AR &amp; EN</a>
+      <a href="#features" id="tFtFeat">Features</a>
+      <a href="#privacy" id="tFtPriv">Privacy</a>
+      <a href="https://github.com/sohaib-ayman/sohrus/releases" target="_blank" rel="noopener noreferrer" id="tFtRel">Releases</a>
+      <a href="https://github.com/sohaib-ayman" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const QR_MAT = [
+  1,1,1,0,1,0,1,1,1,
+  1,0,1,0,0,1,1,0,1,
+  1,1,1,0,1,0,1,1,1,
+  0,0,0,1,0,1,0,0,0,
+  1,0,1,1,1,0,1,1,0,
+  0,1,0,0,1,1,0,0,1,
+  1,1,1,0,1,0,1,0,1,
+  1,0,1,1,0,1,0,1,0,
+  1,1,1,0,1,1,1,0,1
+];
+
+const NAV_ICONS = [
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5"/></svg>',
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.7l5.7 5.7a8 8 0 1 1-11.4 0z"/></svg>',
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 13h5l2 3h4l2-3h5"/></svg>',
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="5" cy="6" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="5" cy="18" r="1"/></svg>',
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>',
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>'
+];
+
+const COPY = {
+  en: {
+    lang: "en", dir: "ltr", brand: "Sohrus",
+    nav: { prev: "Preview", bi: "AR & EN", mod: "Click-Through", light: "Lightweight", feat: "Features", priv: "Privacy", dl: "Download", dlBtn: "Download" },
+    heroH1: "A living native notch for Windows.",
+    heroSub: "Sohrus turns the top edge of Windows 10 & 11 into a fast Pure Rust notch with full Arabic (RTL) & English UI, media, 5-band visualizer, synced lyrics, Pomodoro, hydration, offline prayer times, file shelf, clipboard QR, Ask Sohrus AI, Smart OCR, and a hold-to-click-through key — completely free and under 30 MB of RAM.",
+    heroDl: "Download for Windows (v1.6.4)", heroRel: "GitHub Releases",
+    facts: ["100% Free", "100% Arabic (RTL) & English", "< 30 MB RAM", "2.98 MB Installer", "Pure Rust · Direct2D"],
+    stageHint: "1:1 Sohrus Direct2D preview — switch Notch language to preview full Arabic RTL inside the notch",
+    ghostBtn: "Hold Alt · Click Behind",
+    behindTab: "Browser Tab Behind Notch — Clickable!",
+    styles: { classic: "Classic", float: "Floating Pill", glass: "Glass" },
+    biH2: "100% Arabic (RTL) & 100% English — natively built in.",
+    biP: "Arabic is not an afterthought in Sohrus. Switch languages anytime from Settings → General and the entire app adapts natively — right-to-left alignment, mirrored Settings sidebar and toggles, Arabic prayer timeline & Hijri dates, localized System HUD labels, Arabic voice commands, and Arabic Smart OCR.",
+    biTags: ["Full RTL Mirroring", "15 Settings Tabs in AR & EN", "Arabic & English Voice AI", "Arabic Commands (>مؤقت / >لون)", "Hijri Date & Adhkar"],
+    biCardH: "One app, two complete experiences",
+    biCardP: "DirectWrite automatically detects Arabic and English text direction inside Ask Sohrus, Scratchpad, To-Do tasks, and synced lyrics — even when you mix both languages.",
+    modH2: "Need to click behind the notch? Hold one key.",
+    modP: "Ever had a browser tab or window button sitting right under a desktop notch? In Sohrus, hold your Temporary Hide Key and the notch instantly vanishes and becomes click-through — release it and Sohrus returns right where it was.",
+    modKbds: ["Alt (Default)", "Mouse 4 / Back", "Mouse 5 / Forward", "Mouse Middle", "Any Single Key"],
+    modCardH: "Smart by design",
+    modCardP: "Configure it in Settings → Appearance → Temporary hide key, or turn it off anytime. Supports Alt (default), Mouse 4/5/Middle, or any single keyboard key — and automatically pauses while you are typing inside Ask Sohrus, To-Do forms, or Scratchpad.",
+    perfH2: "Built in Pure Rust. Never crosses 30 MB of RAM.",
+    perfP: "No hidden Chromium browser, no Electron wrapper, and no WebView2 process running in the background. Sohrus renders natively with Win32, Direct2D, and DirectWrite — stopping frame draws completely when idle.",
+    tmTop: "Windows Task Manager — Everyday Use",
+    thProc: "Name", thCpu: "CPU", thRam: "Memory", thDisk: "Disk",
+    tmFoot: "Idle CPU drops to 0% when nothing moves. The File Shelf stores paths only — never copies your files into RAM.",
+    stats: [
+      { v: "< 30 MB", c: "grn", l: "Peak RAM in daily use (never reaches 30 MB)" },
+      { v: "2.98 MB", c: "", l: "Standalone setup size — zero extra runtimes" },
+      { v: "0% CPU", c: "", l: "Idle CPU usage — only draws on hover or motion" },
+      { v: "100% Free", c: "grn", l: "All 7 pages, 11 widgets, AI & styles unlocked" }
+    ],
+    featH2: "Every feature inside Sohrus v1.6.4",
+    featP: "Seven reorderable pages, floating screen tools, live system HUD, full Arabic & English RTL, and 15 settings tabs — all in one 2.98 MB native Windows app.",
+    cats: [
+      {
+        name: "Media, Audio & Lyrics",
+        items: [
+          { tag: "Offline", cls: "off", t: "Media Controls & 5-Band WASAPI Visualizer", d: "Works with Spotify, YouTube in browsers, Apple Music, and local players. Features drag-to-seek bar, quick audio output device switcher, and a live 5-band frequency visualizer (90Hz–4600Hz)." },
+          { tag: "Offline + LRCLIB", cls: "hyb", t: "Synced Lyrics Split & Lyrics Mini-Mode", d: "Split-view synced lyrics from LRCLIB or embedded MP3/FLAC/M4A tags & local .lrc files. Click any line to seek, fine-tune timing offset (0.3s / 0.6s / 1.0s), or collapse into Lyrics Mini-Mode." },
+          { tag: "Offline", cls: "off", t: "Sohrus Mascot", d: "After 15s idle, the Sohrus mascot appears in the notch (Awake, blinking and glancing around), dozes off after 30s with drifting Zzz (Sleeping), and waves hello when you return (Waking)." }
+        ]
+      },
+      {
+        name: "Focus, Health & Daily Rhythm",
+        items: [
+          { tag: "Offline", cls: "off", t: "Pomodoro, Stopwatch & Brown Noise", d: "Radial halo ring, 4-capsule round jumper (F1–F4 + breaks + Long), optional closed-notch countdown, built-in Brown Noise focus audio (auto-pauses on break), Stopwatch with split Laps, and Quick Timers." },
+          { tag: "Offline", cls: "off", t: "Hydration Glass Tank & Hourly Chart", d: "Vertical animated liquid tank with meniscus highlight, customizable daily goal (1.5 L – 3.0 L) and cup size, one-click +Drink & Undo, hourly bar chart, and active-hour reminders." },
+          { tag: "Offline", cls: "off", t: "Offline Prayer Times, Hijri & Adhkar", d: "Astronomical prayer times calculated offline on your PC for any city & method, Hijri date, minute fine-tuning, alerts at Adhan & 10m before, auto-pause music on Adhan, and periodic Adhkar toasts." }
+        ]
+      },
+      {
+        name: "Files, Clipboard, Tasks & Widgets",
+        items: [
+          { tag: "Offline", cls: "off", t: "Drag-and-Drop File Shelf", d: "Drop files onto the notch to keep them close, click to open, or drag them straight out into Explorer, chats, or browsers via native OLE Drag & Drop. Optional auto-clear on startup." },
+          { tag: "Offline", cls: "off", t: "Clipboard History, Pin, Instant QR & Scratchpad", d: "Local clipboard history with Pin-to-top, an offline ISO QR code generator to scan any copied link/text on your phone, plus an auto-saved Scratchpad for quick notes and commands." },
+          { tag: "Offline + Weather", cls: "hyb", t: "To-Do, Reminders & 11 Dual Widgets", d: "Tasks & timed/daily reminders with inline editing. Plus 11 dual widgets: System Monitor (CPU/RAM/Net), Weather, Next Prayer, Hydration, Focus Today, World Clock, Battery, This Week, Lunar Phase, Countdown, and Adhkar." }
+        ]
+      },
+      {
+        name: "AI, Capture & Screen Utilities",
+        items: [
+          { tag: "Own Gemini Key", cls: "hyb", t: "Ask Sohrus AI, Voice & Quick Commands", d: "Ask anything with Gemini in Arabic or English, speak via native mic recording, hear replies via Gemini TTS (with offline Windows SAPI5 fallback), translate clipboard text, calculate/convert units offline, or run >timer, >color, >ip, >trash, >lock, >sleep, >dnd, >eject." },
+          { tag: "Offline", cls: "off", t: "Smart OCR (Ctrl + Alt + T)", d: "Drag over any English or Arabic text on screen to copy it offline using Windows' built-in OCR engine (auto-upscales small text for accuracy) — nothing is uploaded." },
+          { tag: "Offline", cls: "off", t: "HEX Color Picker & Pixel Screen Ruler", d: "Zero-lag eyedropper that samples exact HEX pixel colors (Ctrl + Alt + C) and a full-screen pixel ruler measuring W × H and diagonal px (Ctrl + Alt + R)." }
+        ]
+      },
+      {
+        name: "System HUD, Bilingual RTL, Click-Through & Backup",
+        items: [
+          { tag: "Offline", cls: "off", t: "System HUD & Presentation DND", d: "Clean overlays in English or Arabic for Volume, Brightness, Caps/Num Lock, Keyboard Language, Charger/Battery, Bluetooth headset battery, Wi-Fi, Mic mute, and USB drives (with safe tray eject). Auto-hides in full-screen games/videos." },
+          { tag: "Offline", cls: "off", t: "Full Arabic RTL, Click-Through & 15 Settings Tabs", d: "Full English & Arabic (RTL) interface across every page and Settings tab. Hold Alt (or Mouse 4/5/Middle or any single key) to temporarily hide the notch and click behind it, plus Classic / Floating Pill / Minimal styles, Glass opacity, 5 accent themes, and drag-to-reorder pages." },
+          { tag: "Offline", cls: "off", t: "One-Click JSON Backup & Restore", d: "Export and restore your entire Sohrus setup (settings, tasks, hydration, prayer adjustments, scratchpad) in one local .json file." }
+        ]
+      }
+    ],
+    freeH: "100% Free. Every single feature unlocked.",
+    freeP: "Widgets, Floating Pill, Glass transparency, full Arabic RTL & English, Ask Sohrus AI, Voice, Smart OCR, Color Picker, Screen Ruler, Prayer Times, Modifier Click-Through, and JSON Backup are all included free — no Pro paywall, no subscription, and no account required.",
+    freePts: ["No locked Pro tier or subscriptions", "No account or sign-in required", "Zero telemetry, ads, or analytics", "Built independently by Sohaib Ayman"],
+    privH2: "Offline-first. Transparent about every network call.",
+    privP: "All your settings, tasks, hydration logs, shelf paths, clipboard history, and scratchpad notes live locally in %LOCALAPPDATA%\\Sohrus. No accounts, no analytics, and no tracking.",
+    offH: "Runs 100% Offline", offB: "Zero Internet",
+    onH: "Optional Online Features", onB: "Only When Used",
+    offItems: [
+      "Media controls, WASAPI 5-band audio visualizer, audio output switcher, and embedded/local .lrc lyrics.",
+      "Pomodoro, Stopwatch, Quick Timers, Brown Noise focus audio, and Hydration tank & chart.",
+      "Astronomical Prayer Times calculation, Hijri date, Adhan alerts, and Periodic Adhkar.",
+      "File Shelf, Clipboard History, Pin, Instant QR Code encoder, Scratchpad, and To-Do.",
+      "Smart OCR (Windows built-in engine), HEX Color Picker, Pixel Screen Ruler, Offline Calculator & Unit Converter.",
+      "System HUD, Modifier Click-Through Key, Sohrus Mascot, full Arabic/English UI, and JSON Backup/Restore."
+    ],
+    onItems: [
+      "Online Synced Lyrics (LRCLIB): Sends only song title, artist, and duration to lrclib.net when online lyrics are enabled (falls back to local/embedded automatically).",
+      "Ask Sohrus AI, Voice & Translate: Sends only what you ask or translate directly to Google Gemini using your own free Google AI Studio API key stored locally on your PC.",
+      "Weather Widget: Fetches current weather from Open-Meteo for your selected city only when the Weather widget is active.",
+      "Nothing else ever leaves your PC — there are no Sohrus tracking servers."
+    ],
+    dlH2: "Download & Important Notes",
+    dlP: "Standalone Windows 10 & 11 (64-bit) installer hosted directly on GitHub Releases. Installs cleanly for your user account without admin rights.",
+    instH: "Install or Update",
+    instP: "Sohrus-Setup-v1.6.4.exe (2.98 MB). Running a newer installer updates Sohrus in place without erasing your saved data.",
+    instSteps: [
+      "Download Sohrus-Setup-v1.6.4.exe from official GitHub Releases.",
+      "Run the installer — installs cleanly for your user account with no admin prompt and zero extra runtimes.",
+      "Right-click the Sohrus tray icon anytime to open the 15-tab Settings window or switch between English and Arabic (RTL).",
+      "Uninstall cleanly anytime from Windows Settings → Installed Apps."
+    ],
+    instBtn: "Download Sohrus-Setup-v1.6.4.exe", repoBtn: "GitHub Repository",
+    notH: "Before You Run It",
+    warns: [
+      { cls: "", t: "Windows SmartScreen Warning on First Run", p: "Sohrus is a free independent app by Sohaib Ayman without a paid code-signing certificate. Your browser or Windows may show a caution dialog: in your browser choose Keep anyway; in Windows SmartScreen click More info, then Run anyway." },
+      { cls: "info", t: "Why Sohrus Listens for System Keys & Hotkeys", p: "Sohrus monitors only system overlay keys (Volume, Brightness, Caps/Num Lock, Language), your custom shortcuts (Ask Sohrus, OCR, Color Picker, Ruler), and your Temporary Hide Key. It never logs or sends what you type." },
+      { cls: "info", t: "Download Only from Official GitHub Releases", p: "Only download from github.com/sohaib-ayman/sohrus/releases. Do not run modified copies from third-party sites." }
+    ],
+    faqH2: "Frequently Asked Questions",
+    faqP: "Everything you might want to know before downloading Sohrus.",
+    faqs: [
+      { q: "Is Sohrus really 100% free with no Pro version?", a: "Yes. Every single feature — all 11 Widgets, Floating Pill, Glass transparency, Ask Sohrus AI, Voice, Smart OCR, Color Picker, Screen Ruler, Prayer Times, Modifier Click-Through, and Backup/Restore — is completely free with no paid upgrade or subscription." },
+      { q: "Does Sohrus support full Arabic (RTL) and English?", a: "Yes. You can switch between 100% English (LTR) and 100% Arabic (full RTL mirroring) anytime from Settings → General. Every notch page, all 15 Settings tabs, System HUD popups, quick commands, and voice/AI responses support both languages natively." },
+      { q: "Will it slow down my PC, drain battery, or affect games?", a: "No. Sohrus is written in Pure Rust using Win32 and Direct2D with zero embedded browser. It stays under 30 MB of RAM, drops to 0% CPU when idle, and automatically hides during full-screen games, videos, and presentations." },
+      { q: "How do I click a browser tab or button hidden behind the notch?", a: "Hold Alt (default) — or bind Mouse 4, Mouse 5, Mouse Middle, or any single keyboard key in Settings → Appearance → Temporary hide key. The notch vanishes into click-through mode while held and returns as soon as you release." },
+      { q: "Why does Windows SmartScreen warn me on first launch?", a: "Because Sohrus is a free independent utility built by Sohaib Ayman without a paid commercial code-signing certificate. Click More info in the SmartScreen popup, then click Run anyway. It installs cleanly for your user account without admin privileges." },
+      { q: "Which features work offline and which ones use the internet?", a: "Almost everything runs 100% offline on your PC (media, visualizer, local .lrc lyrics, Pomodoro, Brown Noise, Hydration, Prayer Times, Adhkar, Shelf, Clipboard + QR, Scratchpad, To-Do, Smart OCR, Color Picker, Ruler, Calculator, HUD, Backup). Only LRCLIB online lyrics, Weather widget, and Ask Sohrus Gemini AI use the internet — and only when you use them." },
+      { q: "What do I need to use Ask Sohrus AI, Translate, and Voice?", a: "Just a free Gemini API key from Google AI Studio (aistudio.google.com). Paste it once in Settings → Ask Sohrus. Your key stays locally on your PC, and the offline calculator, unit converter, >commands, and Smart OCR work without any key." },
+      { q: "Does Smart OCR upload my screenshots anywhere?", a: "Never. Smart OCR uses Windows' built-in local OCR engine right on your machine (and automatically upscales small regions for better accuracy). Zero screenshots or text leave your PC." },
+      { q: "Does Sohrus support multiple monitors and DPI scaling?", a: "Yes. In Settings → Display you can pick which monitor displays the notch, and in Settings → General you can use Auto DPI or manually scale the notch (100%, 113%, 125%, 150%) plus choose 12-hour or 24-hour clock format." },
+      { q: "How do I update, back up my data, or uninstall Sohrus?", a: "To update, just run the newest installer from GitHub Releases — your settings, tasks, hydration logs, prayer adjustments, and scratchpad stay intact. You can also export/import a complete .json backup in Settings → About, or uninstall cleanly via Windows Settings → Installed Apps." }
+    ],
+    foot: "Sohrus · صوهروس — Created by Sohaib Ayman · Built with Pure Rust. Free for Windows 10 & 11.",
+    states: [
+      { id: "music", l: "Music" },
+      { id: "lyrics", l: "Lyrics Split" },
+      { id: "lyrics_mini", l: "Lyrics Mini" },
+      { id: "mascot", l: "Sohrus Mascot" },
+      { id: "closed", l: "Closed + Viz" },
+      { id: "pomo", l: "Pomodoro & SW" },
+      { id: "water", l: "Hydration" },
+      { id: "shelf", l: "Shelf / Clip / QR" },
+      { id: "todo", l: "To-Do" },
+      { id: "prayer", l: "Prayer" },
+      { id: "widgets", l: "Widgets" },
+      { id: "ask", l: "Ask Sohrus" },
+      { id: "hud", l: "System HUD" },
+      { id: "adhkar", l: "Adhkar" }
+    ],
+    caps: {
+      music: "Music (504 × 206 dp): Click Play/Pause, switch Audio Output, or click Lyrics. Hover the bottom dots to reveal the quick page-icon bar.",
+      lyrics: "Lyrics Split (564 × 206 dp): Click any synced line to jump there, or switch between Online (LRCLIB) and Local (.lrc / embedded tags).",
+      lyrics_mini: "Lyrics Mini-Mode (360 × 38 dp): Collapses back to 38 px tall while keeping the live synced lyric line at the top edge.",
+      mascot: "Sohrus Mascot (190 × 38 dp): Click the mascot to cycle Awake (blinking) → Sleeping (drifting Zzz) → Waking (waving hello).",
+      closed: "Closed Notch (232 × 38 dp): Status ring, live clock, and the 5-band WASAPI audio visualizer.",
+      pomo: "Pomodoro & Stopwatch (504 × 206 dp): Radial halo ring, clickable F1–F4 round capsules, Brown Noise toggle, and Stopwatch mode.",
+      water: "Hydration (504 × 206 dp): Vertical glass liquid tank with meniscus line. Click +Drink or Undo, or switch to the hourly Chart.",
+      shelf: "Shelf, Clipboard & Scratchpad (504 × 206 dp): Switch tabs on top-right, click QR on any clipboard item to generate a scannable QR code, or type in Scratchpad.",
+      todo: "To-Do & Reminders (504 × 206 dp): Segmented Tasks/Remind switcher, colored left accent stripes, and click-to-complete checkboxes.",
+      prayer: "Prayer Times (504 × 206 dp): Offline astronomical calculation, clickable city switcher, Hijri date, horizontal timeline track, and 5 prayer cards.",
+      widgets: "Dual Widgets (504 × 206 dp): Two Midnight Navy glass cards side-by-side — click any card to preview more of Sohrus's 11 widgets.",
+      ask: "Ask Sohrus (540 × 215 dp): Click the sample tabs inside to preview Offline Calculator, >color HEX/RGB/HSL Converter, >timer command, and Gemini AI + Voice.",
+      hud: "System HUD (320 × 38 dp): Click the badge to cycle Volume, Brightness, Bluetooth Headset battery, Mic Mute, Keyboard Language, and USB overlays.",
+      adhkar: "Periodic Adhkar (320 × 38 dp): Gentle Arabic dhikr pill in the notch — automatically pauses during Lyrics Mini-Mode."
+    }
+  },
+  ar: {
+    lang: "ar", dir: "rtl", brand: "صوهروس",
+    nav: { prev: "المعاينة", bi: "عربي وإنجليزي", mod: "النقر خلف النوتش", light: "الخفة والأداء", feat: "المميزات", priv: "الخصوصية", dl: "التحميل", dlBtn: "تحميل" },
+    heroH1: "نوتش حي وخفيف لويندوز.",
+    heroSub: "صوهروس (Sohrus) يحوّل أعلى شاشة ويندوز 10 و11 إلى نوتش أصلي سريع بـ Pure Rust يدعم العربية (RTL) والإنجليزية بالكامل، مع الميديا وفيجوالايزر 5 نطاقات، كلمات متزامنة، بومودورو، شرب المياه، مواقيت الصلاة أوفلاين، الرف، الحافظة وQR، اسأل صوهروس، Smart OCR، ومفتاح إخفاء مؤقت للنقر خلف النوتش — مجاني بالكامل وأقل من 30 ميجا رام.",
+    heroDl: "تحميل لويندوز (v1.6.4)", heroRel: "صفحة الإصدارات (Releases)",
+    facts: ["مجاني 100%", "عربي (RTL) وإنجليزي بالكامل", "أقل من 30 ميجا رام", "حجم 2.98 ميجا", "Pure Rust · Direct2D"],
+    stageHint: "معاينة 1:1 من كود صوهروس الفعلي — بدّل لغة النوتش لتجربة العربي (RTL) والإنجليزي لايف",
+    ghostBtn: "اضغط Alt · نقر خلف النوتش",
+    behindTab: "تبويب المتصفح خلف النوتش — قابل للنقر الآن!",
+    styles: { classic: "كلاسيكي", float: "كبسولة عائمة", glass: "زجاجي" },
+    biH2: "عربي بالكامل (RTL) وإنجليزي بالكامل — دعم أصلي من الصفر.",
+    biP: "اللغة العربية في صوهروس مش مجرد ترجمة سطحية. بدّل اللغة في أي وقت من الإعدادات ← عام وهيتحول التطبيق بالكامل بـ RTL حقيقي: القائمة الجانبية والأزرار معكوسة بسلاسة، خط مواقيت الصلاة والتاريخ الهجري، إشعارات النظام بالعربي، الأوامر السريعة بالعربي، والصوت وSmart OCR بالعربي والإنجليزي.",
+    biTags: ["واجهة RTL كاملة", "15 تبويب إعدادات عربي وإنجليزي", "ذكاء وصوت عربي وإنجليزي", "أوامر بالعربي (>مؤقت / >لون)", "تاريخ هجري وأذكار"],
+    biCardH: "تطبيق واحد، تجربتان كاملتان",
+    biCardP: "محرك DirectWrite بيكتشف اتجاه النص العربي والإنجليزي تلقائياً جوه اسأل صوهروس والمفكرة والمهام وكلمات الأغاني حتى لو بتكتب باللغتين مع بعض.",
+    modH2: "عايز تدوس على حاجة ورا النوتش؟ اضغط زر واحد.",
+    modP: "لو في تبويب متصفح أو زر نافذة تحت النوتش مباشرة، اضغط مطولاً على مفتاح الإخفاء المؤقت (Temporary Hide Key) وهيختفي صوهروس فوراً ويبقى شفاف للنقر — وبمجرد ما تسيب الزر يرجع مكانه بسلاسة.",
+    modKbds: ["Alt (افتراضي)", "ماوس 4 (رجوع)", "ماوس 5 (تقدم)", "بكرة الماوس", "أي زر واحد"],
+    modCardH: "ذكي ومريح في الاستخدام",
+    modCardP: "خصصه من الإعدادات ← المظهر ← مفتاح الإخفاء المؤقت، أو أوقفه في أي وقت. يدعم Alt (افتراضياً)، أو أزرار الماوس الجانبية (Mouse 4 / 5 / البكرة)، أو أي زر واحد بالكيبورد — ويتوقف تلقائياً أثناء الكتابة في اسأل صوهروس أو المهام أو المفكرة.",
+    perfH2: "مبني بـ Pure Rust. استهلاكه لا يصل 30 ميجا رام.",
+    perfP: "بدون متصفح Chromium مخفي، بدون Electron، وبدون WebView2 يسحب الرامات في الخلفية. صوهروس مرسوم مباشرة عبر Win32 وDirect2D وDirectWrite — ويتوقف الرسم تماماً وقت الثبات.",
+    tmTop: "مدير المهام (Task Manager) — الاستخدام اليومي",
+    thProc: "العملية", thCpu: "المعالج CPU", thRam: "الرام Memory", thDisk: "القرص Disk",
+    tmFoot: "استهلاك المعالج 0% وقت السكون. رف الملفات يحفظ مسار الملف فقط ولا ينسخه داخل الرام.",
+    stats: [
+      { v: "< 30 MB", c: "grn", l: "أقصى استهلاك رام يومي (مبيوصلش 30 ميجا)" },
+      { v: "2.98 MB", c: "", l: "حجم ملف التثبيت — بدون أي مكتبات إضافية" },
+      { v: "0% CPU", c: "", l: "استهلاك المعالج وقت السكون — يرسم وقت الحركة فقط" },
+      { v: "مجاني 100%", c: "grn", l: "كل الـ 7 صفحات والـ 11 Widget وأدوات الذكاء مفتوحة" }
+    ],
+    featH2: "كل المميزات داخل صوهروس v1.6.4",
+    featP: "سبع صفحات قابلة لإعادة الترتيب، أدوات شاشة سريعة، إشعارات نظام حية، عربي وإنجليزي بالكامل، و15 تبويب إعدادات — في برنامج أصلي حجمه 2.98 ميجا فقط.",
+    cats: [
+      {
+        name: "الموسيقى والصوت والكلمات",
+        items: [
+          { tag: "أوفلاين", cls: "off", t: "التحكم بالميديا وفيجوالايزر WASAPI 5 نطاقات", d: "يعمل مع سبوتيفاي ويوتيوب من أي متصفح وApple Music والمشغلات المحلية. يشمل شريط تقديم بالسحب، مبدّل مخرج الصوت السريع، وفيجوالايزر حي 5 نطاقات (90Hz–4600Hz)." },
+          { tag: "أوفلاين + LRCLIB", cls: "hyb", t: "الكلمات المتزامنة المنقسمة والوضع المصغّر", d: "عرض منقسم للكلمات من LRCLIB أو من وسوم ملفات MP3/FLAC/M4A وملفات .lrc المحلية. اضغط أي سطر للانتقال إليه، عدّل التوقيت، أو فعّل وضع الكلمات المصغّر." },
+          { tag: "أوفلاين", cls: "off", t: "شخصية صوهروس (Sohrus Mascot)", d: "بعد 15 ثانية خمول تظهر شخصية صوهروس داخل النوتش (مستيقظ يرمش ويلتفت)، وتنام بعد 30 ثانية مع حروف Zzz الطايرة، وتلوّح لك بالترحيب عند عودتك." }
+        ]
+      },
+      {
+        name: "التركيز والصحة واليوميات",
+        items: [
+          { tag: "أوفلاين", cls: "off", t: "بومودورو وساعة الإيقاف وصوت Brown Noise", d: "حلقة تركيز شعاعية، 4 كبسولات للتنقل السريع بين الجلسات (ج1–ج4 + الاستراحات)، عدّاد في النوتش المغلق، صوت Brown Noise مدمج (يقف تلقائياً في الاستراحة)، وساعة إيقاف بالدورات." },
+          { tag: "أوفلاين", cls: "off", t: "خزان شرب المياه الزجاجي والرسم البياني", d: "خزان مياه زجاجي رأسي متحرك، هدف يومي (1.5–3.0 لتر) وحجم كوب مخصص، تسجيل بضغطة مع زر تراجع، رسم بياني بالساعة، وتذكيرات ساعات النشاط." },
+          { tag: "أوفلاين", cls: "off", t: "مواقيت الصلاة أوفلاين والتاريخ الهجري والأذكار", d: "حساب فلكي أوفلاين على جهازك لأي مدينة وطريقة حساب، التاريخ الهجري، تعديل الدقائق، تنبيه عند الأذان وقبله بـ 10 دقائق، إيقاف الموسيقى عند الأذان، وأذكار دورية." }
+        ]
+      },
+      {
+        name: "الملفات والحافظة والمهام والـ Widgets",
+        items: [
+          { tag: "أوفلاين", cls: "off", t: "رف الملفات بالسحب والإفلات (Shelf)", d: "اسحب الملفات للنوتش لتبقى قريبة منك، اضغط لفتحها، أو اسحبها مباشرة للمتصفح أو المحادثات عبر Windows OLE Drag & Drop. مع خيار تفريغ الرف عند التشغيل." },
+          { tag: "أوفلاين", cls: "off", t: "سجل الحافظة والتثبيت وكود QR والمفكرة", d: "سجل محلي للحافظة مع تثبيت العناصر المهمة (Pin)، مولّد كود QR أوفلاين فوري لمسحه بالموبايل، ومفكرة (Scratchpad) بحفظ تلقائي." },
+          { tag: "أوفلاين + الطقس", cls: "hyb", t: "المهام والتذكيرات و11 عنصر Widgets مزدوج", d: "إدارة المهام والتذكيرات اليومية والمؤقتة. مع 11 Widget مزدوج: مراقبة النظام (CPU/RAM/Net)، الطقس، الصلاة القادمة، المياه، تركيز اليوم، توقيت العالم، البطارية، الأسبوع، طور القمر، العد التنازلي، والأذكار." }
+        ]
+      },
+      {
+        name: "الذكاء الاصطناعي وأدوات الشاشة",
+        items: [
+          { tag: "بمفتاح Gemini خاص بك", cls: "hyb", t: "اسأل صوهروس والصوت والأوامر السريعة", d: "اسأل Gemini بالعربي أو الإنجليزي، تحدث بالمايكروفون واستمع للرد بصوت Gemini TTS (مع بديل ويندوز الأوفلاين)، ترجم الحافظة، احسب وحوّل الوحدات أوفلاين، أو نفّذ >مؤقت و>لون و>اي بي و>سلة و>قفل و>سكون و>هدوء و>فصل." },
+          { tag: "أوفلاين", cls: "off", t: "نسخ النصوص من الشاشة (Smart OCR)", d: "اضغط Ctrl + Alt + T وحدد أي نص عربي أو إنجليزي على الشاشة لنسخه أوفلاين بالكامل عبر محرك ويندوز المدمج (مع تكبير ذكي للنصوص الصغيرة) بدون رفع أي صورة." },
+          { tag: "أوفلاين", cls: "off", t: "ملتقط ألوان HEX ومسطرة الشاشة", d: "ملتقط ألوان فوري بدون لاج لنسخ كود HEX لأي بكسل (Ctrl + Alt + C) ومسطرة شاشة لقياس العرض والارتفاع والقطر بالبيكسل (Ctrl + Alt + R)." }
+        ]
+      },
+      {
+        name: "إشعارات النظام والعربي RTL والنقر الخلفي والنسخ الاحتياطي",
+        items: [
+          { tag: "أوفلاين", cls: "off", t: "إشعارات النظام (HUD) وعدم الإزعاج", d: "إشعارات نظيفة بالعربي والإنجليزي للصوت والسطوع وCaps/Num Lock ولغة الكيبورد والشاحن وبطارية سماعة البلوتوث والواي فاي وكتم المايك والفلاشات (مع إخراج آمن من التراي). يختفي تلقائياً في الألعاب وملء الشاشة." },
+          { tag: "أوفلاين", cls: "off", t: "واجهة عربية RTL كاملة، النقر الخلفي، و15 تبويب إعدادات", d: "واجهة عربية (RTL) وإنجليزية 100% في كل صفحة وتبويب. اضغط مطولاً على Alt (أو أزرار الماوس الجانبية أو أي زر) لإخفاء النوتش مؤقتاً والنقر خلفه، مع الكلاسيكي والكبسولة العائمة والمصغّر والشفافية الزجاجية و5 ألوان هوية." },
+          { tag: "أوفلاين", cls: "off", t: "نسخ احتياطي واستعادة بملف JSON", d: "تصدير واستعادة كل بيانات صوهروس (الإعدادات، المهام، المياه، تعديلات الصلاة، والمفكرة) في ملف .json محلي واحد بضغطة زر." }
+        ]
+      }
+    ],
+    freeH: "مجاني 100%. كل المميزات مفتوحة بالكامل.",
+    freeP: "الـ 11 Widget، الكبسولة العائمة، الشفافية الزجاجية، العربي RTL والإنجليزي بالكامل، اسأل صوهروس، الصوت، Smart OCR، ملتقط الألوان، مسطرة الشاشة، مواقيت الصلاة، مفتاح النقر خلف النوتش، والنسخ الاحتياطي — كلها مجانية بالكامل بدون أي نسخة مدفوعة أو اشتراكات.",
+    freePts: ["بدون نسخة Pro مقفولة أو اشتراكات", "بدون حساب أو تسجيل دخول", "بدون إعلانات أو تتبع أو تحليلات", "تطوير مستقل بواسطة صهيب أيمن"],
+    privH2: "يعمل أوفلاين بالأساس. وشفافية كاملة في أي اتصال.",
+    privP: "كل إعداداتك ومهامك وسجل المياه والرف وسجل الحافظة والمفكرة تُحفظ محلياً داخل %LOCALAPPDATA%\\Sohrus. بدون حسابات أو تتبع.",
+    offH: "يعمل 100% أوفلاين", offB: "بدون إنترنت",
+    onH: "ميزات أونلاين اختيارية", onB: "فقط عند استخدامها",
+    offItems: [
+      "التحكم بالميديا، فيجوالايزر WASAPI الـ 5 نطاقات، مبدّل مخرج الصوت، والكلمات المحلية/المدمجة (.lrc).",
+      "البومودورو، ساعة الإيقاف، المؤقت السريع، صوت Brown Noise، وخزان المياه والرسم البياني.",
+      "حساب مواقيت الصلاة الفلكي، التاريخ الهجري، تنبيهات الأذان، والأذكار الدورية.",
+      "رف الملفات، سجل الحافظة والتثبيت، مولّد كود QR الفوري، المفكرة، والمهام والتذكيرات.",
+      "Smart OCR (محرك ويندوز المدمج)، ملتقط ألوان HEX، مسطرة الشاشة، والحاسبة ومحول الوحدات الأوفلاين.",
+      "إشعارات النظام (HUD)، مفتاح النقر خلف النوتش، شخصية صوهروس، الواجهة العربية/الإنجليزية، والنسخ الاحتياطي JSON."
+    ],
+    onItems: [
+      "الكلمات المتزامنة أونلاين (LRCLIB): يرسل اسم الأغنية والفنان والمدة فقط إلى lrclib.net عند تفعيلها (ويرجع تلقائياً للمحلي لو مفيش نت).",
+      "اسأل صوهروس والصوت والترجمة: يرسل سؤالك أو النص المختار مباشرة إلى Google Gemini باستخدام مفتاحك المجاني من Google AI Studio المحفوظ على جهازك.",
+      "ودجت الطقس: يجلب حالة الطقس من Open-Meteo لمدينتك فقط في حال تفعيل ودجت الطقس.",
+      "أي شيء غير ذلك لا يغادر جهازك أبداً ولا يوجد أي سيرفر تتبع."
+    ],
+    dlH2: "التحميل وتنبيهات مهمة قبل التشغيل",
+    dlP: "ملف تثبيت مستقل لويندوز 10 و11 (64-bit) على GitHub Releases مباشرة. يتثبّت لحسابك الشخصي بدون صلاحيات مدير.",
+    instH: "التثبيت أو التحديث",
+    instP: "Sohrus-Setup-v1.6.4.exe (2.98 ميجا). تشغيل أي إصدار أحدث يحدّث البرنامج مع الحفاظ على كل بياناتك.",
+    instSteps: [
+      "حمّل Sohrus-Setup-v1.6.4.exe من GitHub Releases الرسمي.",
+      "شغّل المثبّت — يتثبّت لحسابك بدون طلب Admin وبدون أي مكتبات خارجية.",
+      "اضغط كليك يمين على أيقونة صوهروس في شريط المهام لفتح الإعدادات أو التبديل بين العربية والإنجليزية (RTL).",
+      "لإلغاء التثبيت في أي وقت: من إعدادات ويندوز ← التطبيقات المثبتة."
+    ],
+    instBtn: "تحميل Sohrus-Setup-v1.6.4.exe", repoBtn: "مستودع GitHub",
+    notH: "ملاحظات مهم تعرفها",
+    warns: [
+      { cls: "", t: "تحذير Windows SmartScreen عند التشغيل الأول", p: "صوهروس تطبيق مجاني ومستقل من تطوير صهيب أيمن بدون شهادة توقيع رقمي مدفوعة. قد يعرض المتصفح أو ويندوز تنبيهاً في أول تشغيل: في المتصفح اختر Keep anyway، وفي نافذة ويندوز اضغط More info ثم Run anyway." },
+      { cls: "info", t: "ليه البرنامج يراقب بعض أزرار الكيبورد والنظام؟", p: "صوهروس يقرأ فقط مفاتيح إشعارات النظام (الصوت، السطوع، Caps/Num Lock، اللغة)، واختصاراتك المحددة (اسأل صوهروس، OCR، ملتقط الألوان، المسطرة)، ومفتاح الإخفاء المؤقت. لا يسجل ولا يرسل ما تكتبه أبداً." },
+      { cls: "info", t: "حمّل البرنامج من GitHub Releases الرسمي فقط", p: "تأكد دائماً أن التحميل من github.com/sohaib-ayman/sohrus/releases ولا تشغّل أي نسخة من مواقع غير رسمية." }
+    ],
+    faqH2: "الأسئلة الشائعة",
+    faqP: "كل التفاصيل المهمة اللي ممكن تخطر على بالك قبل تحميل صوهروس.",
+    faqs: [
+      { q: "هل صوهروس مجاني فعلاً 100% بدون نسخة Pro؟", a: "نعم. كل المميزات — الـ 11 Widget، الكبسولة العائمة، الشفافية الزجاجية، اسأل صوهروس والصوت، Smart OCR، ملتقط الألوان، المسطرة، مواقيت الصلاة، مفتاح النقر خلف النوتش، والنسخ الاحتياطي — مجانية بالكامل بدون أي اشتراك أو ميزات مقفولة." },
+      { q: "هل صوهروس يدعم العربي بالكامل (RTL) والإنجليزي بالكامل؟", a: "نعم 100%. تقدر تبدّل بين العربية (بمحاذاة وعكس RTL كامل) والإنجليزية في أي لحظة من الإعدادات ← عام، ويشمل ذلك كل صفحات النوتش والـ 15 تبويب إعدادات وإشعارات النظام والأوامر السريعة والصوت والـ OCR." },
+      { q: "هل يبطّئ الجهاز أو يسحب البطارية أو يأثر على الألعاب؟", a: "لا نهائياً. صوهروس مكتوب بـ Pure Rust باستخدام Win32 وDirect2D بدون أي متصفح مخفي؛ استهلاكه لا يصل 30 ميجا رام و0% معالج وقت السكون، ويختفي تلقائياً أثناء الألعاب والفيديو والعروض بملء الشاشة." },
+      { q: "إزاي أضغط على تبويب متصفح أو زر تحت النوتش؟", a: "اضغط مطولاً على Alt (افتراضياً) أو خصّص زر ماوس جانبي (Mouse 4/5/البكرة) أو أي زر واحد من الإعدادات ← المظهر ← مفتاح الإخفاء المؤقت؛ النوتش بيختفي فوراً وتدوس على اللي وراه، وبيرجع لما تسيب الزر." },
+      { q: "ليه بيظهر تحذير Windows SmartScreen في أول تشغيل؟", a: "لأن صوهروس برنامج مجاني ومستقل من تطوير صهيب أيمن بدون شهادة توقيع رقمي مدفوعة. في نافذة SmartScreen اضغط More info ثم Run anyway؛ بيتثبّت لحسابك الشخصي مباشرة بدون طلب صلاحيات مدير." },
+      { q: "إيه الميزات الأوفلاين وإيه اللي بيحتاج إنترنت؟", a: "معظم البرنامج يعمل 100% أوفلاين (الميديا، الفيجوالايزر، كلمات .lrc المحلية، البومودورو، Brown Noise، المياه، مواقيت الصلاة، الأذكار، الرف، الحافظة وQR، المفكرة، المهام، Smart OCR، الألوان، المسطرة، الحاسبة، الـ HUD، والنسخ الاحتياطي). فقط كلمات LRCLIB أونلاين وودجت الطقس واسأل صوهروس Gemini تحتاج إنترنت عند استخدامها." },
+      { q: "إيه المطلوب عشان أشغّل اسأل صوهروس والترجمة والصوت؟", a: "فقط مفتاح Gemini API مجاني من Google AI Studio (aistudio.google.com) تلصقه مرة واحدة في الإعدادات ← اسأل صوهروس. المفتاح يُحفظ على جهازك فقط، أما الحاسبة ومحول الوحدات والأوامر السريعة وOCR فتعمل بدون مفتاح." },
+      { q: "هل نسخ النصوص من الشاشة (Smart OCR) بيرفع صوري للإنترنت؟", a: "أبداً. Smart OCR بيستخدم محرك ويندوز المحلي المدمج داخل جهازك مباشرة (مع تكبير تلقائي للنصوص الصغيرة لرفع الدقة) ومفيش أي صورة أو نص بيتبعت برة الجهاز." },
+      { q: "هل يدعم أكتر من شاشة ومقاسات DPI مختلفة؟", a: "نعم. من الإعدادات ← الشاشة والعرض تقدر تختار الشاشة اللي يظهر عليها النوتش ونظام الساعة (12 أو 24 ساعة)، ومن عام تقدر تخلي الحجم تلقائي أو تختار (100% / 113% / 125% / 150%)." },
+      { q: "إزاي أحدث صوهروس أو أعمل نسخة احتياطية أو أحذفه؟", a: "للتحديث شغّل أحدث ملف Setup من GitHub Releases وهتفضل إعداداتك ومهامك وسجلاتك محفوظة. تقدر كمان تصدّر وتستورد نسخة JSON كاملة من الإعدادات ← حول البرنامج، وللحذف اخرج من التراي واحذفه من إعدادات ويندوز ← التطبيقات المثبتة." }
+    ],
+    foot: "صوهروس · Sohrus — تطوير صهيب أيمن (Sohaib Ayman) · مبني بـ Pure Rust. مجاني لويندوز 10 و11.",
+    states: [
+      { id: "music", l: "الموسيقى" },
+      { id: "lyrics", l: "كلمات منقسمة" },
+      { id: "lyrics_mini", l: "كلمات مصغّرة" },
+      { id: "mascot", l: "شخصية صوهروس" },
+      { id: "closed", l: "مغلق + موجات" },
+      { id: "pomo", l: "بومودورو وإيقاف" },
+      { id: "water", l: "شرب المياه" },
+      { id: "shelf", l: "الرف والحافظة وQR" },
+      { id: "todo", l: "المهام" },
+      { id: "prayer", l: "الصلاة" },
+      { id: "widgets", l: "الـ Widgets" },
+      { id: "ask", l: "اسأل صوهروس" },
+      { id: "hud", l: "إشعارات النظام" },
+      { id: "adhkar", l: "الأذكار" }
+    ],
+    caps: {
+      music: "الموسيقى (504 × 206 dp): جرّب التشغيل/الإيقاف، مبدّل مخرج الصوت، أو الكلمات. قف بالماوس على النقاط تحت النوتش لإظهار شريط الأيقونات.",
+      lyrics: "الكلمات المنقسمة (564 × 206 dp): اضغط أي سطر للانتقال إليه، أو بدّل بين Online (LRCLIB) ومحلي (.lrc).",
+      lyrics_mini: "الكلمات المصغّرة (360 × 38 dp): يرجع النوتش لارتفاع 38 px مع عرض سطر الأغنية المتزامن.",
+      mascot: "شخصية صوهروس (190 × 38 dp): اضغط على الشخصية للتبديل بين مستيقظ (يرمش) ← نائم (Zzz) ← يستيقظ (يلوّح بالترحيب).",
+      closed: "النوتش المغلق (232 × 38 dp): حلقة الحالة، الساعة، وفيجوالايزر WASAPI الـ 5 نطاقات.",
+      pomo: "بومودورو وساعة الإيقاف (504 × 206 dp): الحلقة الشعاعية، كبسولات ج1–ج4 القابلة للنقر، صوت Brown Noise، وساعة الإيقاف.",
+      water: "شرب المياه (504 × 206 dp): خزان المياه الزجاجي الرأسي — اضغط + شرب 250 مل أو تراجع أو بدّل للرسم البياني.",
+      shelf: "الرف والحافظة والمفكرة (504 × 206 dp): بدّل التبويبات، اضغط QR بجانب أي نص لتوليد كود QR فوري، أو اكتب في المفكرة.",
+      todo: "المهام والتذكيرات (504 × 206 dp): مبدّل المهام/تذكير، شريط ملون جانبي، وتعليم المهام كمكتملة.",
+      prayer: "مواقيت الصلاة (504 × 206 dp): حساب فلكي أوفلاين، مبدّل المدن، التاريخ الهجري، خط زمني RTL، والـ 5 كروت.",
+      widgets: "الـ Widgets المزدوجة (504 × 206 dp): كارتين زجاجيين — اضغط أي كارت لمعاينة باقي الـ 11 عنصر في صوهروس.",
+      ask: "اسأل صوهروس (540 × 215 dp): جرّب التبديل بين الحاسبة الأوفلاين، محول الألوان >لون، أمر >مؤقت، وذكاء Gemini + الصوت.",
+      hud: "إشعارات النظام (320 × 38 dp): اضغط الشارة لمعاينة الصوت، السطوع، بطارية البلوتوث، كتم المايك، لغة الكيبورد، وفلاشة USB.",
+      adhkar: "الأذكار الدورية (320 × 38 dp): ذكر هادئ في النوتش — يقف مؤقتاً أثناء تشغيل الكلمات المصغّرة."
+    }
+  }
+};
+
+// ===== Interactive Simulator State =====
+const S = {
+  lang: "en",
+  notchLang: "en",
+  state: "music",
+  style: "classic",
+  playing: true,
+  lyricLocal: false,
+  lyricIdx: 1,
+  audioOutIdx: 0,
+  mascotPhase: 0,
+  pomoSw: false,
+  pomoRound: 2,
+  pomoRunning: true,
+  brownOn: true,
+  swLaps: ["01:14.2", "02:48.9"],
+  waterMl: 1500,
+  waterGoal: 2000,
+  waterChart: false,
+  shelfTab: "files",
+  qrText: null,
+  scratch: "cargo build --release\nCtrl + Alt + T -> Smart OCR",
+  todoTab: "tasks",
+  todos: [
+    { en: "Ship Sohrus v1.6.4", ar: "إطلاق صوهروس v1.6.4", time: "21:00", done: true },
+    { en: "Update GitHub Pages", ar: "تحديث صفحة GitHub Pages", time: "22:30", done: false },
+    { en: "Evening Adhkar", ar: "أذكار المساء", time: "Daily", arTime: "يومي", done: false }
+  ],
+  reminders: [
+    { en: "Team standup call", ar: "اجتماع الفريق اليومي", time: "10:00", done: false },
+    { en: "Drink water check", ar: "تذكير شرب المياه", time: "14:00", done: true }
+  ],
+  cityIdx: 0,
+  widgetPairIdx: 0,
+  askMode: "calc",
+  askVoiceOn: true,
+  hudIdx: 0
+};
+
+const AUDIO_OUTS_EN = ["🔊 Speakers", "🔊 AirPods", "🔊 Headset"];
+const AUDIO_OUTS_AR = ["🔊 السماعات", "🔊 AirPods", "🔊 الهيدست"];
+const LYRIC_EN = [
+  "Quiet screen at the edge of night",
+  "Pure Rust frames keep the memory light",
+  "Every tool one hover away",
+  "Nothing extra getting in the way"
+];
+const LYRIC_AR = [
+  "شاشة هادئة في أعلى المساء",
+  "بـ Pure Rust يعمل بخفة وصفاء",
+  "كل أدواتك بلمسة واحدة",
+  "بدون أي ثقل أو إزعاج في الشاشة"
+];
+const CITIES_DEMO = [
+  { en: "Cairo", ar: "القاهرة", nextEn: "Isha · 6:18 PM", nextAr: "العشاء · 6:18 م", cdEn: "in 42m 15s", cdAr: "خلال 42 د 15 ث", times: ["4:56","11:42","2:37","4:56","6:18"] },
+  { en: "Zagazig", ar: "الزقازيق", nextEn: "Isha · 6:17 PM", nextAr: "العشاء · 6:17 م", cdEn: "in 41m 05s", cdAr: "خلال 41 د 05 ث", times: ["4:55","11:41","2:36","4:55","6:17"] },
+  { en: "Mecca", ar: "مكة", nextEn: "Isha · 7:12 PM", nextAr: "العشاء · 7:12 م", cdEn: "in 1h 04m", cdAr: "خلال 1 س 04 د", times: ["5:19","12:08","3:20","5:42","7:12"] },
+  { en: "Dubai", ar: "دبي", nextEn: "Isha · 6:51 PM", nextAr: "العشاء · 6:51 م", cdEn: "in 53m 20s", cdAr: "خلال 53 د 20 ث", times: ["5:16","12:07","3:14","5:31","6:51"] }
+];
+const HUD_ITEMS = [
+  { enT: "Volume", arT: "الصوت", enB: "74%", arB: "74%", bar: 74, col: "#fff" },
+  { enT: "Brightness", arT: "السطوع", enB: "82%", arB: "82%", bar: 82, col: "#fff" },
+  { enT: "AirPods Pro", arT: "AirPods Pro", enB: "85%", arB: "85%", bar: null, col: "#57b8ff" },
+  { enT: "Microphone (Muted)", arT: "المايكروفون مكتوم", enB: "Muted", arB: "مكتوم", bar: null, col: "#ff707a" },
+  { enT: "Arabic (Egypt)", arT: "العربية (مصر)", enB: "AR", arB: "AR", bar: null, col: "#adbfde" },
+  { enT: "USB · Kingston (E:)", arT: "فلاشة · Kingston (E:)", enB: "Connected", arB: "متصل", bar: null, col: "#3de075" }
+];
+const PAGES_ORDER = ["music","pomo","water","shelf","todo","prayer","widgets"];
+
+function updateScale() {
+  const laptop = document.getElementById("laptop");
+  const avail = Math.min((laptop && laptop.clientWidth) || window.innerWidth, 1080) - 24;
+  // 620dp accommodates the widest Lyrics Split notch (564px + 24px ears + bezel breathing room) cleanly even on 320px phones
+  const u = Math.max(0.45, Math.min(1.16, avail / 620));
+  document.documentElement.style.setProperty("--u", u.toFixed(3));
+}
+window.addEventListener("resize", updateScale);
+updateScale();
+
+function setNotchState(nextId) {
+  const sn = document.getElementById("sn");
+  const big = ["music","lyrics","pomo","water","shelf","todo","prayer","widgets","ask"];
+  const wasBig = big.includes(S.state);
+  const isBig = big.includes(nextId);
+  sn.classList.toggle("shrink", wasBig && !isBig);
+  S.state = nextId;
+  sn.setAttribute("data-s", nextId);
+  renderStateBtns();
+  renderDynamicNotchLayers();
+  document.getElementById("cap").textContent = COPY[S.lang].caps[nextId] || "";
+}
+
+function renderDynamicNotchLayers() {
+  const ar = S.notchLang === "ar";
+  const sn = document.getElementById("sn");
+  sn.classList.toggle("is-ar-notch", ar);
+
+  const nBtn = document.getElementById("notchLangBtn");
+  nBtn.textContent = ar ? "لغة النوتش: عربي (RTL) ↻" : "Notch: English (LTR) ↻";
+
+  // Clock & Header Date/Time
+  document.querySelectorAll(".js-clock").forEach(el => { el.textContent = ar ? "9:18 م" : "9:18 PM"; });
+  document.getElementById("hdrDateTime").textContent = ar ? "الثلاثاء 24 نوفمبر 2026   9:18 م" : "Tue 24 Nov 2026   9:18 PM";
+
+  const playSvg = S.playing
+    ? '<svg width="14" height="15" viewBox="0 0 14 15" fill="#fff"><rect x="1" y="0" width="4.2" height="15" rx="1.4"/><rect x="8.8" y="0" width="4.2" height="15" rx="1.4"/></svg>'
+    : '<svg width="14" height="16" viewBox="0 0 14 16" fill="#fff"><polygon points="1,0 1,16 14,8"/></svg>';
+  document.getElementById("btnPlayPause").innerHTML = playSvg;
+  document.getElementById("btnPlayPause2").innerHTML = playSvg;
+  document.getElementById("closedBars").classList.toggle("paused", !S.playing);
+  document.getElementById("hdrBars").classList.toggle("paused", !S.playing);
+
+  document.getElementById("mTitle").textContent = ar ? "سكون الليل" : "Midnight Horizon";
+  document.getElementById("mArtist").textContent = ar ? "صوهروس · سبوتيفاي" : "Sohrus Audio · Spotify";
+  document.getElementById("lTitle").textContent = ar ? "سكون الليل" : "Midnight Horizon";
+  document.getElementById("lArtist").textContent = ar ? "صوهروس · سبوتيفاي" : "Sohrus Audio";
+  document.getElementById("btnAudioOut").textContent = (ar ? AUDIO_OUTS_AR : AUDIO_OUTS_EN)[S.audioOutIdx];
+  document.getElementById("btnLyricSrc").textContent = S.lyricLocal ? (ar ? "محلي" : "Local") : (ar ? "أونلاين" : "Online");
+
+  const lines = ar ? LYRIC_AR : LYRIC_EN;
+  document.getElementById("miniLyricTxt").textContent = lines[S.lyricIdx];
+  const ll = document.getElementById("lyricList");
+  ll.style.textAlign = ar ? "right" : "left";
+  ll.innerHTML = lines.map((ln, i) => `<div class="s-lyr-line ${i === S.lyricIdx ? 'on' : ''}" data-li="${i}" dir="${ar ? 'rtl' : 'ltr'}">${ln}</div>`).join("");
+  ll.querySelectorAll("[data-li]").forEach(el => {
+    el.addEventListener("click", () => { S.lyricIdx = Number(el.dataset.li); renderDynamicNotchLayers(); });
+  });
+
+  // Sohrus Mascot
+  const ml = document.getElementById("mascotLayer");
+  if (S.mascotPhase === 0) {
+    ml.innerHTML = `<svg width="80" height="30" viewBox="0 0 80 30"><g class="m-face"><circle cx="29.5" cy="14" r="8.5" fill="rgba(61,153,255,0.22)"/><circle cx="50.5" cy="14" r="8.5" fill="rgba(61,153,255,0.22)"/><ellipse class="m-eye" cx="29.5" cy="14" rx="3.5" ry="6.2" fill="#fff"/><ellipse class="m-eye" cx="50.5" cy="14" rx="3.5" ry="6.2" fill="#fff"/><line x1="25.5" y1="7.2" x2="33.5" y2="9.2" stroke="#050507" stroke-width="2" stroke-linecap="round"/><line x1="54.5" y1="7.2" x2="46.5" y2="9.2" stroke="#050507" stroke-width="2" stroke-linecap="round"/><polygon points="37.4,15.6 42.6,15.6 40,19.6" fill="#ffc742"/></g></svg>`;
+  } else if (S.mascotPhase === 1) {
+    ml.innerHTML = `<svg width="96" height="30" viewBox="0 0 96 30"><g class="m-sleep"><circle cx="29.5" cy="15" r="8" fill="rgba(61,153,255,0.16)"/><circle cx="50.5" cy="15" r="8" fill="rgba(61,153,255,0.16)"/><path d="M25.3 14 Q29.5 18.2 33.7 14" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M46.3 14 Q50.5 18.2 54.7 14" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><polygon points="37.8,17.2 42.2,17.2 40,20.2" fill="#ffc742"/></g><text class="m-z" x="64" y="19" font-size="8.5">z</text><text class="m-z z2" x="70" y="16" font-size="10">z</text><text class="m-z z3" x="77" y="13" font-size="11.5">Z</text></svg>`;
+  } else {
+    ml.innerHTML = `<svg width="96" height="30" viewBox="0 0 96 30"><g><circle cx="27.5" cy="15" r="8.2" fill="rgba(61,153,255,0.24)"/><circle cx="48.5" cy="15" r="8.2" fill="rgba(61,153,255,0.24)"/><path d="M22.7 17 Q27.5 10.2 32.3 17" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/><path d="M43.7 17 Q48.5 10.2 53.3 17" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/><polygon points="35.6,16.5 40.4,16.5 38,20.2" fill="#ffc742"/><path class="m-wing" d="M60 18 C64 12, 71 10, 75 13 C72 17, 67 20, 60 18 Z" fill="#60a5fa"/></g></svg>`;
+  }
+
+  // Pomodoro / Stopwatch Layer
+  const pl = document.getElementById("pomoLayer");
+  if (!S.pomoSw) {
+    const badge = S.pomoRound === 5 ? (ar ? "استراحة طويلة" : "LONG BREAK") : (ar ? `تركيز · ${S.pomoRound}/4` : `FOCUS · ${S.pomoRound}/4`);
+    pl.innerHTML = `
+      <div class="a p-halo c" style="left:92px;top:98px;">
+        <div class="p-halo-in">
+          <span style="font-size:21px;font-weight:700;font-family:var(--mono);">${S.pomoRound===5?'15:00':'18:42'}</span>
+          <span style="font-size:8.4px;font-weight:700;color:#338fff;margin-top:2px;">${S.pomoRunning ? (ar ? 'شغّال' : 'RUNNING') : (ar ? 'جاهز' : 'READY')}</span>
+        </div>
+      </div>
+      <span class="a" style="left:160px;top:37px;font-size:10px;font-weight:700;color:#338fff;">${badge}</span>
+      <button type="button" class="a s-pill-sm ${S.brownOn ? 'on' : ''}" id="pBrown" style="right:164px;top:33px;">🔊 ${S.brownOn ? (ar ? 'ضوضاء' : 'Brown') : (ar ? 'صامت' : 'Off')}</button>
+      <span class="a s-pill-sm on" style="right:88px;top:33px;">${ar ? 'النوتش: مؤقت' : 'Notch: Timer'}</span>
+      <button type="button" class="a s-pill-sm" id="pToSw" style="right:40px;top:33px;">${ar ? '⏱ إيقاف' : '⏱ SW'}</button>
+      <div class="a" style="left:160px;right:40px;top:66px;display:flex;align-items:center;gap:5px;">
+        ${[1,2,3,4].map(r=>`<button type="button" class="p-cap ${r<S.pomoRound?'done':r===S.pomoRound?'on':''}" data-pr="${r}" style="flex:1;">${ar?`ج${r}`:`F${r}`}</button>${r<4?`<i class="p-dot ${r<S.pomoRound?'done':''}"></i>`:''}`).join("")}
+        <button type="button" class="p-cap ${S.pomoRound===5?'on':''}" data-pr="5" style="width:46px;">${ar ? 'طويلة' : 'Long'}</button>
+      </div>
+      <div class="a" style="left:160px;right:40px;top:114px;display:flex;gap:6px;">
+        <button type="button" id="pRunBtn" style="flex:1.5;height:30px;border-radius:15px;background:${S.pomoRunning ? 'linear-gradient(90deg,#e04d6b,#eb6b52)' : 'linear-gradient(90deg,#297af5,#5c61f5)'};color:#fff;font-size:11px;font-weight:700;">${S.pomoRunning ? (ar ? 'إيقاف' : 'Pause') : (ar ? 'ابدأ' : 'Start')}</button>
+        <button type="button" id="pRedo" style="flex:1;height:30px;border-radius:15px;background:rgba(255,255,255,0.09);font-size:10.5px;">${ar ? 'إعادة' : 'Redo'}</button>
+        <button type="button" id="pSkip" style="flex:1;height:30px;border-radius:15px;background:rgba(255,255,255,0.09);font-size:10.5px;">${ar ? 'تخطي' : 'Skip'}</button>
+        <button type="button" id="pReset" style="flex:1;height:30px;border-radius:15px;background:rgba(255,255,255,0.09);font-size:10.5px;">${ar ? 'تصفير' : 'Reset'}</button>
+      </div>
+    `;
+    document.getElementById("pBrown").onclick = () => { S.brownOn = !S.brownOn; renderDynamicNotchLayers(); };
+    document.getElementById("pRunBtn").onclick = () => { S.pomoRunning = !S.pomoRunning; renderDynamicNotchLayers(); };
+    document.getElementById("pToSw").onclick = () => { S.pomoSw = true; renderDynamicNotchLayers(); };
+    document.getElementById("pSkip").onclick = () => { S.pomoRound = (S.pomoRound % 5) + 1; renderDynamicNotchLayers(); };
+    document.getElementById("pReset").onclick = () => { S.pomoRound = 1; S.pomoRunning = false; renderDynamicNotchLayers(); };
+    document.getElementById("pRedo").onclick = () => { S.pomoRunning = true; renderDynamicNotchLayers(); };
+    pl.querySelectorAll("[data-pr]").forEach(b => { b.onclick = () => { S.pomoRound = Number(b.dataset.pr); renderDynamicNotchLayers(); }; });
+  } else {
+    pl.innerHTML = `
+      <div class="a p-halo c" style="left:92px;top:98px;">
+        <div class="p-halo-in">
+          <span style="font-size:18px;font-weight:700;font-family:var(--mono);">04:12.6</span>
+          <span style="font-size:8px;font-weight:700;color:#338fff;margin-top:2px;">${ar ? 'ساعة إيقاف' : 'STOPWATCH'}</span>
+        </div>
+      </div>
+      <div class="a" style="left:160px;top:32px;display:flex;gap:3px;padding:2px;border-radius:10px;background:rgba(255,255,255,0.08);">
+        <button type="button" id="pToPomo" style="padding:4px 10px;border-radius:8px;font-size:9.5px;color:#b8c2d6;">${ar ? 'بومودورو' : 'Pomodoro'}</button>
+        <span style="padding:4px 10px;border-radius:8px;font-size:9.5px;font-weight:700;background:#338fff;">${ar ? 'ساعة إيقاف' : 'Stopwatch'}</span>
+      </div>
+      <div class="a" style="left:160px;right:40px;top:62px;height:44px;border-radius:9px;background:rgba(255,255,255,0.055);display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;color:#e6f2ff;">${S.swLaps.slice(-3).map((t,i)=>`#${i+1} ${t}`).join(" · ")}</div>
+      <div class="a" style="left:160px;right:40px;top:114px;display:flex;gap:6px;">
+        <span style="flex:1.4;height:30px;border-radius:15px;background:linear-gradient(90deg,#e04d6b,#eb6b52);display:grid;place-items:center;font-size:11px;font-weight:700;">${ar ? 'إيقاف' : 'Pause'}</span>
+        <button type="button" id="swLap" style="flex:1;height:30px;border-radius:15px;background:rgba(255,255,255,0.1);font-size:10.5px;">${ar ? 'دورة' : 'Lap'}</button>
+        <button type="button" id="swRst" style="flex:1;height:30px;border-radius:15px;background:rgba(255,255,255,0.1);font-size:10.5px;">${ar ? 'تصفير' : 'Reset'}</button>
+      </div>
+    `;
+    document.getElementById("pToPomo").onclick = () => { S.pomoSw = false; renderDynamicNotchLayers(); };
+    document.getElementById("swLap").onclick = () => { S.swLaps.push(`04:${String((12+S.swLaps.length*11)%60).padStart(2,'0')}.${(S.swLaps.length*4)%10}`); renderDynamicNotchLayers(); };
+    document.getElementById("swRst").onclick = () => { S.swLaps = ["00:00.0"]; renderDynamicNotchLayers(); };
+  }
+
+  // Water Tank Layer
+  const wl = document.getElementById("waterLayer");
+  const pct = Math.min(100, Math.round((S.waterMl / S.waterGoal) * 100));
+  wl.innerHTML = `
+    <div class="a w-tank" style="left:40px;top:34px;">
+      <div class="w-liquid" style="height:${Math.max(8, pct)}%;"></div>
+      <span class="a hc" style="left:50%;top:32px;font-size:23px;font-weight:700;">${pct}%</span>
+      <span class="a hc" style="left:50%;top:64px;font-size:11px;font-weight:600;color:#e6f5ff;white-space:nowrap;">${(S.waterMl/1000).toFixed(1)} / ${(S.waterGoal/1000).toFixed(1)} ${ar ? 'لتر' : 'L'}</span>
+    </div>
+    <span class="a" style="left:166px;top:36px;font-size:14.5px;font-weight:700;">${ar ? 'شرب المياه' : 'Hydration'}</span>
+    <button type="button" class="a s-pill-sm" id="wChartBtn" style="right:114px;top:35px;">${S.waterChart ? (ar ? 'الإحصاء' : 'Stats') : (ar ? 'الرسم' : 'Chart')}</button>
+    <span class="a s-pill-sm on" style="right:68px;top:35px;">${ar ? 'مفعّل' : 'On'}</span>
+    <span class="a s-pill-sm" style="right:40px;top:35px;">⚙</span>
+    ${S.waterChart
+      ? `<div class="a" style="left:166px;right:40px;top:66px;height:46px;display:flex;align-items:flex-end;gap:7px;">
+          ${[35,60,45,80,68,90,Math.max(20,pct)].map((h,i)=>`<span style="flex:1;height:${h}%;border-radius:4px;background:${i===6?'#38bdf8':'rgba(56,189,248,0.38)'};"></span>`).join("")}
+        </div>`
+      : `<div class="a" style="left:166px;right:40px;top:66px;display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:${ar?'right':'left'};">
+          <div style="height:46px;border-radius:10px;background:rgba(255,255,255,0.06);padding:7px 10px;">
+            <div style="font-size:8.5px;font-weight:700;color:#6bd1ff;">${ar ? 'حجم الكوب' : 'CUP SIZE'}</div>
+            <div style="font-size:13.5px;font-weight:700;margin-top:4px;">${ar ? '250 مل' : '250 ml'}</div>
+          </div>
+          <div style="height:46px;border-radius:10px;background:rgba(255,255,255,0.06);padding:7px 10px;">
+            <div style="font-size:8.5px;font-weight:700;color:#6bd1ff;">${ar ? 'التذكير القادم' : 'NEXT REMINDER'}</div>
+            <div style="font-size:13.5px;font-weight:700;margin-top:4px;">${ar ? '10:00 م' : '10:00 PM'}</div>
+          </div>
+        </div>`
+    }
+    <button type="button" class="a" id="wDrink" style="left:166px;right:112px;top:124px;height:32px;border-radius:11px;background:linear-gradient(90deg,#247af0,#3dbdfa);color:#fff;font-size:11.5px;font-weight:700;">${ar ? '+ شرب 250 مل' : '+ Drink 250 ml'}</button>
+    <button type="button" class="a" id="wUndo" style="right:40px;top:124px;width:64px;height:32px;border-radius:11px;background:rgba(255,255,255,0.11);color:#f0f5ff;font-size:10.8px;font-weight:600;">${ar ? '↶ تراجع' : '↶ Undo'}</button>
+  `;
+  document.getElementById("wChartBtn").onclick = () => { S.waterChart = !S.waterChart; renderDynamicNotchLayers(); };
+  document.getElementById("wDrink").onclick = () => { S.waterMl = Math.min(3500, S.waterMl + 250); renderDynamicNotchLayers(); };
+  document.getElementById("wUndo").onclick = () => { S.waterMl = Math.max(0, S.waterMl - 250); renderDynamicNotchLayers(); };
+
+  // Shelf / Clipboard / QR / Scratchpad Layer
+  const sl = document.getElementById("shelfLayer");
+  if (S.qrText) {
+    sl.innerHTML = `
+      <div class="a" style="left:44px;top:36px;width:114px;height:114px;border-radius:10px;background:#fff;padding:8px;display:grid;grid-template-columns:repeat(9,1fr);gap:1px;">
+        ${QR_MAT.map(v=>`<i style="background:${v?'#0a0d14':'transparent'};"></i>`).join("")}
+      </div>
+      <span class="a" style="left:174px;top:38px;font-size:14px;font-weight:700;">${ar ? 'كود QR فوري' : 'Instant QR Code'}</span>
+      <span class="a" style="left:174px;top:59px;font-size:10.5px;font-weight:600;color:#338fff;">${ar ? 'امسحه بكاميرا موبايلك' : 'Scan with your phone camera'}</span>
+      <span class="a" style="left:174px;right:40px;top:82px;font-size:10.5px;color:#c2cce0;font-family:var(--mono);word-break:break-all;">${S.qrText}</span>
+      <button type="button" class="a s-pill-sm" id="qrBack" style="right:40px;top:32px;">${ar ? 'رجوع →' : '← Back'}</button>
+    `;
+    document.getElementById("qrBack").onclick = () => { S.qrText = null; renderDynamicNotchLayers(); };
+  } else {
+    const title = S.shelfTab === "files" ? (ar ? "الرف" : "Shelf") : S.shelfTab === "clip" ? (ar ? "الحافظة" : "Clipboard") : (ar ? "المفكرة" : "Scratchpad");
+    let body = "";
+    if (S.shelfTab === "files") {
+      body = `
+        <div class="a" style="left:40px;right:40px;top:58px;display:flex;flex-direction:column;gap:5px;">
+          <div style="height:29px;border-radius:8px;background:rgba(255,255,255,0.06);padding:0 10px;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;"><span>Sohrus-Setup-v1.6.4.exe</span><span style="color:#99a8c2;font-size:10px;">2.98 MB</span></div>
+          <div style="height:29px;border-radius:8px;background:rgba(255,255,255,0.06);padding:0 10px;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;"><span>Project_Assets</span><span style="color:#99a8c2;font-size:10px;">${ar ? 'مجلد' : 'Folder'}</span></div>
+          <div style="height:29px;border-radius:8px;border:1px dashed rgba(255,255,255,0.22);display:grid;place-items:center;font-size:10.5px;color:#8e9ab0;">${ar ? 'اسحب الملفات هنا · اسحبها لأي مكان' : 'Drop files here · Drag out anytime'}</div>
+        </div>`;
+    } else if (S.shelfTab === "clip") {
+      const clips = ["https://github.com/sohaib-ayman/sohrus", "cargo build --release", "Sohrus v1.6.4 · Pure Rust"];
+      body = `<div class="a" style="left:40px;right:40px;top:58px;display:flex;flex-direction:column;gap:5px;">
+        ${clips.map((t,i)=>`<div style="height:29px;border-radius:8px;background:${i===0?'rgba(51,143,255,0.15)':'rgba(255,255,255,0.06)'};padding:0 8px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;">
+          <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t}</span>
+          <span style="display:flex;gap:4px;"><span class="s-pill-sm ${i===0?'on':''}">📌</span><button type="button" class="s-pill-sm on" data-qr="${i}">QR</button></span>
+        </div>`).join("")}
+      </div>`;
+    } else {
+      body = `<textarea class="a" id="scBox" style="left:40px;right:40px;top:56px;height:104px;border-radius:11px;background:rgba(15,26,46,0.8);border:1.2px solid rgba(51,143,255,0.7);color:#f0f5ff;padding:8px 10px;font-family:var(--mono);font-size:11px;resize:none;outline:none;">${S.scratch}</textarea>`;
+    }
+    sl.innerHTML = `
+      <span class="a" style="left:40px;top:33px;font-size:14.5px;font-weight:700;">${title}</span>
+      <button type="button" class="a s-pill-sm ${S.shelfTab==='files'?'on':''}" id="sfFiles" style="right:114px;top:30px;">${ar ? 'الرف' : 'Files'}</button>
+      <button type="button" class="a s-pill-sm ${S.shelfTab==='clip'?'on':''}" id="sfClip" style="right:70px;top:30px;">${ar ? 'حافظة' : 'Clip'}</button>
+      <button type="button" class="a s-pill-sm ${S.shelfTab==='notes'?'on':''}" id="sfNotes" style="right:40px;top:30px;">📝</button>
+      ${body}
+    `;
+    document.getElementById("sfFiles").onclick = () => { S.shelfTab = "files"; renderDynamicNotchLayers(); };
+    document.getElementById("sfClip").onclick = () => { S.shelfTab = "clip"; renderDynamicNotchLayers(); };
+    document.getElementById("sfNotes").onclick = () => { S.shelfTab = "notes"; renderDynamicNotchLayers(); };
+    sl.querySelectorAll("[data-qr]").forEach(b => {
+      b.onclick = () => {
+        const arr = ["https://github.com/sohaib-ayman/sohrus", "cargo build --release", "Sohrus v1.6.4 · Pure Rust"];
+        S.qrText = arr[Number(b.dataset.qr)];
+        renderDynamicNotchLayers();
+      };
+    });
+    const sb = document.getElementById("scBox");
+    if (sb) sb.oninput = (e) => { S.scratch = e.target.value; };
+  }
+
+  // To-Do & Reminders Layer
+  const tl = document.getElementById("todoLayer");
+  const list = S.todoTab === "tasks" ? S.todos : S.reminders;
+  const doneN = list.filter(x => x.done).length;
+  const isT = S.todoTab === "tasks";
+  tl.innerHTML = `
+    <div class="a" style="left:40px;top:32px;height:24px;border-radius:12px;background:rgba(255,255,255,0.08);padding:2px;display:flex;gap:2px;">
+      <button type="button" id="tdTabT" style="padding:0 11px;border-radius:10px;background:${isT?'#29b870':'transparent'};font-size:10px;font-weight:700;color:${isT?'#fff':'#b0bac9'};">${ar ? 'المهام' : 'Tasks'} · ${S.todos.length}</button>
+      <button type="button" id="tdTabR" style="padding:0 11px;border-radius:10px;background:${!isT?'#2985f5':'transparent'};font-size:10px;font-weight:700;color:${!isT?'#fff':'#b0bac9'};">${ar ? 'تذكير' : 'Remind'} · ${S.reminders.length}</button>
+    </div>
+    <span class="a" style="left:230px;top:38px;font-size:10px;color:#9eaec7;">${doneN}/${list.length} ${ar ? 'مكتمل' : 'done'}</span>
+    <span class="a s-pill-sm" style="right:94px;top:34px;background:${isT?'#29b870':'#2985f5'};">${ar ? '+ جديد' : '+ New'}</span>
+    <span class="a s-pill-sm" style="right:40px;top:34px;">${ar ? 'تعديل' : 'Edit'}</span>
+    <div class="a" style="left:40px;right:40px;top:64px;display:flex;flex-direction:column;gap:4px;">
+      ${list.map((x,i)=>`<div data-td="${i}" style="height:30px;border-radius:9px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 12px;position:relative;cursor:pointer;">
+        <span style="position:absolute;left:3px;top:6px;bottom:6px;width:3px;border-radius:2px;background:${x.done?'rgba(107,122,148,0.45)':(isT?'#2ed68a':'#3dadff')};"></span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:11.2px;color:${x.done?'#858fa3':'#f2f7ff'};text-decoration:${x.done?'line-through':'none'};">
+          <span style="width:13px;height:13px;border-radius:50%;background:${x.done?(isT?'#2ed68a':'#3dadff'):'transparent'};border:1.3px solid ${x.done?(isT?'#2ed68a':'#3dadff'):'rgba(255,255,255,0.35)'};display:grid;place-items:center;font-size:9px;color:#050507;font-weight:800;">${x.done?'✓':''}</span>
+          ${ar ? x.ar : x.en}
+        </span>
+        <span class="s-pill-sm" style="font-family:var(--mono),var(--font-ar);font-size:9px;">${ar && x.arTime ? x.arTime : x.time}</span>
+      </div>`).join("")}
+    </div>
+  `;
+  document.getElementById("tdTabT").onclick = () => { S.todoTab = "tasks"; renderDynamicNotchLayers(); };
+  document.getElementById("tdTabR").onclick = () => { S.todoTab = "remind"; renderDynamicNotchLayers(); };
+  tl.querySelectorAll("[data-td]").forEach(r => {
+    r.onclick = () => { const i = Number(r.dataset.td); list[i].done = !list[i].done; renderDynamicNotchLayers(); };
+  });
+
+  // Prayer Layer (mirrored RTL order in Arabic, exact match to render_prayer_page in main.rs!)
+  const prl = document.getElementById("prayerLayer");
+  const city = CITIES_DEMO[S.cityIdx];
+  const pNames = ar ? ["الفجر","الظهر","العصر","المغرب","العشاء"] : ["Fajr","Dhuhr","Asr","Maghrib","Isha"];
+  const slots = ar ? [4,3,2,1,0] : [0,1,2,3,4];
+  prl.innerHTML = ar
+    ? `<button type="button" class="a s-pill-sm" id="prCityBtn" style="left:40px;top:32px;background:rgba(31,71,158,0.45);">📍 ${city.ar}</button>
+       <span class="a" style="right:40px;top:33px;font-size:15px;font-weight:700;color:#ffd66b;">${city.nextAr}</span>
+       <span class="a" style="right:40px;top:54px;font-size:10.5px;font-weight:600;color:#8fd1ff;">${city.cdAr}</span>
+       <span class="a" style="left:40px;top:54px;font-size:10px;color:#c7d6f0;">14 جمادى الآخرة 1448 هـ · الليل 38%</span>
+       <span class="a" style="left:50px;right:50px;top:84px;height:2.4px;border-radius:2px;background:rgba(255,255,255,0.14);"></span>
+       <span class="a" style="left:50px;right:50px;top:84px;height:2.6px;border-radius:2px;background:linear-gradient(270deg,#2975f0,#ffc74d);"></span>
+       <div class="a" style="left:40px;right:40px;top:100px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+         ${slots.map(i=>`<div style="height:56px;border-radius:9px;background:${i===4?'rgba(41,107,219,0.34)':'rgba(255,255,255,0.05)'};border:${i===4?'1.2px solid rgba(87,173,255,0.72)':'none'};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+           <span style="font-size:10px;color:${i===4?'#ffdb73':'#b8c2d6'};font-weight:${i===4?700:500};">${pNames[i]}</span>
+           <span style="font-size:11.8px;font-weight:700;font-family:var(--mono);">${city.times[i]}</span>
+         </div>`).join("")}
+       </div>`
+    : `<span class="a" style="left:40px;top:33px;font-size:15px;font-weight:700;color:#ffd66b;">${city.nextEn}</span>
+       <span class="a" style="left:40px;top:54px;font-size:10.5px;font-weight:600;color:#8fd1ff;">${city.cdEn}</span>
+       <button type="button" class="a s-pill-sm" id="prCityBtn" style="right:40px;top:32px;background:rgba(31,71,158,0.45);">📍 ${city.en}</button>
+       <span class="a" style="right:40px;top:54px;font-size:10px;color:#c7d6f0;">14 جمادى الآخرة 1448 هـ · Night 38%</span>
+       <span class="a" style="left:50px;right:50px;top:84px;height:2.4px;border-radius:2px;background:rgba(255,255,255,0.14);"></span>
+       <span class="a" style="left:50px;right:50px;top:84px;height:2.6px;border-radius:2px;background:linear-gradient(90deg,#2975f0,#ffc74d);"></span>
+       <div class="a" style="left:40px;right:40px;top:100px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+         ${slots.map(i=>`<div style="height:56px;border-radius:9px;background:${i===4?'rgba(41,107,219,0.34)':'rgba(255,255,255,0.05)'};border:${i===4?'1.2px solid rgba(87,173,255,0.72)':'none'};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+           <span style="font-size:10px;color:${i===4?'#ffdb73':'#b8c2d6'};font-weight:${i===4?700:500};">${pNames[i]}</span>
+           <span style="font-size:11.8px;font-weight:700;font-family:var(--mono);">${city.times[i]}</span>
+         </div>`).join("")}
+       </div>`;
+  document.getElementById("prCityBtn").onclick = () => { S.cityIdx = (S.cityIdx + 1) % CITIES_DEMO.length; renderDynamicNotchLayers(); };
+
+  // Dual Widgets Layer
+  const wgl = document.getElementById("widgetsLayer");
+  const wPairs = [
+    `<div style="border-radius:13px;background:rgba(15,26,51,0.78);border:1px solid rgba(255,255,255,0.10);padding:11px 14px;position:relative;cursor:pointer;">
+        <span style="position:absolute;left:14px;top:1px;width:40px;height:2.5px;border-radius:2px;background:#42b8ff;"></span>
+        <div style="font-size:8.8px;font-weight:700;color:#42b8ff;">${ar ? 'مراقبة النظام' : 'SYSTEM MONITOR'}</div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:9px;"><span style="color:#b8c7e0;">CPU</span><b>12%</b></div>
+        <div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.12);margin-top:3px;"><i style="display:block;width:12%;height:100%;border-radius:2px;background:#42b8ff;"></i></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:8px;"><span style="color:#b8c7e0;">RAM</span><b>8.4/16G · 52%</b></div>
+        <div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.12);margin-top:3px;"><i style="display:block;width:52%;height:100%;border-radius:2px;background:#8f7aff;"></i></div>
+        <div style="display:flex;justify-content:space-between;font-size:9.8px;font-weight:700;margin-top:10px;font-family:var(--mono);"><span style="color:#3de08f;">↓ 2.4 MB/s</span><span style="color:#6bc7ff;">↑ 140 KB/s</span></div>
+      </div>
+      <div style="border-radius:13px;background:rgba(15,26,51,0.78);border:1px solid rgba(255,255,255,0.10);padding:11px 14px;position:relative;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;text-align:${ar?'right':'left'};">
+        <span style="position:absolute;left:14px;top:1px;width:40px;height:2.5px;border-radius:2px;background:#57d6ff;"></span>
+        <div style="font-size:9px;font-weight:700;color:#57d6ff;">${ar ? 'الطقس' : 'WEATHER'}</div>
+        <div style="font-size:24px;font-weight:700;font-family:var(--mono);">19°C</div>
+        <div style="font-size:10.2px;color:#b3c2db;">${ar ? 'صافي · القاهرة · اضغط للتبديل ↻' : 'Clear · Cairo · Click to cycle ↻'}</div>
+      </div>`,
+    `<div style="border-radius:13px;background:rgba(15,26,51,0.78);border:1px solid rgba(255,255,255,0.10);padding:11px 14px;position:relative;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;text-align:${ar?'right':'left'};">
+        <span style="position:absolute;left:14px;top:1px;width:40px;height:2.5px;border-radius:2px;background:#ffd15c;"></span>
+        <div style="font-size:9px;font-weight:700;color:#ffd15c;">${ar ? 'الصلاة القادمة' : 'NEXT PRAYER'}</div>
+        <div style="font-size:19px;font-weight:700;">${ar ? 'العشاء · 6:18 م' : 'Isha · 6:18 PM'}</div>
+        <div style="font-size:10.2px;color:#b3c2db;">${ar ? 'خلال 42 د 15 ث · القاهرة' : 'in 42m 15s · Cairo'}</div>
+      </div>
+      <div style="border-radius:13px;background:rgba(15,26,51,0.78);border:1px solid rgba(255,255,255,0.10);padding:11px 14px;position:relative;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
+        <span style="position:absolute;left:14px;top:1px;width:40px;height:2.5px;border-radius:2px;background:#5cc2ff;"></span>
+        <div style="font-size:9px;font-weight:700;color:#5cc2ff;text-align:${ar?'right':'left'};">${ar ? 'توقيت العالم' : 'WORLD CLOCK'}</div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;"><span>${ar ? 'طوكيو' : 'Tokyo'}</span><b>${ar ? '4:18 ص' : '4:18 AM'}</b></div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#b8c7e0;"><span>${ar ? 'لندن' : 'London'}</span><b>${ar ? '7:18 م' : '7:18 PM'}</b></div>
+      </div>`
+  ];
+  wgl.innerHTML = `<div class="a" id="wgPair" style="left:40px;right:40px;top:36px;height:124px;display:grid;grid-template-columns:1fr 1fr;gap:14px;">${wPairs[S.widgetPairIdx]}</div>`;
+  document.getElementById("wgPair").onclick = () => { S.widgetPairIdx = (S.widgetPairIdx + 1) % wPairs.length; renderDynamicNotchLayers(); };
+
+  // Ask Sohrus Layer
+  const al = document.getElementById("askLayer");
+  let askInputText = "1250 * 48";
+  let askBodyHtml = "";
+  if (S.askMode === "calc") {
+    askInputText = "1250 * 48";
+    askBodyHtml = `
+      <div style="height:100%;border-radius:10px;background:rgba(15,26,51,0.76);border:1px solid rgba(255,255,255,0.09);padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <span style="font-size:10px;font-weight:700;color:#60a5fa;">${ar ? 'حاسبة أوفلاين · Enter / اضغط للنسخ' : 'Offline Calculator · Enter / Click copy'}</span>
+          <span style="font-family:var(--mono);font-size:23px;font-weight:700;">= 60000</span>
+        </div>
+        <div style="font-size:10px;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;text-align:${ar?'right':'left'};">${ar ? 'يدعم العمليات الحسابية، النسب المئوية، وحدات CSS، والـ Hex/Bin والأطوال والكتل والحرارة' : 'Supports math, percentages (15% of 200), CSS (2rem to px), hex/bin, length, mass, data & temp'}</div>
+      </div>`;
+  } else if (S.askMode === "color") {
+    askInputText = ar ? ">لون #338FFF" : ">color #338FFF";
+    const rows = [["HEX","#338FFF"],["RGB","rgb(51, 143, 255)"],["HSL","hsl(213°, 100%, 60%)"]];
+    askBodyHtml = `<div style="display:flex;flex-direction:column;gap:4px;">
+      ${rows.map(([k,v])=>`<div style="height:26px;border-radius:7px;background:rgba(255,255,255,0.06);padding:0 10px 0 8px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:8px;"><i style="width:14px;height:14px;border-radius:4px;background:#338FFF;border:1px solid rgba(255,255,255,0.35);display:block;"></i><b style="font-size:9.8px;color:#8fc7ff;">${k}</b><span style="font-size:11.2px;font-weight:700;font-family:var(--mono);">${v}</span></span>
+        <span style="font-size:9px;color:#9eb0c9;">${ar ? 'اضغط للنسخ' : 'Click to copy'}</span>
+      </div>`).join("")}
+    </div>`;
+  } else if (S.askMode === "cmd") {
+    askInputText = ar ? ">مؤقت 5د" : ">timer 5m";
+    askBodyHtml = `
+      <div style="height:28px;border-radius:8px;background:rgba(51,143,255,0.22);border:1px solid rgba(51,143,255,0.65);padding:0 12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:11.2px;font-weight:700;">${ar ? '⚡ تشغيل مؤقت 5 دقيقة' : '⚡ Start 5m quick timer'}</span>
+        <span style="font-size:9.5px;color:#93c5fd;">${ar ? 'Enter للتنفيذ' : 'Enter to run'}</span>
+      </div>
+      <div style="font-size:10px;color:#94a3b8;line-height:1.6;text-align:${ar?'right':'left'};">${ar ? 'الأوامر: <b>>مؤقت 5د</b> · <b>>لون #0F172A</b> · <b>>اي بي</b> · <b>>سلة</b> · <b>>قفل</b> · <b>>سكون</b> · <b>>هدوء</b> · <b>>فصل</b>' : 'Commands: <b>&gt;timer 5m</b> · <b>&gt;color #0F172A</b> · <b>&gt;ip</b> · <b>&gt;trash</b> · <b>&gt;lock</b> · <b>&gt;sleep</b> · <b>&gt;dnd</b> · <b>&gt;eject</b>'}</div>`;
+  } else {
+    askInputText = ar ? "ليه Rust ممتازة لبرامج سطح المكتب؟" : "Why is Rust great for desktop utilities?";
+    askBodyHtml = `
+      <div dir="${ar?'rtl':'ltr'}" style="height:100%;border-radius:10px;background:rgba(15,26,51,0.76);border:1px solid rgba(255,255,255,0.09);padding:10px 12px;font-size:10.8px;color:#e2e8f0;line-height:1.55;text-align:${ar?'right':'left'};">
+        ${ar ? 'لغة Rust تُترجم مباشرة لكود Win32 وDirect2D أصلي بدون متصفح مخفي أو جامع قمامة، فتبقى الذاكرة أقل من 30 ميجا والمعالج قريب من 0% وقت السكون.' : 'Rust compiles directly to native Win32/Direct2D machine code with zero garbage collector or browser runtime, keeping memory under 30 MB and idle CPU near 0%.'}
+      </div>`;
+  }
+  al.innerHTML = `
+    <span class="a" style="left:40px;top:29px;font-size:10.4px;font-weight:600;color:#8fc2ff;">${ar ? 'اسأل صوهروس' : 'Ask Sohrus'}</span>
+    <button type="button" class="a s-pill-sm ${S.askVoiceOn?'on':''}" id="askSpk" style="right:184px;top:27px;">${S.askVoiceOn?(ar?'🔊 صوت':'🔊 On'):(ar?'🔇 صامت':'🔇 Off')}</button>
+    <span class="a s-pill-sm" style="right:136px;top:27px;">${ar ? 'مسح' : 'Clear'}</span>
+    <span class="a s-pill-sm on" style="right:64px;top:27px;background:rgba(36,97,209,0.75);">${ar ? 'ترجمة الحافظة' : 'Translate'}</span>
+    <span class="a s-pill-sm" style="right:40px;top:27px;">×</span>
+
+    <div class="a" dir="${ar?'rtl':'ltr'}" style="left:40px;right:134px;top:50px;height:28px;border-radius:9px;background:rgba(255,255,255,0.08);border:1.3px solid rgba(61,143,250,0.85);padding:0 10px;display:flex;align-items:center;font-family:${ar?'var(--font-ar)':'var(--mono)'};font-size:11.2px;">${askInputText}</div>
+    <span class="a" style="right:96px;top:50px;width:32px;height:28px;border-radius:14px;background:rgba(255,255,255,0.12);display:grid;place-items:center;font-size:11px;">🎤</span>
+    <span class="a" style="right:40px;top:50px;width:52px;height:28px;border-radius:14px;background:#297af0;display:grid;place-items:center;font-size:10.5px;font-weight:700;">${ar ? 'إرسال' : 'Send'}</span>
+
+    <div class="a" style="left:40px;right:40px;top:85px;height:88px;">${askBodyHtml}</div>
+    <div class="a" style="left:40px;right:40px;bottom:14px;display:flex;gap:5px;justify-content:center;">
+      <button type="button" class="s-pill-sm ${S.askMode==='calc'?'on':''}" data-am="calc">1250 * 48</button>
+      <button type="button" class="s-pill-sm ${S.askMode==='color'?'on':''}" data-am="color">${ar ? '>لون #338FFF' : '>color #338FFF'}</button>
+      <button type="button" class="s-pill-sm ${S.askMode==='cmd'?'on':''}" data-am="cmd">${ar ? '>مؤقت 5د' : '>timer 5m'}</button>
+      <button type="button" class="s-pill-sm ${S.askMode==='ai'?'on':''}" data-am="ai">Gemini AI</button>
+    </div>
+  `;
+  document.getElementById("askSpk").onclick = () => { S.askVoiceOn = !S.askVoiceOn; renderDynamicNotchLayers(); };
+  al.querySelectorAll("[data-am]").forEach(b => { b.onclick = () => { S.askMode = b.dataset.am; renderDynamicNotchLayers(); }; });
+
+  // HUD Layer
+  const h = HUD_ITEMS[S.hudIdx];
+  const hl = document.getElementById("hudLayer");
+  const hTitle = ar ? h.arT : h.enT;
+  const hBadge = ar ? h.arB : h.enB;
+  hl.innerHTML = h.bar !== null
+    ? `<span class="a vc" style="left:28px;top:19px;font-size:12px;">${h.enT === 'Brightness' ? '☀' : '🔊'}</span>
+       <span class="a vc" style="left:50px;right:68px;top:19px;height:5px;border-radius:3px;background:rgba(255,255,255,0.2);overflow:hidden;"><i style="display:block;width:${h.bar}%;height:100%;background:#fff;"></i></span>
+       <button type="button" class="a vc" id="hudNext" style="right:22px;top:19px;font-size:11.5px;font-weight:700;color:#c7d1e6;">${hBadge} ↻</button>`
+    : `<span class="a vc" style="left:28px;top:19px;font-size:12px;font-weight:600;color:#fff;">${hTitle}</span>
+       <button type="button" class="a vc" id="hudNext" style="right:22px;top:19px;font-size:11.5px;font-weight:700;color:${h.col};">${hBadge} ↻</button>`;
+  document.getElementById("hudNext").onclick = () => { S.hudIdx = (S.hudIdx + 1) % HUD_ITEMS.length; renderDynamicNotchLayers(); };
+
+  // Bottom Nav Pill
+  const np = document.getElementById("navPill");
+  np.innerHTML = PAGES_ORDER.map((p,i)=>`<button type="button" class="${(S.state===p||(S.state==='lyrics'&&p==='music'))?'on':''}" data-np="${p}">${NAV_ICONS[i]}</button>`).join("");
+  np.querySelectorAll("[data-np]").forEach(b => { b.onclick = () => setNotchState(b.dataset.np); });
+}
+
+function renderStateBtns() {
+  const c = COPY[S.lang];
+  const box = document.getElementById("tryBtns");
+  box.innerHTML = "";
+  c.states.forEach(st => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = st.l;
+    b.setAttribute("aria-pressed", S.state === st.id ? "true" : "false");
+    b.onclick = () => setNotchState(st.id);
+    box.appendChild(b);
+  });
+}
+
+function renderPage() {
+  const c = COPY[S.lang];
+  document.documentElement.lang = c.lang;
+  document.documentElement.dir = c.dir;
+  document.getElementById("langSwitch").setAttribute("data-l", c.lang);
+  document.querySelectorAll("#langSwitch button").forEach(b => {
+    b.setAttribute("aria-pressed", b.dataset.l === c.lang ? "true" : "false");
+  });
+
+  document.getElementById("tBrand").textContent = c.brand;
+  document.getElementById("tNavPrev").textContent = c.nav.prev;
+  document.getElementById("tNavBi").textContent = c.nav.bi;
+  document.getElementById("tNavMod").textContent = c.nav.mod;
+  document.getElementById("tNavLight").textContent = c.nav.light;
+  document.getElementById("tNavFeat").textContent = c.nav.feat;
+  document.getElementById("tNavPriv").textContent = c.nav.priv;
+  document.getElementById("tNavDl").textContent = c.nav.dl;
+  document.getElementById("tNavDlBtn").textContent = c.nav.dlBtn;
+
+  document.getElementById("tHeroH1").textContent = c.heroH1;
+  document.getElementById("tHeroSub").textContent = c.heroSub;
+  document.getElementById("tHeroDl").textContent = c.heroDl;
+  document.getElementById("tHeroRel").textContent = c.heroRel;
+
+  const hf = document.getElementById("heroFacts");
+  hf.innerHTML = "";
+  c.facts.forEach((f, i) => {
+    const sp = document.createElement("span"); sp.textContent = f; hf.appendChild(sp);
+    if (i < c.facts.length - 1) { const d = document.createElement("span"); d.className = "dot"; hf.appendChild(d); }
+  });
+
+  document.getElementById("tStageHint").textContent = c.stageHint;
+  document.getElementById("ghostBtn").textContent = c.ghostBtn;
+  document.getElementById("behindTab").textContent = c.behindTab;
+  document.getElementById("stClassic").textContent = c.styles.classic;
+  document.getElementById("stFloat").textContent = c.styles.float;
+  document.getElementById("stGlass").textContent = c.styles.glass;
+
+  document.getElementById("tBiH2").textContent = c.biH2;
+  document.getElementById("tBiP").textContent = c.biP;
+  document.getElementById("tBiCardH").textContent = c.biCardH;
+  document.getElementById("tBiCardP").textContent = c.biCardP;
+  const bt = document.getElementById("biTags");
+  bt.innerHTML = "";
+  c.biTags.forEach(t => { const s = document.createElement("span"); s.className = "kbd"; s.textContent = t; bt.appendChild(s); });
+
+  document.getElementById("tModH2").textContent = c.modH2;
+  document.getElementById("tModP").textContent = c.modP;
+  document.getElementById("tModCardH").textContent = c.modCardH;
+  document.getElementById("tModCardP").textContent = c.modCardP;
+  const mk = document.getElementById("modKbds");
+  mk.innerHTML = "";
+  c.modKbds.forEach(t => { const s = document.createElement("span"); s.className = "kbd"; s.textContent = t; mk.appendChild(s); });
+
+  document.getElementById("tPerfH2").textContent = c.perfH2;
+  document.getElementById("tPerfP").textContent = c.perfP;
+  document.getElementById("tTmTop").textContent = c.tmTop;
+  document.getElementById("thProc").textContent = c.thProc;
+  document.getElementById("thCpu").textContent = c.thCpu;
+  document.getElementById("thRam").textContent = c.thRam;
+  document.getElementById("thDisk").textContent = c.thDisk;
+  document.getElementById("tTmFoot").textContent = c.tmFoot;
+
+  const sg = document.getElementById("statGrid");
+  sg.innerHTML = "";
+  c.stats.forEach(st => {
+    const d = document.createElement("div"); d.className = "stat-box";
+    const b = document.createElement("b"); b.className = st.c; b.textContent = st.v;
+    const sp = document.createElement("span"); sp.textContent = st.l;
+    d.append(b, sp); sg.appendChild(d);
+  });
+
+  document.getElementById("tFeatH2").textContent = c.featH2;
+  document.getElementById("tFeatP").textContent = c.featP;
+  const fc = document.getElementById("featCats");
+  fc.innerHTML = "";
+  c.cats.forEach(cat => {
+    const sec = document.createElement("div"); sec.className = "cat";
+    const ch = document.createElement("div"); ch.className = "cat-h"; ch.textContent = cat.name;
+    const fg = document.createElement("div"); fg.className = "f-grid";
+    cat.items.forEach(it => {
+      const card = document.createElement("article"); card.className = "f-card";
+      const top = document.createElement("div"); top.className = "f-top";
+      const h3 = document.createElement("h3"); h3.textContent = it.t;
+      const tg = document.createElement("span"); tg.className = "f-tag " + it.cls; tg.textContent = it.tag;
+      top.append(h3, tg);
+      const p = document.createElement("p"); p.textContent = it.d;
+      card.append(top, p); fg.appendChild(card);
+    });
+    sec.append(ch, fg); fc.appendChild(sec);
+  });
+
+  document.getElementById("tFreeH").textContent = c.freeH;
+  document.getElementById("tFreeP").textContent = c.freeP;
+  const fu = document.getElementById("freeUl"); fu.innerHTML = "";
+  c.freePts.forEach(pt => { const li = document.createElement("li"); li.textContent = pt; fu.appendChild(li); });
+
+  document.getElementById("tPrivH2").textContent = c.privH2;
+  document.getElementById("tPrivP").textContent = c.privP;
+  document.getElementById("tOffH").textContent = c.offH;
+  document.getElementById("tOffB").textContent = c.offB;
+  document.getElementById("tOnH").textContent = c.onH;
+  document.getElementById("tOnB").textContent = c.onB;
+
+  const offUl = document.getElementById("offUl"); offUl.innerHTML = "";
+  c.offItems.forEach(t => { const li = document.createElement("li"); li.innerHTML = '<span class="pdot g"></span>'; const sp = document.createElement("span"); sp.textContent = t; li.appendChild(sp); offUl.appendChild(li); });
+  const onUl = document.getElementById("onUl"); onUl.innerHTML = "";
+  c.onItems.forEach(t => { const li = document.createElement("li"); li.innerHTML = '<span class="pdot b"></span>'; const sp = document.createElement("span"); sp.textContent = t; li.appendChild(sp); onUl.appendChild(li); });
+
+  document.getElementById("tDlH2").textContent = c.dlH2;
+  document.getElementById("tDlP").textContent = c.dlP;
+  document.getElementById("tInstH").textContent = c.instH;
+  document.getElementById("tInstP").textContent = c.instP;
+  document.getElementById("tInstBtn").textContent = c.instBtn;
+  document.getElementById("tRepoBtn").textContent = c.repoBtn;
+  document.getElementById("tNotH").textContent = c.notH;
+
+  const ol = document.getElementById("instOl"); ol.innerHTML = "";
+  c.instSteps.forEach((st, i) => {
+    const li = document.createElement("li");
+    const n = document.createElement("span"); n.className = "snum"; n.textContent = String(i+1);
+    const sp = document.createElement("span"); sp.textContent = st;
+    li.append(n, sp); ol.appendChild(li);
+  });
+
+  const wb = document.getElementById("warnBox"); wb.innerHTML = "";
+  c.warns.forEach(w => {
+    const div = document.createElement("div"); div.className = "warn-b " + w.cls;
+    const b = document.createElement("b"); b.textContent = w.t;
+    const p = document.createElement("p"); p.textContent = w.p;
+    div.append(b, p); wb.appendChild(div);
+  });
+
+  document.getElementById("tFaqH2").textContent = c.faqH2;
+  document.getElementById("tFaqP").textContent = c.faqP;
+  const fg = document.getElementById("faqG"); fg.innerHTML = "";
+  c.faqs.forEach(f => {
+    const d = document.createElement("details"); d.className = "fq";
+    const s = document.createElement("summary"); s.textContent = f.q;
+    const p = document.createElement("p"); p.textContent = f.a;
+    d.append(s, p); fg.appendChild(d);
+  });
+
+  document.getElementById("tFoot").textContent = c.foot;
+  document.getElementById("tFtPrev").textContent = c.nav.prev;
+  document.getElementById("tFtBi").textContent = c.nav.bi;
+  document.getElementById("tFtFeat").textContent = c.nav.feat;
+  document.getElementById("tFtPriv").textContent = c.nav.priv;
+  document.getElementById("tFtRel").textContent = c.heroRel;
+
+  renderStateBtns();
+  renderDynamicNotchLayers();
+  document.getElementById("cap").textContent = c.caps[S.state] || "";
+}
+
+// ===== Event Wiring =====
+document.querySelectorAll("#langSwitch button").forEach(b => {
+  b.onclick = () => {
+    S.lang = b.dataset.l;
+    S.notchLang = b.dataset.l; // Sync notch language automatically with site language!
+    renderPage();
+  };
+});
+
+document.getElementById("notchLangBtn").onclick = () => {
+  S.notchLang = S.notchLang === "en" ? "ar" : "en";
+  renderDynamicNotchLayers();
+};
+
+function setStyle(m) {
+  S.style = m;
+  const sc = document.getElementById("screen");
+  sc.classList.toggle("is-floating", m === "floating");
+  sc.classList.toggle("is-glass", m === "glass");
+  document.getElementById("stClassic").classList.toggle("on", m === "classic");
+  document.getElementById("stFloat").classList.toggle("on", m === "floating");
+  document.getElementById("stGlass").classList.toggle("on", m === "glass");
+}
+document.getElementById("stClassic").onclick = () => setStyle("classic");
+document.getElementById("stFloat").onclick = () => setStyle("floating");
+document.getElementById("stGlass").onclick = () => setStyle("glass");
+
+// Interactive controls inside static layers
+document.getElementById("btnPlayPause").onclick = () => { S.playing = !S.playing; renderDynamicNotchLayers(); };
+document.getElementById("btnPlayPause2").onclick = () => { S.playing = !S.playing; renderDynamicNotchLayers(); };
+document.getElementById("closedBars").onclick = () => { S.playing = !S.playing; renderDynamicNotchLayers(); };
+document.getElementById("btnOpenLyrics").onclick = () => setNotchState("lyrics");
+document.getElementById("btnCloseLyrics").onclick = () => setNotchState("music");
+document.getElementById("btnAudioOut").onclick = () => { S.audioOutIdx = (S.audioOutIdx + 1) % AUDIO_OUTS_EN.length; renderDynamicNotchLayers(); };
+document.getElementById("btnLyricSrc").onclick = () => { S.lyricLocal = !S.lyricLocal; renderDynamicNotchLayers(); };
+document.getElementById("mascotLayer").onclick = () => { S.mascotPhase = (S.mascotPhase + 1) % 3; renderDynamicNotchLayers(); };
+
+// Side chevrons step through the 7 main pages
+function stepMainPage(dir) {
+  const cur = S.state === "lyrics" ? "music" : S.state;
+  const idx = PAGES_ORDER.indexOf(cur);
+  const next = PAGES_ORDER[(idx === -1 ? 0 : (idx + dir + PAGES_ORDER.length) % PAGES_ORDER.length)];
+  setNotchState(next);
+}
+document.getElementById("stepPrev").onclick = () => stepMainPage(-1);
+document.getElementById("stepNext").onclick = () => stepMainPage(1);
+
+// Live Modifier Key (Alt) + Button Click-Through Demo
+function setGhost(on) {
+  document.getElementById("screen").classList.toggle("ghost-active", on);
+  document.getElementById("ghostBtn").classList.toggle("holding", on);
+}
+const gb = document.getElementById("ghostBtn");
+gb.addEventListener("pointerdown", () => setGhost(true));
+window.addEventListener("pointerup", () => setGhost(false));
+window.addEventListener("keydown", (e) => { if (e.key === "Alt") { e.preventDefault(); setGhost(true); } });
+window.addEventListener("keyup", (e) => { if (e.key === "Alt") setGhost(false); });
+window.addEventListener("blur", () => setGhost(false));
+
+renderPage();
+updateScale();
+</script>
+</body>
+</html>
