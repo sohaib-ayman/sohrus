@@ -2179,7 +2179,10 @@ document.querySelectorAll("#langSwitch button").forEach(b => {
   b.onclick = () => {
     S.lang = b.dataset.l;
     S.notchLang = b.dataset.l; // Sync notch language automatically with site language!
-    
+    renderPage();
+  };
+});
+
 // Copy InstaPay IPA Address
 document.getElementById("copyIpaBtn").onclick = () => {
   const ipa = "sohaibayman@instapay";
@@ -2210,10 +2213,6 @@ document.getElementById("copyIpaBtn").onclick = () => {
     document.body.removeChild(ta); done();
   }
 };
-
-renderPage();
-  };
-});
 
 document.getElementById("notchLangBtn").onclick = () => {
   S.notchLang = S.notchLang === "en" ? "ar" : "en";
