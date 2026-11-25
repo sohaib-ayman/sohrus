@@ -13,7 +13,8 @@
 <link rel="canonical" href="https://sohaib-ayman.github.io/sohrus/">
 
 <!-- Favicon & App Icons -->
-<link rel="icon" href="https://sohaib-ayman.github.io/sohrus/favicon.ico" sizes="any">
+<link rel="shortcut icon" type="image/x-icon" href="https://sohaib-ayman.github.io/sohrus/favicon.ico">
+<link rel="icon" type="image/x-icon" href="https://sohaib-ayman.github.io/sohrus/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="https://sohaib-ayman.github.io/sohrus/favicon-48x48.png">
 <link rel="icon" type="image/png" sizes="192x192" href="https://sohaib-ayman.github.io/sohrus/favicon-192x192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://sohaib-ayman.github.io/sohrus/apple-touch-icon.png">
@@ -45,11 +46,23 @@
     {
       "@type": "WebSite",
       "name": "Sohrus",
-      "url": "https://sohaib-ayman.github.io/sohrus/"
+      "alternateName": ["صوهروس", "Sohrus App"],
+      "url": "https://sohaib-ayman.github.io/sohrus/",
+      "publisher": {
+        "@type": "Person",
+        "name": "Sohaib Ayman",
+        "url": "https://github.com/sohaib-ayman"
+      }
     },
     {
       "@type": "SoftwareApplication",
       "name": "Sohrus",
+      "alternateName": "صوهروس",
+      "sameAs": [
+        "https://github.com/sohaib-ayman/sohrus",
+        "https://github.com/sohaib-ayman/sohrus/releases"
+      ],
+      "screenshot": "https://sohaib-ayman.github.io/sohrus/og-image.png",
       "url": "https://sohaib-ayman.github.io/sohrus/",
       "downloadUrl": "https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.7.exe",
       "image": "https://sohaib-ayman.github.io/sohrus/og-image.png",
@@ -571,7 +584,7 @@ html[dir="rtl"] .lang[data-l="en"] .lang-thumb { transform: translateX(0); }
 .cap { text-align: center; color: var(--mist); font-size: 14px; margin: 14px auto 0; max-width: 66ch; min-height: 1.6em; }
 
 /* ===== Sections ===== */
-.sec { padding: 74px 0; border-top: 1px solid var(--line); }
+.sec { padding: 74px 0; border-top: 1px solid var(--line); scroll-margin-top: 64px; }
 .sec-h { max-width: 680px; margin-bottom: 36px; }
 .sec-h.c-align { text-align: center; margin-inline: auto; }
 .sec-h h2 { font-size: clamp(23px, 3.2vw, 35px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 10px; }
@@ -672,14 +685,36 @@ html[dir="rtl"] .lang[data-l="en"] .lang-thumb { transform: translateX(0); }
   gap: 8px; margin-bottom: 16px;
 }
 .ip-title { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+.btn-qr-toggle {
+  width: 100%; height: 42px; padding: 0 14px; border-radius: 10px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: rgba(51, 143, 255, 0.12); border: 1px solid rgba(51, 143, 255, 0.34);
+  color: #93c5fd; font-size: 13.5px; font-weight: 600;
+  transition: background .16s, border-color .16s, color .16s;
+}
+.btn-qr-toggle:hover { background: rgba(51, 143, 255, 0.20); border-color: rgba(51, 143, 255, 0.55); color: #fff; }
+.btn-qr-toggle[aria-expanded="true"] { background: rgba(255, 255, 255, 0.06); border-color: var(--line-strong); color: var(--mist); }
+.ip-qr-wrap { margin-top: 14px; display: flex; justify-content: center; }
+.ip-qr-wrap[hidden] { display: none; }
 .ip-qr-frame {
   width: 172px; height: 172px; padding: 10px; border-radius: 12px;
   background: #ffffff; display: grid; place-items: center;
   box-shadow: 0 10px 28px -12px rgba(0, 0, 0, 0.75);
 }
-.ip-qr-frame img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 4px; }
+.ip-qr-frame canvas { width: 100%; height: 100%; display: block; border-radius: 4px; }
 .ip-qr-fallback {
-  display: none; font-size: 11.5px; color: #334155; font-weight: 600; line-height: 1.4; padding: 8px;
+  display: none; font-size: 11.5px; color: #334155; font-weight: 600; line-height: 1.4; padding: 8px; word-break: break-word;
+}
+.dl-meta {
+  margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  font-size: 13px; color: var(--mist); line-height: 1.4;
+}
+.dl-meta[hidden] { display: none; }
+.dl-meta svg { color: var(--green); flex-shrink: 0; }
+.dl-meta strong {
+  color: var(--ink); font-family: var(--mono); font-weight: 700;
+  font-size: 13.5px; letter-spacing: -0.01em;
 }
 .ip-addr {
   width: 100%; margin-top: 16px; padding: 6px 6px 6px 12px;
@@ -768,7 +803,8 @@ footer { border-top: 1px solid var(--line); padding: 34px 0 44px; font-size: 13.
 @media (max-width: 420px) {
   .brand small { display: none; }
   .bar-inner { height: 58px; gap: 8px; }
-  .btn-dl { padding: 0 11px; font-size: 12.5px; height: 34px; }
+  .bar .btn-dl { padding: 0 11px; font-size: 12.5px; height: 34px; }
+  .btn-hero { padding: 0 16px; font-size: 13.5px; height: 42px; }
   .mob-sup { height: 34px; padding: 0 9px; font-size: 12px; }
   .lang button { padding: 4px 8px; font-size: 11.5px; }
   .seg button { padding: 5px 8px; font-size: 11.5px; }
@@ -818,8 +854,11 @@ footer { border-top: 1px solid var(--line); padding: 34px 0 44px; font-size: 13.
     <h1 id="tHeroH1">A living native notch for Windows.</h1>
     <p class="lede" id="tHeroSub">Sohrus turns the top edge of Windows 10 &amp; 11 into a fast Pure Rust notch with full Arabic (RTL) &amp; English UI, media, 5-band visualizer, synced lyrics, Pomodoro, hydration, offline prayer times, file shelf, clipboard QR, Ask Sohrus AI, Smart OCR, and a hold-to-click-through key — all under 30 MB of RAM.</p>
     <div class="hero-cta">
-      <a class="btn-dl btn-hero" href="https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.7.exe" id="tHeroDl">Download for Windows (v1.6.7)</a>
-      <a class="btn-sec" href="https://github.com/sohaib-ayman/sohrus/releases" target="_blank" rel="noopener noreferrer" id="tHeroRel">GitHub Releases</a>
+      <a class="btn-dl btn-hero" href="#download" id="tHeroDl">Download for Windows (v1.6.7)</a>
+      <a class="btn-sec" href="#support" id="tHeroSup">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20.5s-7-4.4-9.2-8.2C1.2 9.4 2.7 5.5 6.4 5.1c2.1-.2 3.8.9 5.6 2.8 1.8-1.9 3.5-3 5.6-2.8 3.7.4 5.2 4.3 3.6 7.2-2.2 3.8-9.2 8.2-9.2 8.2z"/></svg>
+        <span id="tHeroSupTxt">Support Sohrus</span>
+      </a>
     </div>
     <div class="hero-facts" id="heroFacts"></div>
   </section>
@@ -1110,6 +1149,11 @@ footer { border-top: 1px solid var(--line); padding: 34px 0 44px; font-size: 13.
             <a class="btn-dl btn-hero" href="https://github.com/sohaib-ayman/sohrus/releases/latest/download/Sohrus-Setup-v1.6.7.exe" id="tInstBtn">Download Sohrus-Setup-v1.6.7.exe</a>
             <a class="btn-sec" href="https://github.com/sohaib-ayman/sohrus" target="_blank" rel="noopener noreferrer" id="tRepoBtn">GitHub Repository</a>
           </div>
+          <p class="dl-meta" id="dlCountRow" hidden>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <strong id="dlCountNum"></strong>
+            <span id="dlCountLbl"></span>
+          </p>
         </div>
         <div class="card-p">
           <h3 id="tNotH" style="font-size:17px;font-weight:700;margin-bottom:14px;">Before You Run It</h3>
@@ -1134,9 +1178,20 @@ footer { border-top: 1px solid var(--line); padding: 34px 0 44px; font-size: 13.
             <span class="ip-title" id="tSupCardTitle">Support via InstaPay</span>
             <span class="f-tag hyb" id="tSupEgBadge">Egypt Only</span>
           </div>
-          <div class="ip-qr-frame">
-            <img src="instapay-qr.png" alt="InstaPay QR — sohaibayman@instapay" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-            <span class="ip-qr-fallback">instapay-qr.png<br>sohaibayman@instapay</span>
+          <button type="button" class="btn-qr-toggle" id="toggleQrBtn" aria-expanded="false" aria-controls="ipQrWrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM18 18h3v3h-3z"/>
+            </svg>
+            <span id="tToggleQr">Show QR Code</span>
+          </button>
+          <div class="ip-qr-wrap" id="ipQrWrap" hidden>
+            <div class="ip-qr-frame">
+              <canvas id="ipQrCanvas" width="304" height="304" aria-label="InstaPay QR Code"></canvas>
+              <span class="ip-qr-fallback" id="ipQrFallback">sohaibayman@instapay</span>
+            </div>
           </div>
           <div class="ip-addr">
             <code id="ipaCode">sohaibayman@instapay</code>
@@ -1206,7 +1261,7 @@ const COPY = {
     nav: { prev: "Preview", bi: "AR & EN", mod: "Click-Through", light: "Lightweight", feat: "Features", priv: "Privacy", dl: "Download", sup: "Support", dlBtn: "Download" },
     heroH1: "A living native notch for Windows.",
     heroSub: "Sohrus turns the top edge of Windows 10 & 11 into a fast Pure Rust notch with full Arabic (RTL) & English UI, media, 5-band visualizer, synced lyrics, Pomodoro, hydration, offline prayer times, file shelf, clipboard QR, Ask Sohrus AI, Smart OCR, and a hold-to-click-through key — all under 30 MB of RAM.",
-    heroDl: "Download for Windows (v1.6.7)", heroRel: "GitHub Releases",
+    heroDl: "Download for Windows (v1.6.7)", heroSup: "Support Sohrus", heroRel: "GitHub Releases",
     facts: ["Windows 10 & 11", "Arabic (RTL) & English", "< 30 MB RAM", "~3 MB Installer", "Pure Rust · Direct2D"],
     stageHint: "1:1 Sohrus Direct2D preview — switch Notch language to preview full Arabic RTL inside the notch",
     ghostBtn: "Hold Alt · Click Behind",
@@ -1285,7 +1340,11 @@ const COPY = {
     supEgBadge: "Egypt Only",
     copyTxt: "Copy",
     copiedTxt: "Copied ✓",
-    supNote: "Scan with the InstaPay app or copy the IPA address. Available for local transfers inside Egypt only.",
+    showQr: "Show QR Code",
+    hideQr: "Hide QR Code",
+    dlOne: "download via GitHub Releases",
+    dlMany: "downloads via GitHub Releases",
+    supNote: "Click Show QR Code to scan with InstaPay, or copy the IPA address. Available for local transfers inside Egypt only.",
     privH2: "Offline-first. Transparent about every network call.",
     privP: "All your settings, tasks, hydration logs, shelf paths, clipboard history, and scratchpad notes live locally in %LOCALAPPDATA%\\Sohrus. No accounts, no analytics, and no tracking.",
     offH: "Runs 100% Offline", offB: "Zero Internet",
@@ -1375,7 +1434,7 @@ const COPY = {
     nav: { prev: "المعاينة", bi: "عربي وإنجليزي", mod: "النقر خلف النوتش", light: "الخفة والأداء", feat: "المميزات", priv: "الخصوصية", dl: "التحميل", sup: "الدعم", dlBtn: "تحميل" },
     heroH1: "نوتش حي وخفيف لويندوز.",
     heroSub: "صوهروس (Sohrus) يحوّل أعلى شاشة ويندوز 10 و11 إلى نوتش أصلي سريع بـ Pure Rust يدعم العربية (RTL) والإنجليزية بالكامل، مع الميديا وفيجوالايزر 5 نطاقات، كلمات متزامنة، بومودورو، شرب المياه، مواقيت الصلاة أوفلاين، الرف، الحافظة وQR، اسأل صوهروس، Smart OCR، ومفتاح إخفاء مؤقت للنقر خلف النوتش — باستهلاك أقل من 30 ميجا رام.",
-    heroDl: "تحميل لويندوز (v1.6.7)", heroRel: "صفحة الإصدارات (Releases)",
+    heroDl: "تحميل لويندوز (v1.6.7)", heroSup: "ادعم صوهروس", heroRel: "صفحة الإصدارات (Releases)",
     facts: ["ويندوز 10 و11", "عربي (RTL) وإنجليزي", "أقل من 30 ميجا رام", "حجم ~3 ميجا", "Pure Rust · Direct2D"],
     stageHint: "معاينة 1:1 من كود صوهروس الفعلي — بدّل لغة النوتش لتجربة العربي (RTL) والإنجليزي لايف",
     ghostBtn: "اضغط Alt · نقر خلف النوتش",
@@ -1454,7 +1513,13 @@ const COPY = {
     supEgBadge: "داخل مصر فقط",
     copyTxt: "نسخ",
     copiedTxt: "تم النسخ ✓",
-    supNote: "امسح الكود من تطبيق InstaPay أو انسخ العنوان. متاح للتحويلات المحلية داخل مصر فقط.",
+    showQr: "إظهار كود QR",
+    hideQr: "إخفاء كود QR",
+    dlOne: "عملية تحميل عبر GitHub Releases",
+    dlTwo: "عمليتا تحميل عبر GitHub Releases",
+    dlFew: "عمليات تحميل عبر GitHub Releases",
+    dlMany: "عملية تحميل عبر GitHub Releases",
+    supNote: "اضغط إظهار كود QR للمسح بتطبيق InstaPay أو انسخ العنوان. متاح للتحويلات المحلية داخل مصر فقط.",
     privH2: "يعمل أوفلاين بالأساس. وشفافية كاملة في أي اتصال.",
     privP: "كل إعداداتك ومهامك وسجل المياه والرف وسجل الحافظة والمفكرة تُحفظ محلياً داخل %LOCALAPPDATA%\\Sohrus. بدون حسابات أو تتبع.",
     offH: "يعمل 100% أوفلاين", offB: "بدون إنترنت",
@@ -1578,7 +1643,10 @@ const S = {
   askMode: "calc",
   askVoiceOn: true,
   hudIdx: 0,
-  copyTimer: null
+  copyTimer: null,
+  qrOpen: false,
+  qrLoaded: false,
+  dlCount: null
 };
 
 const AUDIO_OUTS_EN = ["🔊 Speakers", "🔊 AirPods", "🔊 Headset"];
@@ -2040,7 +2108,7 @@ function renderPage() {
   document.getElementById("tHeroH1").textContent = c.heroH1;
   document.getElementById("tHeroSub").textContent = c.heroSub;
   document.getElementById("tHeroDl").textContent = c.heroDl;
-  document.getElementById("tHeroRel").textContent = c.heroRel;
+  document.getElementById("tHeroSupTxt").textContent = c.heroSup;
 
   const hf = document.getElementById("heroFacts");
   hf.innerHTML = "";
@@ -2120,6 +2188,7 @@ function renderPage() {
   document.getElementById("tSupNote").textContent = c.supNote;
   const copyBtn = document.getElementById("copyIpaBtn");
   document.getElementById("tCopyIpa").textContent = copyBtn.classList.contains("copied") ? c.copiedTxt : c.copyTxt;
+  document.getElementById("tToggleQr").textContent = S.qrOpen ? c.hideQr : c.showQr;
 
   document.getElementById("tPrivH2").textContent = c.privH2;
   document.getElementById("tPrivP").textContent = c.privP;
@@ -2138,6 +2207,7 @@ function renderPage() {
   document.getElementById("tInstH").textContent = c.instH;
   document.getElementById("tInstP").textContent = c.instP;
   document.getElementById("tInstBtn").textContent = c.instBtn;
+  renderDlCount();
   document.getElementById("tRepoBtn").textContent = c.repoBtn;
   document.getElementById("tNotH").textContent = c.notH;
 
@@ -2270,8 +2340,107 @@ window.addEventListener("keydown", (e) => { if (e.key === "Alt") { e.preventDefa
 window.addEventListener("keyup", (e) => { if (e.key === "Alt") setGhost(false); });
 window.addEventListener("blur", () => setGhost(false));
 
+// ===== Live GitHub Download Counter (Download Section Metadata Row) =====
+function renderDlCount() {
+  const row = document.getElementById("dlCountRow");
+  const numEl = document.getElementById("dlCountNum");
+  const lblEl = document.getElementById("dlCountLbl");
+  if (!row || !numEl || !lblEl) return;
+  if (typeof S.dlCount !== "number" || !Number.isFinite(S.dlCount) || S.dlCount < 0) {
+    row.hidden = true;
+    return;
+  }
+  const c = COPY[S.lang];
+  const n = S.dlCount;
+  numEl.textContent = n.toLocaleString("en-US");
+  let unit = c.dlMany;
+  if (S.lang === "ar") {
+    if (n === 1) unit = c.dlOne;
+    else if (n === 2) unit = c.dlTwo;
+    else if (n >= 3 && n <= 10) unit = c.dlFew;
+    else unit = c.dlMany;
+  } else {
+    unit = n === 1 ? c.dlOne : c.dlMany;
+  }
+  lblEl.textContent = unit;
+  row.hidden = false;
+}
+
+function fetchDownloadCount() {
+  const CACHE_KEY = "sohrus_dl_count_v1";
+  const TTL_MS = 15 * 60 * 1000;
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (raw) {
+      const cached = JSON.parse(raw);
+      if (cached && typeof cached.count === "number") {
+        S.dlCount = cached.count;
+        renderDlCount();
+        if (Date.now() - (cached.ts || 0) < TTL_MS) return;
+      }
+    }
+  } catch (_) {}
+
+  fetch("https://api.github.com/repos/sohaib-ayman/sohrus/releases?per_page=100", {
+    headers: { "Accept": "application/vnd.github+json" }
+  })
+    .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then(releases => {
+      if (!Array.isArray(releases)) return;
+      let total = 0;
+      releases.forEach(rel => {
+        const assets = Array.isArray(rel.assets) ? rel.assets : [];
+        const exeAssets = assets.filter(a => typeof a.name === "string" && a.name.toLowerCase().endsWith(".exe"));
+        const target = exeAssets.length > 0 ? exeAssets : assets.filter(a => typeof a.name === "string" && !a.name.toLowerCase().endsWith(".txt"));
+        target.forEach(a => {
+          if (typeof a.download_count === "number") total += a.download_count;
+        });
+      });
+      S.dlCount = total;
+      renderDlCount();
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ count: total, ts: Date.now() }));
+      } catch (_) {}
+    })
+    .catch(() => {});
+}
+
+// ===== On-Demand Canvas QR Code (Not in Static HTML -> Hidden from Google Images) =====
+function drawSupportQr() {
+  if (S.qrLoaded) return;
+  const canvas = document.getElementById("ipQrCanvas");
+  const fb = document.getElementById("ipQrFallback");
+  if (!canvas || !canvas.getContext) return;
+  const ctx = canvas.getContext("2d");
+  const img = new Image();
+  img.onload = () => {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    canvas.style.display = "block";
+    if (fb) fb.style.display = "none";
+    S.qrLoaded = true;
+  };
+  img.onerror = () => {
+    canvas.style.display = "none";
+    if (fb) fb.style.display = "block";
+  };
+  img.src = ["support", "-qr", ".dat"].join("");
+}
+
+document.getElementById("toggleQrBtn").onclick = () => {
+  S.qrOpen = !S.qrOpen;
+  const wrap = document.getElementById("ipQrWrap");
+  const btn = document.getElementById("toggleQrBtn");
+  wrap.hidden = !S.qrOpen;
+  btn.setAttribute("aria-expanded", S.qrOpen ? "true" : "false");
+  document.getElementById("tToggleQr").textContent = S.qrOpen ? COPY[S.lang].hideQr : COPY[S.lang].showQr;
+  if (S.qrOpen) drawSupportQr();
+};
+
 renderPage();
 updateScale();
+fetchDownloadCount();
 </script>
 </body>
 </html>
