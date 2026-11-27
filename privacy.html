@@ -3,12 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Privacy Policy — Sohrus for Windows</title>
-<meta name="description" content="Official Privacy Policy for Sohrus (Windows 10 & 11). Zero telemetry, zero ads, 100% local data storage, non-recording microphone/camera active-state indicators, and optional user-initiated online features.">
+<title>Privacy Policy — Sohrus v2.0.0 for Windows</title>
+<meta name="description" content="Official Privacy Policy for Sohrus v2.0.0 (Windows 10 & 11). Zero desktop app telemetry, zero ads, 100% local data storage, transparent runFullTrust, Location/GPS, Wi-Fi, and non-recording mic/camera active-state indicators, optional online features, and website disclosures.">
 <meta name="author" content="Sohaib Ayman">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#05080f">
 <link rel="canonical" href="https://sohaib-ayman.github.io/sohrus/privacy.html">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NVTHGDLX4Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NVTHGDLX4Y');
+</script>
 
 <!-- Favicon & App Icons -->
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2.0.0">
@@ -21,8 +30,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sohrus">
 <meta property="og:url" content="https://sohaib-ayman.github.io/sohrus/privacy.html">
-<meta property="og:title" content="Privacy Policy — Sohrus for Windows">
-<meta property="og:description" content="Zero telemetry, zero ads, 100% local data storage, and clear transparency on desktop permissions and optional network features.">
+<meta property="og:title" content="Privacy Policy — Sohrus v2.0.0 for Windows">
+<meta property="og:description" content="Zero Windows app telemetry, zero ads, 100% local data storage, and clear transparency on desktop permissions, Location/Wi-Fi, optional online features, and website analytics.">
 <meta property="og:image" content="https://sohaib-ayman.github.io/sohrus/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,49 +61,56 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; background: var(--bg); color: var(--ink); font-family: var(--font-en); -webkit-font-smoothing: antialiased; overflow-x: clip; }
 html[lang="ar"] { font-family: var(--font-ar); }
-body { background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.65; min-height: 100vh; display: flex; flex-direction: column; overflow-x: clip; }
+html[lang="ar"] .kicker,
+html[lang="ar"] .chip,
+html[lang="ar"] .eff-date { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; }
+body { background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.64; min-height: 100vh; display: flex; flex-direction: column; overflow-x: clip; width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
 .wrap { width: min(860px, 100% - 40px); margin-inline: auto; }
 
-/* Header */
+/* Header (Aligned with index.html) */
 .bar {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(5, 8, 15, 0.88);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: rgba(5, 8, 15, 0.9);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
 .bar-inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 62px; gap: 12px;
+  height: 60px; gap: 12px; min-width: 0;
 }
-.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; font-size: 16px; letter-spacing: -0.015em; }
-.brand img {
-  width: 28px; height: 28px; border-radius: 7px; display: block;
-  box-shadow: 0 2px 10px -2px rgba(51, 143, 255, 0.35);
+.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15.5px; letter-spacing: -0.015em; flex-shrink: 0; }
+.brand img { width: 26px; height: 26px; border-radius: 6px; display: block; }
+.brand small {
+  font-family: var(--mono); font-size: 11px; color: #93c5fd; font-weight: 600;
+  padding: 2px 7px; border-radius: 6px;
+  background: var(--blue-soft); border: 1px solid rgba(51, 143, 255, 0.25);
 }
-.bar-r { display: flex; align-items: center; gap: 10px; }
+.bar-r { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .back-btn {
   display: inline-flex; align-items: center; gap: 6px;
-  height: 34px; padding: 0 13px; border-radius: 999px;
+  height: 36px; padding: 0 13px; border-radius: 9px;
   background: var(--panel); border: 1px solid var(--line-strong);
   color: var(--mist); font-size: 13px; font-weight: 600; white-space: nowrap;
-  transition: color .16s, border-color .16s, background .16s;
+  transition: color .15s, border-color .15s, background .15s;
 }
 .back-btn:hover { color: var(--ink); border-color: rgba(255, 255, 255, 0.28); background: var(--panel-2); }
+
 .lang {
   position: relative; display: inline-grid; grid-template-columns: 1fr 1fr;
-  padding: 3px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+  padding: 3px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line-strong);
 }
 .lang button {
   position: relative; z-index: 1; padding: 5px 10px; border-radius: 999px;
   font-size: 12px; font-weight: 700; color: var(--mist); transition: color .2s;
+  min-width: 36px;
 }
 .lang button[aria-pressed="true"] { color: #05080f; }
 .lang-thumb {
   position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px);
-  border-radius: 999px; background: #fff; transition: transform .35s var(--spring);
+  border-radius: 999px; background: #fff; transition: transform .32s var(--spring);
 }
 .lang[data-l="ar"] .lang-thumb { transform: translateX(100%); }
 html[dir="rtl"] .lang-thumb { left: auto; right: 3px; }
@@ -102,50 +118,52 @@ html[dir="rtl"] .lang[data-l="ar"] .lang-thumb { transform: translateX(-100%); }
 html[dir="rtl"] .lang[data-l="en"] .lang-thumb { transform: translateX(0); }
 
 /* Main Policy Content */
-main { flex: 1; padding: 54px 0 64px; }
+main { flex: 1; padding: 52px 0 68px; }
 .head-block { margin-bottom: 30px; }
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-  color: #86efac; margin-bottom: 10px;
+.kicker {
+  display: inline-block; font-family: var(--mono), var(--font-ar);
+  font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+  color: #93c5fd; margin-bottom: 10px;
 }
-html[lang="ar"] .eyebrow { text-transform: none; letter-spacing: 0; }
-.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+html[lang="ar"] .kicker { text-transform: none; letter-spacing: 0; }
 h1 {
   font-size: clamp(28px, 4.2vw, 40px); font-weight: 800; letter-spacing: -0.025em;
   line-height: 1.15; margin-bottom: 12px; color: var(--ink);
 }
-.lede { color: var(--mist); font-size: 15.8px; max-width: 64ch; }
+.lede { color: var(--mist); font-size: 15.5px; max-width: 64ch; line-height: 1.66; }
 
 .policy-stack { display: flex; flex-direction: column; gap: 14px; }
 .p-card {
-  background: linear-gradient(165deg, rgba(16, 25, 44, 0.72), rgba(11, 16, 27, 0.96));
-  border: 1px solid var(--line); border-radius: 15px; padding: 22px 24px;
-  display: flex; flex-direction: column; gap: 9px;
+  background: var(--panel);
+  border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 10px; min-width: 0;
 }
-.p-card-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.p-card h2 { font-size: 16.5px; font-weight: 700; color: var(--ink); }
-.p-card p { font-size: 14.3px; color: var(--mist); line-height: 1.7; }
+.p-card-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.p-card h2 { font-size: 16.5px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.p-card p { font-size: 14.3px; color: var(--mist); line-height: 1.72; }
 .p-card strong { color: var(--ink); font-weight: 600; }
 .p-card code {
-  font-family: var(--mono); font-size: 12.5px; padding: 2px 6px; border-radius: 5px;
+  font-family: var(--mono); font-size: 12.4px; padding: 2px 6px; border-radius: 5px;
   background: rgba(255, 255, 255, 0.06); color: #cde2ff; direction: ltr; display: inline-block;
+  max-width: 100%; overflow-wrap: anywhere;
 }
-.tag { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 6px; font-family: var(--mono), var(--font-ar); flex-shrink: 0; }
-.tag.off { background: var(--green-soft); color: #86efac; }
-.tag.hyb { background: var(--blue-soft); color: #93c5fd; }
+.p-card a { color: #7cc0ff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.p-card a:hover { color: #fff; }
+.chip {
+  font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px;
+  font-family: var(--mono), var(--font-ar); flex-shrink: 0; white-space: nowrap;
+  background: rgba(255, 255, 255, 0.05); color: var(--mist); border: 1px solid var(--line-strong);
+}
 
-.contact-box {
-  margin-top: 18px; padding: 18px 22px; border-radius: 14px;
-  background: var(--panel-2); border: 1px solid var(--line-strong);
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  font-size: 14px; color: var(--mist);
+.eff-bar {
+  margin-top: 18px; padding: 16px 20px; border-radius: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  font-size: 13.5px; color: var(--mist);
 }
-.contact-box a { color: #7cc0ff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-.contact-box a:hover { color: #fff; }
 .eff-date { font-family: var(--mono), var(--font-ar); font-size: 12.5px; color: var(--dim); }
 
-footer { border-top: 1px solid var(--line); padding: 26px 0 36px; font-size: 13.5px; color: var(--dim); }
+footer { border-top: 1px solid var(--line); padding: 28px 0 38px; font-size: 13.5px; color: var(--dim); }
 .ft-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
 .ft-links { display: flex; flex-wrap: wrap; gap: 16px; }
 .ft-links a:hover { color: var(--ink); }
@@ -154,7 +172,17 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 36px; font-size: 13.
   .wrap { width: calc(100% - 28px); }
   main { padding: 36px 0 48px; }
   .p-card { padding: 18px; }
-  .back-btn { padding: 0 10px; font-size: 12px; }
+  .back-btn { padding: 0 11px; font-size: 12.5px; }
+  .ft-in { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 420px) {
+  .brand small { display: none; }
+  .brand { gap: 6px; font-size: 14.5px; }
+  .brand img { width: 24px; height: 24px; }
+  .bar-inner { height: 56px; gap: 6px; }
+  .bar-r { gap: 6px; }
+  .back-btn { height: 34px; padding: 0 9px; font-size: 11.5px; }
+  .lang button { padding: 4px 7px; font-size: 11px; min-width: 28px; }
 }
 </style>
 </head>
@@ -163,8 +191,9 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 36px; font-size: 13.
 <header class="bar">
   <div class="wrap bar-inner">
     <a class="brand" href="./">
-      <img src="sohrus-icon.png?v=2.0.0" width="28" height="28" alt="Sohrus emblem">
+      <img src="sohrus-icon.png?v=2.0.0" width="26" height="26" alt="Sohrus emblem">
       <span id="tBrand">Sohrus</span>
+      <small>v2.0.0</small>
     </a>
     <div class="bar-r">
       <a class="back-btn" href="./" id="tBack">← Back to Sohrus</a>
@@ -180,15 +209,15 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 36px; font-size: 13.
 <main>
   <div class="wrap">
     <div class="head-block">
-      <span class="eyebrow" id="tEyebrow">Offline-First · Zero Telemetry</span>
-      <h1 id="tH1">Sohrus Privacy Policy</h1>
-      <p class="lede" id="tLede">Sohrus is a native Windows desktop utility built in Pure Rust with strict respect for your privacy. No accounts, no tracking, and clear disclosure of every local permission and optional online feature.</p>
+      <span class="kicker" id="tKicker">Sohrus v2.0.0 · Legal &amp; Transparency</span>
+      <h1 id="tH1">Privacy Policy</h1>
+      <p class="lede" id="tLede">Sohrus is a 100% free &amp; independent native Windows desktop utility built in Pure Rust. This policy clearly details how the Sohrus Windows app handles local data and permissions, and separately how this website handles analytics and contact submissions.</p>
     </div>
 
     <div class="policy-stack" id="policyStack"></div>
 
-    <div class="contact-box">
-      <span id="tContact"></span>
+    <div class="eff-bar">
+      <span id="tScope">Applies to Sohrus v2.0.0 (Microsoft Store MSIX &amp; GitHub Direct Installer) and sohaib-ayman.github.io/sohrus/</span>
       <span class="eff-date" id="tDate">Effective Date: November 2026</span>
     </div>
   </div>
@@ -196,102 +225,127 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 36px; font-size: 13.
 
 <footer>
   <div class="wrap ft-in">
-    <div id="tFoot">Sohrus · صوهروس — Created by Sohaib Ayman · Free for Windows 10 &amp; 11.</div>
+    <div id="tFoot">Sohrus v2.0.0 · صوهروس — Created by Sohaib Ayman · Free &amp; independent for Windows 10 &amp; 11.</div>
     <div class="ft-links">
       <a href="./" id="tFtHome">Home</a>
-      <a href="https://github.com/sohaib-ayman/sohrus" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="./#contact" id="tFtContact">Contact</a>
+      <a href="https://github.com/sohaib-ayman/sohrus/releases" target="_blank" rel="noopener noreferrer" id="tFtRel">GitHub Releases</a>
       <a href="https://github.com/sohaib-ayman/sohrus/issues" target="_blank" rel="noopener noreferrer" id="tFtIssues">Report an Issue</a>
     </div>
   </div>
 </footer>
 
 <script>
+const GA_MEASUREMENT_ID = "G-NVTHGDLX4Y";
+const LANG_STORAGE_KEY = "sohrus_lang";
+
+function loadSavedLang() {
+  try {
+    const v = localStorage.getItem(LANG_STORAGE_KEY);
+    if (v === "ar" || v === "en") return v;
+  } catch (_) {}
+  return "en";
+}
+function saveLang(lang) {
+  try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (_) {}
+}
+
 const COPY = {
   en: {
     lang: "en",
     dir: "ltr",
-    title: "Privacy Policy — Sohrus for Windows",
+    title: "Privacy Policy — Sohrus v2.0.0 for Windows",
     brand: "Sohrus",
-    back: "← Back to Sohrus",
-    eyebrow: "Offline-First · Zero Telemetry",
-    h1: "Sohrus Privacy Policy",
-    lede: "Sohrus is a native Windows desktop utility built in Pure Rust with strict respect for your privacy. No accounts, no tracking, and clear disclosure of every local permission and optional online feature.",
+    back: "← Home",
+    kicker: "Sohrus v2.0.0 · Legal & Transparency",
+    h1: "Privacy Policy",
+    lede: "Sohrus is a 100% free & independent native Windows desktop utility built in Pure Rust. This policy clearly details how the Sohrus Windows app handles local data and permissions, and separately how this website handles analytics and contact submissions.",
     cards: [
       {
-        tag: "Zero Tracking",
-        cls: "off",
-        t: "1. Zero Telemetry, Zero Ads, Zero Tracking",
-        html: "Sohrus does <strong>not</strong> collect, sell, rent, or transmit analytics, behavioral telemetry, crash profiles, usage statistics, or personal data. No account, registration, or sign-in is ever required."
+        t: "1. Zero App Telemetry, Zero Ads, Zero Tracking",
+        html: "The <strong>Sohrus Windows desktop app</strong> does <strong>not</strong> collect, sell, rent, or transmit analytics, behavioral telemetry, crash profiles, usage statistics, or personal data. No account, registration, or sign-in is ever required."
       },
       {
-        tag: "Local Only",
-        cls: "off",
         t: "2. 100% Local Data Storage",
-        html: "All preferences (<code>settings.json</code>), custom themes, clipboard history, scratchpad notes, to-dos, Pomodoro/hydration statistics, and file shelf references remain strictly on your local Windows PC (inside <code>%LOCALAPPDATA%\\Sohrus</code> for the direct installer, or Windows' managed MSIX local app container for the Microsoft Store build). You may export, clear, or permanently remove all data anytime by uninstalling Sohrus."
+        html: "All preferences (<code>settings.json</code>), custom themes, clipboard history, scratchpad notes, to-dos, Pomodoro/hydration statistics, and file shelf references remain strictly on your local Windows PC (inside <code>%LOCALAPPDATA%\\Sohrus</code> for the direct GitHub installer, or Windows' managed MSIX local app container for the Microsoft Store build). You may export, clear, or permanently remove all data anytime by uninstalling Sohrus."
       },
       {
-        tag: "runFullTrust",
-        cls: "hyb",
-        t: "3. Desktop Permissions & Hardware Indicators",
-        html: "Sohrus runs locally as a native Windows desktop utility (<code>runFullTrust</code>) solely to render the top-screen notch overlay, detect fullscreen applications and games to auto-hide, control local Windows media playback (GSMTC), and read local OS <strong>microphone/camera active-state indicators</strong> for privacy awareness. <strong>Sohrus never records, captures, stores, or transmits microphone audio or camera video.</strong>"
+        badge: "runFullTrust",
+        t: "3. Desktop Permissions (runFullTrust), Hardware Indicators, Location/GPS & Wi-Fi",
+        html: "Sohrus runs locally as a native Windows desktop utility (<code>runFullTrust</code>) solely to render the top-screen notch overlay, detect fullscreen applications and games to auto-hide, control local Windows media playback and audio output (WASAPI / GSMTC), support OLE drag-and-drop File Shelf &amp; clipboard tools, and read local OS <strong>microphone/camera active-state indicators</strong> for privacy awareness. <strong>Sohrus never records, captures, stores, or transmits microphone audio or camera video.</strong><br><br><strong>Location / GPS &amp; Wi-Fi:</strong> Location and Wi-Fi capabilities are used <strong>strictly locally on-device</strong> solely for optional Weather, offline Prayer Times city detection, and the Wi-Fi connection status HUD. Your location and Wi-Fi information are never tracked, stored externally, or uploaded to any developer server."
       },
       {
-        tag: "User-Initiated",
-        cls: "hyb",
+        badge: "Optional Online",
         t: "4. Optional User-Initiated Online Features",
-        html: "Network requests occur <strong>only</strong> when you explicitly invoke optional features: <strong>Ask Sohrus AI / Translation</strong> (sends only the text you submit directly to your configured AI API), <strong>Weather</strong> (Open-Meteo for your chosen city), <strong>Synced Lyrics</strong> (LRCLIB), or <strong>Update Checks</strong> (GitHub Releases for the standalone installer; Microsoft Store builds update automatically via the Store). Prayer Times are calculated astronomically offline. Every online feature is optional and completely under your control."
+        html: "Network requests inside the Windows app occur <strong>only</strong> when you explicitly invoke optional features: <strong>Ask Sohrus AI / Translation</strong> (sends only the text you submit directly to your configured AI API using your own API key), <strong>Weather</strong> (Open-Meteo for your selected city), <strong>Synced Lyrics</strong> (LRCLIB), or <strong>Update Checks</strong> (GitHub Releases for the standalone installer; Microsoft Store builds update automatically via the Store). <strong>Prayer Times</strong> are calculated astronomically offline. Every online feature is optional and completely under your control."
+      },
+      {
+        badge: "Website Only",
+        t: "5. Website Analytics & Contact Form (sohaib-ayman.github.io/sohrus/)",
+        html: "Separately from the offline-first Windows desktop app, the <strong>Sohrus website</strong> (<code>sohaib-ayman.github.io/sohrus/</code>) uses <strong>Google Analytics 4</strong> (<code>G-NVTHGDLX4Y</code>) solely for aggregated visitor and download-click statistics to understand interest across Microsoft Store and GitHub Releases. In addition, if you voluntarily submit a message through the website's <a href=\"./#contact\">Contact &amp; Feedback form</a>, the details you enter (name, email, topic, and message) are transmitted solely to the developer to review and reply to your inquiry and are never sold or shared with third parties."
+      },
+      {
+        t: "6. Contact & Privacy Questions",
+        html: "If you have any questions about this Privacy Policy or how Sohrus handles data, you can reach the developer directly via the <a href=\"./#contact\">Contact &amp; Feedback form</a> on the website or open an issue at <a href=\"https://github.com/sohaib-ayman/sohrus/issues\" target=\"_blank\" rel=\"noopener noreferrer\">github.com/sohaib-ayman/sohrus/issues</a>."
       }
     ],
-    contactHtml: '<strong>5. Contact &amp; Privacy Questions:</strong> Reach the developer at <a href="https://github.com/sohaib-ayman" target="_blank" rel="noopener noreferrer">github.com/sohaib-ayman</a> or open an issue at <a href="https://github.com/sohaib-ayman/sohrus/issues" target="_blank" rel="noopener noreferrer">github.com/sohaib-ayman/sohrus/issues</a>.',
+    scope: "Applies to Sohrus v2.0.0 (Microsoft Store MSIX & GitHub Direct Installer) and sohaib-ayman.github.io/sohrus/",
     date: "Effective Date: November 2026",
-    foot: "Sohrus · صوهروس — Created by Sohaib Ayman · Free for Windows 10 & 11.",
-    ftHome: "Back to Sohrus",
+    foot: "Sohrus v2.0.0 · صوهروس — Created by Sohaib Ayman · Free & independent for Windows 10 & 11.",
+    ftHome: "Home",
+    ftContact: "Contact",
+    ftRel: "GitHub Releases",
     ftIssues: "Issues & Support"
   },
   ar: {
     lang: "ar",
     dir: "rtl",
-    title: "سياسة الخصوصية — صوهروس لويندوز",
+    title: "سياسة الخصوصية — صوهروس v2.0.0 لويندوز",
     brand: "صوهروس",
-    back: "العودة إلى صوهروس →",
-    eyebrow: "يعمل أوفلاين بالأساس · بدون تتبع",
-    h1: "سياسة الخصوصية لتطبيق صوهروس",
-    lede: "صوهروس أداة ويندوز أصلية مبنية بـ Pure Rust باحترام كامل لخصوصيتك. بدون حسابات، بدون تتبع، مع شفافية تامة لكل صلاحية محلية وأي ميزة متصلة بالإنترنت.",
+    back: "الرئيسية →",
+    kicker: "صوهروس v2.0.0 · الشفافية والخصوصية",
+    h1: "سياسة الخصوصية",
+    lede: "صوهروس أداة ويندوز أصلية مجانية ومستقلة 100% مبنية بـ Pure Rust. توضّح هذه السياسة بشفافية تامة كيفية تعامل تطبيق صوهروس لويندوز مع بياناتك المحلية وصلاحياته، وبشكل منفصل كيفية تعامل هذا الموقع الإلكتروني مع الإحصاءات ونموذج التواصل.",
     cards: [
       {
-        tag: "بدون تتبع",
-        cls: "off",
-        t: "1. صفر تتبع، صفر إعلانات، صفر تحليلات",
-        html: "لا يجمع صوهروس ولا يبيع ولا يرسل أي بيانات تحليلات أو تتبع سلوكي أو إحصائيات استخدام أو ملفات شخصية. لا يحتاج التطبيق إلى إنشاء حساب أو تسجيل دخول أبداً."
+        t: "1. صفر تتبع في التطبيق، صفر إعلانات، صفر تحليلات",
+        html: "لا يجمع <strong>تطبيق صوهروس لويندوز</strong> ولا يبيع ولا يؤجر ولا يرسل أي بيانات تحليلات أو تتبع سلوكي أو تقارير أعطال أو إحصائيات استخدام أو بيانات شخصية. لا يحتاج التطبيق إلى إنشاء حساب أو تسجيل دخول أبداً."
       },
       {
-        tag: "محلي 100%",
-        cls: "off",
-        t: "2. تخزين البيانات محلياً على جهازك بالكامل",
-        html: "تبقى كل الإعدادات (<code>settings.json</code>)، الألوان المخصصة، سجل الحافظة، المفكرة، المهام، إحصائيات البومودورو وشرب المياه، ومسارات رف الملفات محلياً على جهاز ويندوز الخاص بك فقط (في <code>%LOCALAPPDATA%\\Sohrus</code> لنسخة المثبّت المباشر، أو داخل حاوية MSIX المُدارة من ويندوز لنسخة متجر مايكروسوفت)، ويمكنك تصديرها أو مسحها بالكامل عند إلغاء التثبيت."
+        t: "2. تخزين البيانات محلياً على جهازك 100%",
+        html: "تبقى كل الإعدادات (<code>settings.json</code>)، والألوان المخصصة، وسجل الحافظة، والمفكرة، والمهام، وإحصائيات البومودورو وشرب المياه، ومسارات رف الملفات محلياً على جهاز ويندوز الخاص بك فقط (داخل <code>%LOCALAPPDATA%\\Sohrus</code> لنسخة مثبّت GitHub المباشر، أو داخل حاوية MSIX المُدارة من ويندوز لنسخة متجر مايكروسوفت). يمكنك تصدير كل بياناتك أو مسحها نهائياً في أي وقت عند إلغاء تثبيت صوهروس."
       },
       {
-        tag: "runFullTrust",
-        cls: "hyb",
-        t: "3. صلاحيات سطح المكتب ومؤشرات الكاميرا والمايك",
-        html: "يعمل صوهروس محلياً كأداة ويندوز أصلية (<code>runFullTrust</code>) فقط لرسم شريط النوتش أعلى الشاشة، واكتشاف الألعاب والتطبيقات بملء الشاشة للاختفاء التلقائي، والتحكم في تشغيل الميديا المحلي (GSMTC)، وقراءة <strong>حالة نشاط المايكروفون والكاميرا</strong> من النظام لتنبيهك حفاظاً على خصوصيتك. <strong>لا يقوم صوهروس أبداً بتسجيل أو التقاط أو حفظ أو إرسال أي صوت أو فيديو.</strong>"
+        badge: "runFullTrust",
+        t: "3. صلاحيات سطح المكتب (runFullTrust)، مؤشرات الكاميرا والمايك، الموقع (GPS) والواي فاي",
+        html: "يعمل صوهروس محلياً كأداة ويندوز أصلية (<code>runFullTrust</code>) فقط لرسم شريط النوتش أعلى الشاشة، واكتشاف الألعاب والتطبيقات بملء الشاشة للاختفاء التلقائي، والتحكم في الميديا ومخرج الصوت المحلي (WASAPI / GSMTC)، ودعم رف الملفات بالسحب والإفلات والحافظة، وقراءة <strong>حالة نشاط المايكروفون والكاميرا</strong> من النظام لتنبيهك حفاظاً على خصوصيتك. <strong>لا يقوم صوهروس أبداً بتسجيل أو التقاط أو حفظ أو إرسال أي صوت أو فيديو.</strong><br><br><strong>الموقع (GPS) والواي فاي:</strong> تُستخدم صلاحيات الموقع والواي فاي <strong>محلياً على جهازك فقط</strong> لأغراض تحديد المدينة اختيارياً للطقس ومواقيت الصلاة أوفلاين، وعرض إشعار حالة اتصال الواي فاي في النوتش. لا يتم أبداً تتبع موقعك أو تخزينه خارجياً أو رفعه إلى أي خادم."
       },
       {
-        tag: "بطلبك فقط",
-        cls: "hyb",
-        t: "4. الميزات المتصلة بالإنترنت اختيارية بالكامل",
-        html: "لا يُجري التطبيق أي اتصال بالإنترنت <strong>إلا عند استخدامك الصريح</strong> لميزة اختيارية: <strong>اسأل صوهروس والترجمة</strong> (يرسل فقط النص الذي تكتبه إلى واجهة الذكاء الاصطناعي التي أعددتها)، <strong>الطقس</strong> (Open-Meteo لمدينتك)، <strong>الكلمات المتزامنة</strong> (LRCLIB)، أو <strong>فحص التحديثات</strong> (GitHub Releases للنسخة المستقلة بينما تتحدّث نسخة المتجر تلقائياً عبر Microsoft Store). مواقيت الصلاة تُحسب فلكياً أوفلاين بالكامل."
+        badge: "إنترنت اختياري",
+        t: "4. الميزات المتصلة بالإنترنت اختيارية وبطلبك فقط",
+        html: "لا يُجري تطبيق ويندوز أي اتصال بالإنترنت <strong>إلا عند استخدامك الصريح</strong> لميزة اختيارية: <strong>اسأل صوهروس والترجمة</strong> (يرسل فقط النص الذي تكتبه مباشرة إلى واجهة الذكاء الاصطناعي التي أعددتها بمفتاحك الخاص)، <strong>الطقس</strong> (Open-Meteo لمدينتك المختارة)، <strong>الكلمات المتزامنة</strong> (LRCLIB)، أو <strong>فحص التحديثات</strong> (إصدارات GitHub للنسخة المستقلة بينما تتحدّث نسخة المتجر تلقائياً عبر Microsoft Store). أما <strong>مواقيت الصلاة</strong> فتُحسب فلكياً أوفلاين بالكامل. كل ميزة متصلة بالإنترنت اختيارية وتحت سيطرتك التامة."
+      },
+      {
+        badge: "الموقع فقط",
+        t: "5. إحصاءات الموقع الإلكتروني ونموذج التواصل (sohaib-ayman.github.io/sohrus/)",
+        html: "بشكل منفصل تماماً عن تطبيق ويندوز الذي يعمل أوفلاين بدون تتبع، يستخدم <strong>موقع صوهروس الإلكتروني</strong> (<code>sohaib-ayman.github.io/sohrus/</code>) خدمة <strong>Google Analytics 4</strong> (<code>G-NVTHGDLX4Y</code>) فقط لإحصاءات الزيارات ونقرات التحميل المُجمّعة لمعرفة الإقبال بين متجر مايكروسوفت وإصدارات GitHub. كما أن الرسائل التي ترسلها طوعاً عبر <a href=\"./#contact\">نموذج التواصل والملاحظات</a> في الموقع (الاسم، البريد الإلكتروني، الموضوع، الرسالة) تُرسل مباشرة للمطوّر فقط لمراجعتها والرد على استفسارك، ولا تُباع أو تُشارك مع أي طرف ثالث."
+      },
+      {
+        t: "6. التواصل واستفسارات الخصوصية",
+        html: "إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه أو كيفية تعامل صوهروس مع البيانات، يمكنك التواصل مع المطوّر مباشرة عبر <a href=\"./#contact\">نموذج التواصل والملاحظات</a> على الموقع أو فتح Issue عبر <a href=\"https://github.com/sohaib-ayman/sohrus/issues\" target=\"_blank\" rel=\"noopener noreferrer\">github.com/sohaib-ayman/sohrus/issues</a>."
       }
     ],
-    contactHtml: '<strong>5. التواصل واستفسارات الخصوصية:</strong> تواصل مع المطوّر عبر <a href="https://github.com/sohaib-ayman" target="_blank" rel="noopener noreferrer">github.com/sohaib-ayman</a> أو افتح Issue عبر <a href="https://github.com/sohaib-ayman/sohrus/issues" target="_blank" rel="noopener noreferrer">github.com/sohaib-ayman/sohrus/issues</a>.',
+    scope: "تنطبق على صوهروس v2.0.0 (متجر مايكروسوفت MSIX ومثبّت GitHub المباشر) وموقع sohaib-ayman.github.io/sohrus/",
     date: "تاريخ السريان: نوفمبر 2026",
-    foot: "صوهروس · Sohrus — تطوير صهيب أيمن (Sohaib Ayman) · مجاني لويندوز 10 و11.",
-    ftHome: "العودة إلى صوهروس",
+    foot: "صوهروس v2.0.0 · Sohrus — تطوير صهيب أيمن (Sohaib Ayman) · مجاني ومستقل لويندوز 10 و11.",
+    ftHome: "الرئيسية",
+    ftContact: "تواصل",
+    ftRel: "إصدارات GitHub",
     ftIssues: "البلاغات والدعم"
   }
 };
 
-let currentLang = "en";
+let currentLang = loadSavedLang();
 
 function render() {
   const c = COPY[currentLang];
@@ -305,7 +359,7 @@ function render() {
 
   document.getElementById("tBrand").textContent = c.brand;
   document.getElementById("tBack").textContent = c.back;
-  document.getElementById("tEyebrow").textContent = c.eyebrow;
+  document.getElementById("tKicker").textContent = c.kicker;
   document.getElementById("tH1").textContent = c.h1;
   document.getElementById("tLede").textContent = c.lede;
 
@@ -318,26 +372,32 @@ function render() {
     h.className = "p-card-h";
     const h2 = document.createElement("h2");
     h2.textContent = item.t;
-    const tag = document.createElement("span");
-    tag.className = "tag " + item.cls;
-    tag.textContent = item.tag;
-    h.append(h2, tag);
+    h.appendChild(h2);
+    if (item.badge) {
+      const chip = document.createElement("span");
+      chip.className = "chip";
+      chip.textContent = item.badge;
+      h.appendChild(chip);
+    }
     const p = document.createElement("p");
     p.innerHTML = item.html;
     card.append(h, p);
     stack.appendChild(card);
   });
 
-  document.getElementById("tContact").innerHTML = c.contactHtml;
+  document.getElementById("tScope").textContent = c.scope;
   document.getElementById("tDate").textContent = c.date;
   document.getElementById("tFoot").textContent = c.foot;
   document.getElementById("tFtHome").textContent = c.ftHome;
+  document.getElementById("tFtContact").textContent = c.ftContact;
+  document.getElementById("tFtRel").textContent = c.ftRel;
   document.getElementById("tFtIssues").textContent = c.ftIssues;
 }
 
 document.querySelectorAll("#langSwitch button").forEach(b => {
   b.onclick = () => {
     currentLang = b.dataset.l;
+    saveLang(currentLang);
     render();
   };
 });
